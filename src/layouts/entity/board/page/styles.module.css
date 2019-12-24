@@ -1,0 +1,11 @@
+.columnsBlock {
+    display: flex;
+    overflow-x: scroll;
+    white-space: nowrap;
+    text-align: left;
+}
+
+.columnBlock {
+    white-space: nowrap;
+    display: inline-block;
+}

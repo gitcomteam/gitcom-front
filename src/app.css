@@ -1,0 +1,136 @@
+html {
+  height: 100%;
+}
+
+body {
+  margin: 0 !important;
+  height: 100%;
+  overflow-x: hidden;
+}
+
+p, b {
+  font-size: 1.15em;
+}
+
+#root {
+  height: 100%;
+}
+
+.full-width {
+  width: 100% !important;
+}
+
+.full-height {
+  height: 100% !important;
+}
+
+.inline {
+  display: inline !important;
+}
+
+.app {
+  height: 100%;
+  text-align: center;
+}
+
+.no-padding {
+  padding: 0 !important;
+}
+
+.flex-center {
+  display: flex !important;
+  justify-content: center !important;
+}
+
+.text-left {
+  text-align: left !important;
+}
+
+.text-center {
+  text-align: center !important;
+}
+
+.margin-sm-top {
+  margin-top: 10px;
+}
+
+.margin-lg-top {
+  margin-top: 40px !important;
+}
+
+.margin-md-top {
+  margin-top: 25px !important;
+}
+
+.margin-md-left {
+  margin-top: 25px;
+}
+
+.margin-sm-vertical {
+  margin: 10px 0;
+}
+
+.margin-md-vertical {
+  margin: 25px 0;
+}
+
+.margin-sm-sides {
+  margin: 0 10px;
+}
+
+.margin-lg-top {
+  margin-top: 40px;
+}
+
+.margin-sm {
+  margin: 10px !important;
+}
+
+.margin-xs {
+  margin: 5px !important;
+}
+
+.padding-sm {
+  padding: 10px !important;
+}
+
+.padding-md {
+  padding: 25px !important;
+}
+
+.zero-height {
+  height: 0;
+}
+
+.small-card .ant-card-body {
+  padding: 10px !important;
+}
+.small-card .ant-card-head-title {
+  padding: 10px !important;
+}
+
+.display-flex {
+  display: flex !important;
+}
+
+.flex-1 {
+  flex: 1;
+}
+
+.material-shadow-hover-1:hover {
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+
+.hover-pointer:hover {
+  cursor: pointer;
+}
+
+@media only screen and (min-width: 767px) {
+  .desktop-zero-height {
+    height: 0;
+  }
+  .sm-desktop-horizontal-margin {
+    margin: 0 10px;
+  }
+}

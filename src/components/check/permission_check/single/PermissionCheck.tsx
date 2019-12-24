@@ -1,15 +1,12 @@
 import React from "react";
-import {Link} from "react-router-dom";
-import {Button, Icon} from "antd";
-import {EntityType} from "../../../client/models";
+import {EntityType} from "../../../../client/models";
+import {Icon} from "antd";
+import {retryRequest} from "../../../../classes/utils/http/retryRequest";
 
 interface IProps {
-    label: string,
     entityGuid: string,
     entityType: EntityType,
     requiredPermissions: string[],
-    icon: string|null,
-    url: string
 }
 
 interface IState {
@@ -17,11 +14,7 @@ interface IState {
     gotPermissions: boolean
 }
 
-class PermissionCheckLink extends React.Component<IProps, IState> {
-    public static defaultProps ={
-        icon: null
-    };
-
+class PermissionCheck extends React.Component<IProps, IState> {
     constructor(props: IProps) {
         super(props);
         this.state = {
@@ -32,8 +25,10 @@ class PermissionCheckLink extends React.Component<IProps, IState> {
 
     componentDidMount(): void {
         setTimeout(() => {
-            this.getPermissions();
-        }, Math.floor(Math.random() * 750));
+            retryRequest(() => {
+                this.getPermissions();
+            }, () => this.state.isLoading, false);
+        }, Math.floor(Math.random() * 1000));
     }
 
     getPermissions() {
@@ -75,13 +70,10 @@ class PermissionCheckLink extends React.Component<IProps, IState> {
         if (!this.state.gotPermissions) {
             return <div/>;
         }
-        return <Link to={this.props.url}>
-            <Button
-                icon={this.props.icon ? this.props.icon : ""}
-                type={"default"}
-            >{this.props.label}</Button>
-        </Link>;
+        return <div>
+            {this.props.children}
+        </div>;
     }
 }
 
-export default PermissionCheckLink;
+export default PermissionCheck;

@@ -10,6 +10,14 @@ export function handleApiError(response: any): void {
     }
     let json: any;
     try {
+        if (response.status === 401) {
+            notification['error']({
+                message: 'Unauthorized, please log in again',
+                description: ''
+            });
+            window.App.logout();
+            return;
+        }
         if (response.status === 404) {
             notification['error']({
                 message: 'Not found',

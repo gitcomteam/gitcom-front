@@ -49,7 +49,7 @@ class MyLibraryItems extends React.Component<IProps, IState> {
             <Row>
             {this.state.items.length === 0 ? <p>Your library is empty</p> : null}
             {this.state.items.map((item: LibraryItem, i: number) => {
-                return <Col sm={12} xs={24} key={i}>
+                return <Col className={"padding-sm"} sm={12} xs={24} key={i}>
                     <ItemCard item={item}/>
                 </Col>;
             })}

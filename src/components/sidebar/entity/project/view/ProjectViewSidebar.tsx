@@ -4,15 +4,21 @@ import {Link} from "react-router-dom";
 
 const { Sider } = Layout;
 
-class ProjectViewSidebar extends React.Component {
+interface IProps {
+}
+
+interface IState {
+}
+
+class ProjectViewSidebar extends React.Component<IProps, IState> {
     static getActiveMenuKeys(): string[] {
-        switch (window.location.pathname) {
-            case "/home":
-                return ["home"];
-            case "/account":
-                return ["sub1", "account"];
-        }
-        return [];
+        if (window.location.pathname.includes('/pricing')) return ["pricing"];
+        return ["home"];
+    }
+
+    getPath() {
+        let path = window.location.pathname.split("/");
+        return `/${path[1]}/${path[2]}`;
     }
 
     render() {
@@ -24,11 +30,11 @@ class ProjectViewSidebar extends React.Component {
                     defaultOpenKeys={ProjectViewSidebar.getActiveMenuKeys()}
                     style={{height: '100%', borderRight: 0}}
                 >
-                    <Menu.Item key="team" className={"text-left"}>
-                        <Link to={"team"}><Icon type={"team"}/>Team</Link>
+                    <Menu.Item key="home" className={"text-left"}>
+                        <Link to={this.getPath()}><Icon type={"home"}/>Project home</Link>
                     </Menu.Item>
-                    <Menu.Item key="settings" className={"text-left"}>
-                        <Link to={"settings"}><Icon type={"setting"}/>Settings</Link>
+                    <Menu.Item key="pricing" className={"text-left"}>
+                        <Link to={`${this.getPath()}/pricing`}><Icon type={"dollar"}/>Pricing</Link>
                     </Menu.Item>
                 </Menu>
             </Sider>

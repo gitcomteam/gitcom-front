@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "version": "0.13.0",
-    "title": "Supporthub",
+    "title": "GitCom",
     "description": "SupportHub API (WIP)",
     "termsOfService": "http://swagger.io/terms/",
     "contact": {
@@ -12,7 +12,7 @@
       "name": "Unknown license"
     }
   },
-  "host": "api.supporthub.com",
+  "host": "api.gitcom.com",
   "basePath": "/api/v1",
   "schemes": [
     "http",
@@ -120,6 +120,10 @@
     {
       "name": "permissions",
       "description": "Permissions related stuff"
+    },
+    {
+      "name": "product",
+      "description": "Project product related operations"
     }
   ],
   "paths": {
@@ -504,6 +508,45 @@
         }
       }
     },
+    "/repository/get": {
+      "get": {
+        "tags": [
+          "repo"
+        ],
+        "operationId": "getRepo",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "repo_guid",
+            "in": "query",
+            "type": "string",
+            "description": "Repository Guid",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "repository": {
+                      "$ref": "#/definitions/Repository"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/project/get": {
       "get": {
         "tags": [
@@ -807,6 +850,147 @@
         }
       }
     },
+    "/card/create": {
+      "post": {
+        "tags": [
+          "card"
+        ],
+        "operationId": "createCard",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "api_token",
+            "in": "query",
+            "type": "string",
+            "description": "",
+            "required": true
+          },
+          {
+            "name": "column_guid",
+            "in": "query",
+            "type": "string",
+            "description": "",
+            "required": true
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "type": "string",
+            "description": "",
+            "required": true
+          },
+          {
+            "name": "description",
+            "in": "query",
+            "type": "string",
+            "description": "",
+            "required": false
+          },
+          {
+            "name": "column_order",
+            "in": "query",
+            "type": "integer",
+            "description": "",
+            "required": false
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "card": {
+                      "$ref": "#/definitions/Card"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/card/edit": {
+      "patch": {
+        "tags": [
+          "card"
+        ],
+        "operationId": "editCard",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "api_token",
+            "in": "query",
+            "type": "string",
+            "description": "",
+            "required": true
+          },
+          {
+            "name": "card_guid",
+            "in": "query",
+            "type": "string",
+            "description": "",
+            "required": true
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "type": "string",
+            "description": "",
+            "required": false
+          },
+          {
+            "name": "description",
+            "in": "query",
+            "type": "string",
+            "description": "",
+            "required": false
+          },
+          {
+            "name": "column_order",
+            "in": "query",
+            "type": "integer",
+            "description": "",
+            "required": false
+          },
+          {
+            "name": "column_guid",
+            "in": "query",
+            "type": "string",
+            "description": "",
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "card": {
+                      "$ref": "#/definitions/Card"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/card/work/get": {
       "get": {
         "tags": [
@@ -866,19 +1050,7 @@
             "required": true
           },
           {
-            "name": "entity_type",
-            "in": "query",
-            "type": "string",
-            "enum": [
-              "ProjectCategory",
-              "Project",
-              "Board",
-              "Card",
-              "BacklogItem",
-              "UserBalance",
-              "User"
-            ],
-            "required": true
+            "$ref": "#/parameters/entity_type"
           }
         ],
         "responses": {
@@ -1070,19 +1242,7 @@
             "required": true
           },
           {
-            "name": "entity_type",
-            "in": "query",
-            "type": "string",
-            "enum": [
-              "ProjectCategory",
-              "Project",
-              "Board",
-              "Card",
-              "BacklogItem",
-              "UserBalance",
-              "User"
-            ],
-            "required": true
+            "$ref": "#/parameters/entity_type"
           },
           {
             "name": "amount",
@@ -1595,6 +1755,58 @@
         }
       }
     },
+    "/me/library/project/status/get": {
+      "get": {
+        "tags": [
+          "alias",
+          "project"
+        ],
+        "operationId": "getMyLibraryProjectStatus",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "api_token",
+            "in": "query",
+            "type": "string",
+            "description": "",
+            "required": true
+          },
+          {
+            "name": "project_guid",
+            "in": "query",
+            "type": "string",
+            "description": "",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "object",
+                      "properties": {
+                        "in_library": {
+                          "type": "boolean"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/me/get": {
       "get": {
         "tags": [
@@ -1775,16 +1987,7 @@
             "required": true
           },
           {
-            "name": "entity_type",
-            "in": "query",
-            "type": "string",
-            "enum": [
-              "Project",
-              "Board",
-              "BoardColumn",
-              "Card"
-            ],
-            "required": true
+            "$ref": "#/parameters/entity_type"
           }
         ],
         "responses": {
@@ -1874,6 +2077,66 @@
           }
         }
       }
+    },
+    "/project/products/get": {
+      "get": {
+        "tags": [
+          "project", "product"
+        ],
+        "operationId": "getProjectProducts",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "project_guid",
+            "in": "query",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "products": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/definitions/ProjectProduct"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "parameters": {
+    "entity_type": {
+      "name": "entity_type",
+      "in": "query",
+      "type": "string",
+      "enum": [
+        "ProjectCategory",
+        "Project",
+        "Board",
+        "Card",
+        "BacklogItem",
+        "UserBalance",
+        "User",
+        "ProjectProductPurchase",
+        "BoardColumn"
+      ],
+      "required": true
     }
   },
   "definitions": {
@@ -1957,6 +2220,10 @@
         "base_uri": {
           "type": "string",
           "example": "owner/project-name"
+        },
+        "stars_count": {
+          "type": "number",
+          "example": 3
         },
         "created_at": {
           "type": "string",
@@ -2295,6 +2562,47 @@
         }
       }
     },
+    "ProjectProduct": {
+      "type": "object",
+      "properties": {
+        "guid": {
+          "type": "string",
+          "example": "46e647fc-9ebc-4d40-bcff-f81af991ee88"
+        },
+        "name": {
+          "type": "string",
+          "example": "Professional edition"
+        },
+        "description": {
+          "type": "string",
+          "example": "List of additional features here"
+        },
+        "url": {
+          "type": "string",
+          "description": "url to view product info (optional)"
+        },
+        "project_guid": {
+          "type": "string",
+          "example": "46e647fc-9ebc-4d40-bcff-f81af991ee88"
+        },
+        "usd_price": {
+          "type": "number",
+          "example": 2.25
+        },
+        "duration_hours": {
+          "type": "integer",
+          "example": "5"
+        },
+        "created_at": {
+          "type": "string",
+          "example": "2019-10-06T17:14:54.844933"
+        },
+        "updated_at": {
+          "type": "string",
+          "example": "2019-10-06T17:14:54.844933"
+        }
+      }
+    },
     "EntityType": {
       "type": "string",
       "example": "Card",
@@ -2305,7 +2613,9 @@
         "Card",
         "BacklogItem",
         "UserBalance",
-        "User"
+        "User",
+        "ProjectProductPurchase",
+        "BoardColumn"
       ]
     },
     "CurrencyType": {

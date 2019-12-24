@@ -1,15 +1,24 @@
 import React, {SyntheticEvent} from "react";
-import {CardModel, InvoiceModel} from "../../../../../client/bindings";
+import {InvoiceModel} from "../../../../../client/bindings";
 import {Button, Col, Input, Modal, notification, Row, Select} from "antd";
 import CurrencyType from "../../../../../enum/CurrencyType";
 import {handleApiError} from "../../../../../classes/notification/errorHandler/errorHandler";
 import InvoiceContent from "../view/content/InvoiceContent";
 import WarningBlock from "../../../../info/payment/WarningBlock/WarningBlock";
+import {EntityType} from "../../../../../client/models";
 
 const { Option } = Select;
 
 interface IProps {
-    card: CardModel
+    modalLabel: string,
+    entityGuid: string,
+    entityType: EntityType,
+    buttonLabel: string,
+    buttonIcon: string,
+    defaultAmount: number,
+    defaultCurrency: string|null,
+
+    showAmountField: boolean
 }
 
 interface IState {
@@ -23,6 +32,15 @@ interface IState {
 }
 
 class NewInvoice extends React.Component<IProps, IState> {
+    public static defaultProps = {
+        buttonLabel: "Buy",
+        buttonIcon: "dollar",
+        defaultAmount: 0,
+        defaultCurrency: 'Usd',
+
+        showAmountField: true
+    };
+
     constructor(props: IProps) {
         super(props);
         this.state = {
@@ -109,11 +127,16 @@ class NewInvoice extends React.Component<IProps, IState> {
     }
 
     submitInvoice(): void {
-        let selectedCurrency : any = CurrencyType[this.state.selectedCurrency!];
-        window.App.apiClient.postInvoice(window.App.apiToken, this.props.card.guid!, 'Card', 0.01, selectedCurrency)
+        const selectedCurrency: any = CurrencyType[this.state.selectedCurrency!];
+        window.App.apiClient.entityType = this.props.entityType;
+        window.App.apiClient.postInvoice(
+            window.App.apiToken, this.props.entityGuid, parseFloat(this.state.currencyAmount.toString()), selectedCurrency)
             .then((result) =>
                 this.processPostInvoice(result._response))
-            .catch((error) => this.handleApiError(error.response));
+            .catch((error) => {
+                console.error(error);
+                this.handleApiError(error.response)
+            });
     }
 
     handleApiError(response: any) {
@@ -153,7 +176,9 @@ class NewInvoice extends React.Component<IProps, IState> {
 
         return <div>
             <Modal
-                title={<b className="text-center">Invoice</b>}
+                title={<b className="text-center">
+                    Invoice {this.state.invoice && this.state.invoice!.guid ? `#${this.state.invoice.guid}` : null}
+                </b>}
                 visible={this.state.showInvoiceModal}
                 width={window.innerWidth < 1000 ? "90%" : "30%"}
                 onCancel={() => {
@@ -165,7 +190,7 @@ class NewInvoice extends React.Component<IProps, IState> {
                 {this.state.invoice ? <InvoiceContent invoice={this.state.invoice}/> : null}
             </Modal>
             <Modal
-                title={<b className="text-center">Task funding</b>}
+                title={<b className="text-center">{this.props.modalLabel}</b>}
                 visible={this.state.showModal}
                 width={window.innerWidth < 1000 ? "90%" : "30%"}
                 onCancel={() => {
@@ -195,21 +220,27 @@ class NewInvoice extends React.Component<IProps, IState> {
 
                     <Row className="padding-sm"/>
 
-                    <Row>
-                        <Col md={8} xs={24}>
-                            <b>Amount:</b>
-                        </Col>
-                        <Col md={16} xs={24}>
-                            <Input onChange={this.updatedCurrencyAmount.bind(this)} placeholder="0.25" />
-                        </Col>
-                    </Row>
+                    {
+                        this.props.showAmountField ?
+                        <Row>
+                            <Col md={8} xs={24}>
+                                <b>Amount:</b>
+                            </Col>
+                            <Col md={16} xs={24}>
+                                <Input
+                                    onChange={this.updatedCurrencyAmount.bind(this)}
+                                    defaultValue={this.props.defaultAmount.toString()}
+                                />
+                            </Col>
+                        </Row> : null
+                    }
 
                     <Row className="padding-sm"/>
 
                     <Row className="text-center">
                         <Button
                             loading={this.state.isButtonPressed}
-                            disabled={this.state.currencyAmount <= 0 || this.state.selectedCurrency === null}
+                            disabled={this.state.selectedCurrency === null}
                             onClick={this.onButtonClicked.bind(this)}
                             type={"primary"}
                         >Support</Button>
@@ -217,8 +248,8 @@ class NewInvoice extends React.Component<IProps, IState> {
                 </div>
             </Modal>
             <Row className="text-center">
-                <Button type={"primary"} icon={"heart"} onClick={this.fundButtonClick.bind(this)}>
-                    Fund this task!
+                <Button type={"primary"} icon={this.props.buttonIcon} onClick={this.fundButtonClick.bind(this)}>
+                    {this.props.buttonLabel}
                 </Button>
             </Row>
         </div>;

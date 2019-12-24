@@ -154,11 +154,6 @@ class LoginLayout extends React.Component<IProps, IState> {
                 </Row>
                 <Row className={"margin-sm-top"}>
                     <Col xs={12}>
-                        <FacebookLoginButton
-                            classNames="margin-sm-sides"
-                        />
-                    </Col>
-                    <Col xs={12}>
                         <GoogleLoginButton classNames="margin-sm-sides"/>
                     </Col>
                 </Row>

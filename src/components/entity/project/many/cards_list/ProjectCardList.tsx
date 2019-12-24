@@ -1,8 +1,9 @@
 import React from "react";
 import {ProjectModel} from "../../../../../client/bindings";
 import {handleApiError} from "../../../../../classes/notification/errorHandler/errorHandler";
-import {Col, Row} from "antd";
+import {Col, Icon, Row} from "antd";
 import ProjectCard from "../../single/card/ProjectCard";
+import {retryRequest} from "../../../../../classes/utils/http/retryRequest";
 
 interface IProps {
     label: string,
@@ -24,9 +25,9 @@ class ProjectCardList extends React.Component<IProps, IState> {
     }
 
     componentDidMount(): void {
-        setTimeout(() => {
+        retryRequest(() => {
             this.getProjects();
-        }, Math.floor(Math.random() * 1000));
+        }, () => this.state.isLoaded, true);
     }
 
     getProjects() {
@@ -59,13 +60,16 @@ class ProjectCardList extends React.Component<IProps, IState> {
 
         return <div>
             <h4 className={"ant-typography"}>{this.props.label}</h4>
-            <Row type={"flex"}>
-                {projectsList && projectsList.map((project: ProjectModel, i: number) => {
-                    return <Col className="padding-sm" md={8} sm={12} xs={24} key={i}>
-                        <ProjectCard project={project}/>
-                    </Col>;
-                })}
-            </Row>
+            { this.state.isLoaded ?
+                <Row type={"flex"}>
+                    {projectsList && projectsList.map((project: ProjectModel, i: number) => {
+                        return <Col className="padding-sm" md={8} sm={12} xs={24} key={i}>
+                            <ProjectCard project={project}/>
+                        </Col>;
+                    })}
+                </Row> :
+                <Icon type="loading" style={{fontSize: "2em"}}/>
+            }
         </div>;
     }
 }

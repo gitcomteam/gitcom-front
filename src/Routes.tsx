@@ -11,11 +11,12 @@ import LoginWithGitLabLayout from "./layouts/auth/external/gitlab/logInWith/Logi
 import LoginWithGitHubLayout from "./layouts/auth/external/github/loginWith/LoginWithGitHubLayout";
 import ExternalRepoLayout from "./layouts/repos/external/default/ExternalRepoLayout";
 import ProjectImportLayout from "./layouts/import/project/ProjectImportLayout";
-import ProjectPage from "./layouts/entity/project/page/ProjectPage";
+import ProjectPage from "./layouts/entity/project/view/ProjectPage";
 import BoardPage from "./layouts/entity/board/page/BoardPage";
 import SubscriptionLayout from "./layouts/account/subscription/SubscriptionLayout";
 import LibraryLayout from "./layouts/account/library/LibraryLayout";
 import EditProjectLayout from "./layouts/entity/project/edit/EditProjectLayout";
+import ProjectPricingLayout from "./layouts/entity/project/pricing/ProjectPricingLayout";
 
 class Routes extends React.Component {
     render() {
@@ -48,6 +49,8 @@ class Routes extends React.Component {
 
                     <Route path="/:owner/:alias" exact component={ProjectPage}/>
                     <Route path="/:owner/:alias/edit" exact component={EditProjectLayout}/>
+
+                    <Route path="/:owner/:alias/pricing" exact component={ProjectPricingLayout}/>
 
                     <Route path="/:owner/:alias/board/:boardGuid" exact component={BoardPage}/>
                 </Switch>

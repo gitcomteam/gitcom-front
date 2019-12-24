@@ -80,13 +80,37 @@ export const code: msRest.OperationQueryParameter = {
     }
   }
 };
-export const columnGuid: msRest.OperationQueryParameter = {
+export const columnGuid0: msRest.OperationQueryParameter = {
   parameterPath: "columnGuid",
   mapper: {
     required: true,
     serializedName: "column_guid",
     type: {
       name: "String"
+    }
+  }
+};
+export const columnGuid1: msRest.OperationQueryParameter = {
+  parameterPath: [
+    "options",
+    "columnGuid"
+  ],
+  mapper: {
+    serializedName: "column_guid",
+    type: {
+      name: "String"
+    }
+  }
+};
+export const columnOrder: msRest.OperationQueryParameter = {
+  parameterPath: [
+    "options",
+    "columnOrder"
+  ],
+  mapper: {
+    serializedName: "column_order",
+    type: {
+      name: "Number"
     }
   }
 };
@@ -184,6 +208,28 @@ export const key: msRest.OperationQueryParameter = {
     }
   }
 };
+export const name0: msRest.OperationQueryParameter = {
+  parameterPath: "name",
+  mapper: {
+    required: true,
+    serializedName: "name",
+    type: {
+      name: "String"
+    }
+  }
+};
+export const name1: msRest.OperationQueryParameter = {
+  parameterPath: [
+    "options",
+    "name"
+  ],
+  mapper: {
+    serializedName: "name",
+    type: {
+      name: "String"
+    }
+  }
+};
 export const originId: msRest.OperationQueryParameter = {
   parameterPath: "originId",
   mapper: {
@@ -231,6 +277,16 @@ export const proof: msRest.OperationQueryParameter = {
   mapper: {
     required: true,
     serializedName: "proof",
+    type: {
+      name: "String"
+    }
+  }
+};
+export const repoGuid: msRest.OperationQueryParameter = {
+  parameterPath: "repoGuid",
+  mapper: {
+    required: true,
+    serializedName: "repo_guid",
     type: {
       name: "String"
     }

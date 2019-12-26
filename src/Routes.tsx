@@ -19,6 +19,7 @@ import EditProjectLayout from "./layouts/entity/project/edit/EditProjectLayout";
 import ProjectPricingLayout from "./layouts/entity/project/pricing/ProjectPricingLayout";
 import RegisterLayout from "./layouts/auth/register/RegisterLayout";
 import ConfirmEmailLayout from "./layouts/auth/confirmEmail/ConfirmEmailLayout";
+import NotFoundLayout from "./layouts/404/NotFoundLayout";
 
 class Routes extends React.Component {
     render() {
@@ -60,6 +61,9 @@ class Routes extends React.Component {
                     <Route path="/:owner/:alias/pricing" exact component={ProjectPricingLayout}/>
 
                     <Route path="/:owner/:alias/board/:boardGuid" exact component={BoardPage}/>
+                </Switch>
+                <Switch>
+                    <Route component={NotFoundLayout}/>
                 </Switch>
             </div>
         );

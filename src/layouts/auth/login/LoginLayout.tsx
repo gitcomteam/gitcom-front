@@ -5,7 +5,6 @@ import {GetLoginOKResponse} from "../../../client/models";
 import styles from './styles.module.css';
 import { Redirect } from 'react-router';
 import ConnectButton from "../../../components/external/auth/connectButton/ConnectButton";
-import FacebookLoginButton from "../../../components/external/auth/facebookButton/FacebookLoginButton";
 import GoogleLoginButton from "../../../components/external/auth/googleButton/GoogleLoginButton";
 
 const { Title } = Typography;

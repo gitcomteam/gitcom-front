@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+SITEMAP: https://gitcom.org/sitemap.xml

@@ -1,5 +1,4 @@
 import React from "react";
-import FacebookLogin from 'react-facebook-login';
 import {Button} from "antd";
 import {handleApiError} from "../../../../classes/notification/errorHandler/errorHandler";
 import { Redirect } from 'react-router';

@@ -6,6 +6,7 @@ import styles from './styles.module.css';
 import { Redirect } from 'react-router';
 import ConnectButton from "../../../components/external/auth/connectButton/ConnectButton";
 import GoogleLoginButton from "../../../components/external/auth/googleButton/GoogleLoginButton";
+import {Link} from "react-router-dom";
 
 const { Title } = Typography;
 
@@ -131,6 +132,12 @@ class LoginLayout extends React.Component<IProps, IState> {
                 >Log in</Button>
 
                 <Divider/>
+                <Link to={"/register"}>
+                    <Button icon={"mail"} type={"default"}>Register via email</Button>
+                </Link>
+                <br/>
+
+                <Row className="margin-sm-vertical"><b>Or login via other services:</b></Row>
                 <Row>
                     <Col xs={12}>
                         <ConnectButton

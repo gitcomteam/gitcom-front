@@ -250,6 +250,34 @@ export interface GetLoginOKResponse {
 }
 
 /**
+ * An interface representing PostRegisterOKResponseData.
+ */
+export interface PostRegisterOKResponseData {
+  response?: string;
+}
+
+/**
+ * An interface representing PostRegisterOKResponse.
+ */
+export interface PostRegisterOKResponse {
+  data?: PostRegisterOKResponseData;
+}
+
+/**
+ * An interface representing PostConfirmEmailOKResponseData.
+ */
+export interface PostConfirmEmailOKResponseData {
+  token?: string;
+}
+
+/**
+ * An interface representing PostConfirmEmailOKResponse.
+ */
+export interface PostConfirmEmailOKResponse {
+  data?: PostConfirmEmailOKResponseData;
+}
+
+/**
  * An interface representing GetGitHubLoginLinkOKResponseData.
  */
 export interface GetGitHubLoginLinkOKResponseData {
@@ -903,6 +931,13 @@ export interface SupportHubApiGetLoginOptionalParams extends msRest.RequestOptio
 /**
  * Optional Parameters.
  */
+export interface SupportHubApiPostRegisterOptionalParams extends msRest.RequestOptionsBase {
+  referralKey?: string;
+}
+
+/**
+ * Optional Parameters.
+ */
 export interface SupportHubApiGetGitHubAuthTokenOptionalParams extends msRest.RequestOptionsBase {
   /**
    * Code received from GitHub
@@ -1071,6 +1106,46 @@ export type GetLoginResponse = GetLoginOKResponse & {
        * The response body as parsed JSON or XML
        */
       parsedBody: GetLoginOKResponse;
+    };
+};
+
+/**
+ * Contains response data for the postRegister operation.
+ */
+export type PostRegisterResponse = PostRegisterOKResponse & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: PostRegisterOKResponse;
+    };
+};
+
+/**
+ * Contains response data for the postConfirmEmail operation.
+ */
+export type PostConfirmEmailResponse = PostConfirmEmailOKResponse & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: PostConfirmEmailOKResponse;
     };
 };
 

@@ -795,6 +795,72 @@ export const GetLoginOKResponse: msRest.CompositeMapper = {
   }
 };
 
+export const PostRegisterOKResponseData: msRest.CompositeMapper = {
+  serializedName: "PostRegisterOKResponse_data",
+  type: {
+    name: "Composite",
+    className: "PostRegisterOKResponseData",
+    modelProperties: {
+      response: {
+        serializedName: "response",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  }
+};
+
+export const PostRegisterOKResponse: msRest.CompositeMapper = {
+  serializedName: "PostRegisterOKResponse",
+  type: {
+    name: "Composite",
+    className: "PostRegisterOKResponse",
+    modelProperties: {
+      data: {
+        serializedName: "data",
+        type: {
+          name: "Composite",
+          className: "PostRegisterOKResponseData"
+        }
+      }
+    }
+  }
+};
+
+export const PostConfirmEmailOKResponseData: msRest.CompositeMapper = {
+  serializedName: "PostConfirmEmailOKResponse_data",
+  type: {
+    name: "Composite",
+    className: "PostConfirmEmailOKResponseData",
+    modelProperties: {
+      token: {
+        serializedName: "token",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  }
+};
+
+export const PostConfirmEmailOKResponse: msRest.CompositeMapper = {
+  serializedName: "PostConfirmEmailOKResponse",
+  type: {
+    name: "Composite",
+    className: "PostConfirmEmailOKResponse",
+    modelProperties: {
+      data: {
+        serializedName: "data",
+        type: {
+          name: "Composite",
+          className: "PostConfirmEmailOKResponseData"
+        }
+      }
+    }
+  }
+};
+
 export const GetGitHubLoginLinkOKResponseData: msRest.CompositeMapper = {
   serializedName: "GetGitHubLoginLinkOKResponse_data",
   type: {

@@ -170,6 +170,101 @@
         }
       }
     },
+    "/register": {
+      "post": {
+        "tags": [
+          "auth"
+        ],
+        "operationId": "postRegister",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "login",
+            "in": "query",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "email",
+            "in": "query",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "password",
+            "in": "query",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "referral_key",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns text (next step)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "response": {
+                      "type": "string",
+                      "example": "Please confirm your email"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/register/confirm_email": {
+      "post": {
+        "tags": [
+          "auth"
+        ],
+        "operationId": "postConfirmEmail",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "confirmation_key",
+            "in": "query",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns JWT token",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "token": {
+                      "type": "string",
+                      "example": "kf1k2f12f912kf1fr1..."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/auth/github/login_link/get": {
       "get": {
         "tags": [

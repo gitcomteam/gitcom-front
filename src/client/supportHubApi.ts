@@ -45,6 +45,68 @@ class SupportHubApi extends SupportHubApiContext {
   }
 
   /**
+   * @param login
+   * @param email
+   * @param password
+   * @param [options] The optional parameters
+   * @returns Promise<Models.PostRegisterResponse>
+   */
+  postRegister(login: string, email: string, password: string, options?: Models.SupportHubApiPostRegisterOptionalParams): Promise<Models.PostRegisterResponse>;
+  /**
+   * @param login
+   * @param email
+   * @param password
+   * @param callback The callback
+   */
+  postRegister(login: string, email: string, password: string, callback: msRest.ServiceCallback<Models.PostRegisterOKResponse>): void;
+  /**
+   * @param login
+   * @param email
+   * @param password
+   * @param options The optional parameters
+   * @param callback The callback
+   */
+  postRegister(login: string, email: string, password: string, options: Models.SupportHubApiPostRegisterOptionalParams, callback: msRest.ServiceCallback<Models.PostRegisterOKResponse>): void;
+  postRegister(login: string, email: string, password: string, options?: Models.SupportHubApiPostRegisterOptionalParams | msRest.ServiceCallback<Models.PostRegisterOKResponse>, callback?: msRest.ServiceCallback<Models.PostRegisterOKResponse>): Promise<Models.PostRegisterResponse> {
+    return this.sendOperationRequest(
+      {
+        login,
+        email,
+        password,
+        options
+      },
+      postRegisterOperationSpec,
+      callback) as Promise<Models.PostRegisterResponse>;
+  }
+
+  /**
+   * @param confirmationKey
+   * @param [options] The optional parameters
+   * @returns Promise<Models.PostConfirmEmailResponse>
+   */
+  postConfirmEmail(confirmationKey: string, options?: msRest.RequestOptionsBase): Promise<Models.PostConfirmEmailResponse>;
+  /**
+   * @param confirmationKey
+   * @param callback The callback
+   */
+  postConfirmEmail(confirmationKey: string, callback: msRest.ServiceCallback<Models.PostConfirmEmailOKResponse>): void;
+  /**
+   * @param confirmationKey
+   * @param options The optional parameters
+   * @param callback The callback
+   */
+  postConfirmEmail(confirmationKey: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.PostConfirmEmailOKResponse>): void;
+  postConfirmEmail(confirmationKey: string, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.PostConfirmEmailOKResponse>, callback?: msRest.ServiceCallback<Models.PostConfirmEmailOKResponse>): Promise<Models.PostConfirmEmailResponse> {
+    return this.sendOperationRequest(
+      {
+        confirmationKey,
+        options
+      },
+      postConfirmEmailOperationSpec,
+      callback) as Promise<Models.PostConfirmEmailResponse>;
+  }
+
+  /**
    * Returns github login link
    * @param [options] The optional parameters
    * @returns Promise<Models.GetGitHubLoginLinkResponse>
@@ -1256,12 +1318,45 @@ const getLoginOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "api/v1/login",
   queryParameters: [
-    Parameters.email,
-    Parameters.password
+    Parameters.email0,
+    Parameters.password0
   ],
   responses: {
     200: {
       bodyMapper: Mappers.GetLoginOKResponse
+    },
+    default: {}
+  },
+  serializer
+};
+
+const postRegisterOperationSpec: msRest.OperationSpec = {
+  httpMethod: "POST",
+  path: "api/v1/register",
+  queryParameters: [
+    Parameters.login,
+    Parameters.email1,
+    Parameters.password1,
+    Parameters.referralKey
+  ],
+  responses: {
+    200: {
+      bodyMapper: Mappers.PostRegisterOKResponse
+    },
+    default: {}
+  },
+  serializer
+};
+
+const postConfirmEmailOperationSpec: msRest.OperationSpec = {
+  httpMethod: "POST",
+  path: "api/v1/register/confirm_email",
+  queryParameters: [
+    Parameters.confirmationKey
+  ],
+  responses: {
+    200: {
+      bodyMapper: Mappers.PostConfirmEmailOKResponse
     },
     default: {}
   },

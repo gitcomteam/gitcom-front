@@ -35,6 +35,7 @@ class AppLayout extends React.Component {
                         >
                             <Menu.Item key="1"><Link to={"/"}><Icon type={"share-alt"}/>Explore</Link></Menu.Item>
                             {loginOrHomeLink}
+                            <Menu.Item key="help"><Link to={"/help"}><Icon type={"question-circle"}/>Help</Link></Menu.Item>
                             {
                                 window.App.isAuthorized() ?
                                     <Menu.Item key="4"><Link onClick={this.logout} to={"/login"}>Logout</Link></Menu.Item>

@@ -114,6 +114,16 @@ export const columnOrder: msRest.OperationQueryParameter = {
     }
   }
 };
+export const confirmationKey: msRest.OperationQueryParameter = {
+  parameterPath: "confirmationKey",
+  mapper: {
+    required: true,
+    serializedName: "confirmation_key",
+    type: {
+      name: "String"
+    }
+  }
+};
 export const currencyType: msRest.OperationQueryParameter = {
   parameterPath: "currencyType",
   mapper: {
@@ -136,12 +146,22 @@ export const description: msRest.OperationQueryParameter = {
     }
   }
 };
-export const email: msRest.OperationQueryParameter = {
+export const email0: msRest.OperationQueryParameter = {
   parameterPath: [
     "options",
     "email"
   ],
   mapper: {
+    serializedName: "email",
+    type: {
+      name: "String"
+    }
+  }
+};
+export const email1: msRest.OperationQueryParameter = {
+  parameterPath: "email",
+  mapper: {
+    required: true,
     serializedName: "email",
     type: {
       name: "String"
@@ -208,6 +228,16 @@ export const key: msRest.OperationQueryParameter = {
     }
   }
 };
+export const login: msRest.OperationQueryParameter = {
+  parameterPath: "login",
+  mapper: {
+    required: true,
+    serializedName: "login",
+    type: {
+      name: "String"
+    }
+  }
+};
 export const name0: msRest.OperationQueryParameter = {
   parameterPath: "name",
   mapper: {
@@ -250,12 +280,22 @@ export const owner: msRest.OperationQueryParameter = {
     }
   }
 };
-export const password: msRest.OperationQueryParameter = {
+export const password0: msRest.OperationQueryParameter = {
   parameterPath: [
     "options",
     "password"
   ],
   mapper: {
+    serializedName: "password",
+    type: {
+      name: "String"
+    }
+  }
+};
+export const password1: msRest.OperationQueryParameter = {
+  parameterPath: "password",
+  mapper: {
+    required: true,
     serializedName: "password",
     type: {
       name: "String"
@@ -277,6 +317,18 @@ export const proof: msRest.OperationQueryParameter = {
   mapper: {
     required: true,
     serializedName: "proof",
+    type: {
+      name: "String"
+    }
+  }
+};
+export const referralKey: msRest.OperationQueryParameter = {
+  parameterPath: [
+    "options",
+    "referralKey"
+  ],
+  mapper: {
+    serializedName: "referral_key",
     type: {
       name: "String"
     }

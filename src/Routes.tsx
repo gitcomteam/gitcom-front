@@ -16,11 +16,12 @@ import BoardPage from "./layouts/entity/board/page/BoardPage";
 import SubscriptionLayout from "./layouts/account/subscription/SubscriptionLayout";
 import LibraryLayout from "./layouts/account/library/LibraryLayout";
 import EditProjectLayout from "./layouts/entity/project/edit/EditProjectLayout";
-import ProjectPricingLayout from "./layouts/entity/project/pricing/ProjectPricingLayout";
+import ProjectPricingLayout from "./layouts/entity/project/pricing/view/ProjectPricingLayout";
 import RegisterLayout from "./layouts/auth/register/RegisterLayout";
 import ConfirmEmailLayout from "./layouts/auth/confirmEmail/ConfirmEmailLayout";
 import NotFoundLayout from "./layouts/404/NotFoundLayout";
 import HelpLayout from "./layouts/help/HelpLayout";
+import EditProjectPricingLayout from "./layouts/entity/project/pricing/edit/EditProjectPricingLayout";
 
 class Routes extends React.Component {
     render() {
@@ -64,6 +65,7 @@ class Routes extends React.Component {
                     <Route path="/:owner/:alias/edit" exact component={EditProjectLayout}/>
 
                     <Route path="/:owner/:alias/pricing" exact component={ProjectPricingLayout}/>
+                    <Route path="/:owner/:alias/pricing/edit" exact component={EditProjectPricingLayout}/>
 
                     <Route path="/:owner/:alias/board/:boardGuid" exact component={BoardPage}/>
 

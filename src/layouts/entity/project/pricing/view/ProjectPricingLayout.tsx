@@ -1,9 +1,11 @@
 import React from "react";
-import FullPageWithSideBar from "../../../../components/layout/simple/fullpagewithsidebar/FullPageWithSidebar";
-import {handleApiError} from "../../../../classes/notification/errorHandler/errorHandler";
-import {ProjectModel, ProjectProduct} from "../../../../client/bindings";
-import {Col, Icon, Row} from "antd";
-import PricingBlock from "../../../../components/entity/product/pricing_block/single/PricingBlock";
+import FullPageWithSideBar from "../../../../../components/layout/simple/fullpagewithsidebar/FullPageWithSidebar";
+import {handleApiError} from "../../../../../classes/notification/errorHandler/errorHandler";
+import {ProjectModel, ProjectProduct} from "../../../../../client/bindings";
+import {Button, Col, Icon, Row} from "antd";
+import PricingBlock from "../../../../../components/entity/product/pricing_block/single/PricingBlock";
+import PermissionCheck from "../../../../../components/check/permission_check/single/PermissionCheck";
+import {Link} from "react-router-dom";
 
 interface IProps {
     match: {
@@ -79,6 +81,17 @@ class ProjectPricingLayout extends React.Component<IProps, IState> {
         return <FullPageWithSideBar sidebarType={"project_view"}>
             <h2 className={"ant-typography"}>{project.name}</h2>
             <p>{project.description}</p>
+            <PermissionCheck
+                entityGuid={project.guid!}
+                entityType={"Project"}
+                requiredPermissions={["write"]}
+            >
+                <Link to={"pricing/edit"}>
+                    <Row type={"flex"} justify={"center"}>
+                        <Button type={"default"} icon={"edit"}>Edit pricing</Button>
+                    </Row>
+                </Link>
+            </PermissionCheck>
             <Row type={"flex"}>
                 <Col sm={8} xs={24} className="padding-sm">
                     <PricingBlock

@@ -143,6 +143,7 @@ export class ProjectProduct {
     project_guid?: string;
     usd_price?: number;
     duration_hours?: number;
+    users_count?: number;
     created_at?: string;
     updated_at?: string;
 }

@@ -134,12 +134,22 @@ export const currencyType: msRest.OperationQueryParameter = {
     }
   }
 };
-export const description: msRest.OperationQueryParameter = {
+export const description0: msRest.OperationQueryParameter = {
   parameterPath: [
     "options",
     "description"
   ],
   mapper: {
+    serializedName: "description",
+    type: {
+      name: "String"
+    }
+  }
+};
+export const description1: msRest.OperationQueryParameter = {
+  parameterPath: "description",
+  mapper: {
+    required: true,
     serializedName: "description",
     type: {
       name: "String"
@@ -359,6 +369,26 @@ export const status: msRest.OperationQueryParameter = {
   mapper: {
     required: true,
     serializedName: "status",
+    type: {
+      name: "String"
+    }
+  }
+};
+export const url: msRest.OperationQueryParameter = {
+  parameterPath: "url",
+  mapper: {
+    required: true,
+    serializedName: "url",
+    type: {
+      name: "String"
+    }
+  }
+};
+export const useUrl: msRest.OperationQueryParameter = {
+  parameterPath: "useUrl",
+  mapper: {
+    required: true,
+    serializedName: "use_url",
     type: {
       name: "String"
     }

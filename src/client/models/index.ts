@@ -914,6 +914,20 @@ export interface GetProjectProductsOKResponse {
 }
 
 /**
+ * An interface representing PostProjectProductCreatedResponseData.
+ */
+export interface PostProjectProductCreatedResponseData {
+  product?: ProjectProduct;
+}
+
+/**
+ * An interface representing PostProjectProductCreatedResponse.
+ */
+export interface PostProjectProductCreatedResponse {
+  data?: PostProjectProductCreatedResponseData;
+}
+
+/**
  * An interface representing SupportHubApiOptions.
  */
 export interface SupportHubApiOptions extends ServiceClientOptions {
@@ -1986,5 +2000,25 @@ export type GetProjectProductsResponse = GetProjectProductsOKResponse & {
        * The response body as parsed JSON or XML
        */
       parsedBody: GetProjectProductsOKResponse;
+    };
+};
+
+/**
+ * Contains response data for the postProjectProduct operation.
+ */
+export type PostProjectProductResponse = PostProjectProductCreatedResponse & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: PostProjectProductCreatedResponse;
     };
 };

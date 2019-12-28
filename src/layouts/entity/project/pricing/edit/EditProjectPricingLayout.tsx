@@ -4,6 +4,7 @@ import {Button, Col, Divider, Icon, Row} from "antd";
 import PricingBlock from "../../../../../components/entity/product/pricing_block/single/PricingBlock";
 import {ProjectModel, ProjectProduct} from "../../../../../client/bindings";
 import {handleApiError} from "../../../../../classes/notification/errorHandler/errorHandler";
+import NewProductButton from "../../../../../components/entity/product/action/new/NewProductButton";
 
 interface IProps {
     match: {
@@ -78,7 +79,7 @@ class EditProjectPricingLayout extends React.Component<IProps, IState> {
                 <b>example:</b> Community and Professional edition - it can be single purchase or subscription <br/>
                 2. Sell support (your product can be 100% open source and you can earn money by offering technical support)
                 <br/><br/>
-                There are much more ways to do that - you can do your own research if it's harder to decide
+                There are much more ways to do that - you can do your own research.
             </p>
         </Row>;
 
@@ -108,35 +109,37 @@ class EditProjectPricingLayout extends React.Component<IProps, IState> {
             </Row>
             <Divider/>
             {this.state.products ? this.state.products.map((product, i) => {
-                return <div>
+                return <div key={`product_${i}`}>
                     <Row>
-                        <Col key={i} sm={12} xs={24} className="padding-sm">
+                        <Col sm={12} xs={24} className="padding-sm">
                             <PricingBlock
                                 guid={product.guid!}
                                 title={product.name!}
-                                price={product.usd_price!}
-                                subscription={product.duration_hours! > 0}
                                 description={product.description!}
+                                price={product.usd_price!}
+                                url={product.url!}
+                                subscription={product.duration_hours! > 0}
+                                showActionButton={false}
                             />
                         </Col>
-                        <Col key={i} sm={12} xs={24} className="padding-sm">
+                        <Col sm={12} xs={24} className="padding-sm">
                             <b>Stats:</b><br/><br/>
                             <Row className="text-left">
-                                <p>Users count: {product.users_count}</p>
+                                <p>Product owners count: {product.users_count}</p>
                             </Row>
                             <br/>
                             <b>Possible actions:</b><br/>
                             <Row className="text-left">
-                                <Button type={"danger"} icon={"delete"}>Delete</Button>
+                                {product.users_count! > 0 ? <p>
+                                    You cannot delete product owned by others
+                                </p> : <Button type={"danger"} icon={"delete"} disabled>Delete</Button>}
                             </Row>
                         </Col>
                     </Row>
                     <Divider/>
                 </div>;
             }) : null}
-            <Row type={"flex"} justify={"center"}>
-                <Button type={"default"} icon={"plus"}>Add</Button>
-            </Row>
+            <NewProductButton projectGuid={project.guid!}/>
         </FullPageWithSideBar>;
     }
 }

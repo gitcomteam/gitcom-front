@@ -2175,9 +2175,7 @@
     },
     "/project/products/get": {
       "get": {
-        "tags": [
-          "project", "product"
-        ],
+        "tags": [ "product" ],
         "operationId": "getProjectProducts",
         "description": "",
         "produces": [
@@ -2205,6 +2203,73 @@
                       "items": {
                         "$ref": "#/definitions/ProjectProduct"
                       }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/project/product/new": {
+      "post": {
+        "tags": [ "product" ],
+        "operationId": "postProjectProduct",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "api_token",
+            "in": "query",
+            "type": "string",
+            "description": "JWT token",
+            "required": true
+          },
+          {
+            "name": "project_guid",
+            "in": "query",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "description",
+            "in": "query",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "url",
+            "in": "query",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "use_url",
+            "in": "query",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "product": {
+                      "$ref": "#/definitions/ProjectProduct"
                     }
                   }
                 }

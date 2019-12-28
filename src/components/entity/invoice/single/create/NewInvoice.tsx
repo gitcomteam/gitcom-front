@@ -172,8 +172,6 @@ class NewInvoice extends React.Component<IProps, IState> {
     }
 
     render() {
-        const currencyTypes = this.getCurrencyTypes();
-
         return <div>
             <Modal
                 title={<b className="text-center">
@@ -211,7 +209,7 @@ class NewInvoice extends React.Component<IProps, IState> {
                                 }}
                                 onSelect={(value) => this.onCurrencySelected(value)}
                             >
-                                {currencyTypes.map((option: any, i: number) => {
+                                {this.getCurrencyTypes().map((option: any, i: number) => {
                                     return <Option className={"padding-sm"} key={i} value={option.option_value}>{option.name}</Option>;
                                 })}
                             </Select>

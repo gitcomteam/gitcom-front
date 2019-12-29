@@ -1423,34 +1423,38 @@ class SupportHubApi extends SupportHubApiContext {
   /**
    * @param apiToken JWT token
    * @param amount
+   * @param address
    * @param currencyType Possible values include: 'Usd', 'BitCoin', 'Ethereum', 'Erc20Token',
    * 'Waves', 'WavesToken', 'LiteCoin'
    * @param [options] The optional parameters
    * @returns Promise<Models.PostWithdrawalRequestResponse>
    */
-  postWithdrawalRequest(apiToken: string, amount: number, currencyType: Models.CurrencyType6, options?: msRest.RequestOptionsBase): Promise<Models.PostWithdrawalRequestResponse>;
+  postWithdrawalRequest(apiToken: string, amount: number, address: string, currencyType: Models.CurrencyType6, options?: msRest.RequestOptionsBase): Promise<Models.PostWithdrawalRequestResponse>;
   /**
    * @param apiToken JWT token
    * @param amount
+   * @param address
    * @param currencyType Possible values include: 'Usd', 'BitCoin', 'Ethereum', 'Erc20Token',
    * 'Waves', 'WavesToken', 'LiteCoin'
    * @param callback The callback
    */
-  postWithdrawalRequest(apiToken: string, amount: number, currencyType: Models.CurrencyType6, callback: msRest.ServiceCallback<Models.PostWithdrawalRequestCreatedResponse>): void;
+  postWithdrawalRequest(apiToken: string, amount: number, address: string, currencyType: Models.CurrencyType6, callback: msRest.ServiceCallback<Models.PostWithdrawalRequestCreatedResponse>): void;
   /**
    * @param apiToken JWT token
    * @param amount
+   * @param address
    * @param currencyType Possible values include: 'Usd', 'BitCoin', 'Ethereum', 'Erc20Token',
    * 'Waves', 'WavesToken', 'LiteCoin'
    * @param options The optional parameters
    * @param callback The callback
    */
-  postWithdrawalRequest(apiToken: string, amount: number, currencyType: Models.CurrencyType6, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.PostWithdrawalRequestCreatedResponse>): void;
-  postWithdrawalRequest(apiToken: string, amount: number, currencyType: Models.CurrencyType6, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.PostWithdrawalRequestCreatedResponse>, callback?: msRest.ServiceCallback<Models.PostWithdrawalRequestCreatedResponse>): Promise<Models.PostWithdrawalRequestResponse> {
+  postWithdrawalRequest(apiToken: string, amount: number, address: string, currencyType: Models.CurrencyType6, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.PostWithdrawalRequestCreatedResponse>): void;
+  postWithdrawalRequest(apiToken: string, amount: number, address: string, currencyType: Models.CurrencyType6, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.PostWithdrawalRequestCreatedResponse>, callback?: msRest.ServiceCallback<Models.PostWithdrawalRequestCreatedResponse>): Promise<Models.PostWithdrawalRequestResponse> {
     return this.sendOperationRequest(
       {
         apiToken,
         amount,
+        address,
         currencyType,
         options
       },
@@ -2217,6 +2221,7 @@ const postWithdrawalRequestOperationSpec: msRest.OperationSpec = {
   queryParameters: [
     Parameters.apiToken,
     Parameters.amount,
+    Parameters.address,
     Parameters.currencyType
   ],
   responses: {

@@ -1,6 +1,6 @@
 import React from "react";
 import {WithdrawalRequest} from "../../../../../client/bindings";
-import {Col, Icon, Row, Table} from "antd";
+import {Icon, Table} from "antd";
 import {ColumnProps} from "antd/es/table";
 import {handleApiError} from "../../../../../classes/notification/errorHandler/errorHandler";
 

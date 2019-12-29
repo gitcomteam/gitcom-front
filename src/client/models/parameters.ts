@@ -18,6 +18,16 @@ export const accessToken: msRest.OperationQueryParameter = {
     }
   }
 };
+export const address: msRest.OperationQueryParameter = {
+  parameterPath: "address",
+  mapper: {
+    required: true,
+    serializedName: "address",
+    type: {
+      name: "String"
+    }
+  }
+};
 export const alias: msRest.OperationQueryParameter = {
   parameterPath: "alias",
   mapper: {

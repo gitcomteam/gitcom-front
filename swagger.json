@@ -2404,6 +2404,12 @@
             "required": true
           },
           {
+            "name": "address",
+            "in": "query",
+            "type": "string",
+            "required": true
+          },
+          {
             "name": "currency_type",
             "in": "query",
             "type": "string",

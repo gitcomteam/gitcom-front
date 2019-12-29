@@ -1310,6 +1310,88 @@ class SupportHubApi extends SupportHubApiContext {
       getProjectProductsOperationSpec,
       callback) as Promise<Models.GetProjectProductsResponse>;
   }
+
+  /**
+   * @param apiToken JWT token
+   * @param projectGuid
+   * @param name
+   * @param description
+   * @param usdPrice
+   * @param url
+   * @param useUrl
+   * @param [options] The optional parameters
+   * @returns Promise<Models.PostProjectProductResponse>
+   */
+  postProjectProduct(apiToken: string, projectGuid: string, name: string, description: string, usdPrice: number, url: string, useUrl: string, options?: Models.SupportHubApiPostProjectProductOptionalParams): Promise<Models.PostProjectProductResponse>;
+  /**
+   * @param apiToken JWT token
+   * @param projectGuid
+   * @param name
+   * @param description
+   * @param usdPrice
+   * @param url
+   * @param useUrl
+   * @param callback The callback
+   */
+  postProjectProduct(apiToken: string, projectGuid: string, name: string, description: string, usdPrice: number, url: string, useUrl: string, callback: msRest.ServiceCallback<Models.PostProjectProductCreatedResponse>): void;
+  /**
+   * @param apiToken JWT token
+   * @param projectGuid
+   * @param name
+   * @param description
+   * @param usdPrice
+   * @param url
+   * @param useUrl
+   * @param options The optional parameters
+   * @param callback The callback
+   */
+  postProjectProduct(apiToken: string, projectGuid: string, name: string, description: string, usdPrice: number, url: string, useUrl: string, options: Models.SupportHubApiPostProjectProductOptionalParams, callback: msRest.ServiceCallback<Models.PostProjectProductCreatedResponse>): void;
+  postProjectProduct(apiToken: string, projectGuid: string, name: string, description: string, usdPrice: number, url: string, useUrl: string, options?: Models.SupportHubApiPostProjectProductOptionalParams | msRest.ServiceCallback<Models.PostProjectProductCreatedResponse>, callback?: msRest.ServiceCallback<Models.PostProjectProductCreatedResponse>): Promise<Models.PostProjectProductResponse> {
+    return this.sendOperationRequest(
+      {
+        apiToken,
+        projectGuid,
+        name,
+        description,
+        usdPrice,
+        url,
+        useUrl,
+        options
+      },
+      postProjectProductOperationSpec,
+      callback) as Promise<Models.PostProjectProductResponse>;
+  }
+
+  /**
+   * @param apiToken JWT token
+   * @param productGuid
+   * @param [options] The optional parameters
+   * @returns Promise<Models.DeleteProjectProductResponse>
+   */
+  deleteProjectProduct(apiToken: string, productGuid: string, options?: msRest.RequestOptionsBase): Promise<Models.DeleteProjectProductResponse>;
+  /**
+   * @param apiToken JWT token
+   * @param productGuid
+   * @param callback The callback
+   */
+  deleteProjectProduct(apiToken: string, productGuid: string, callback: msRest.ServiceCallback<Models.DeleteProjectProductOKResponse>): void;
+  /**
+   * @param apiToken JWT token
+   * @param productGuid
+   * @param options The optional parameters
+   * @param callback The callback
+   */
+  deleteProjectProduct(apiToken: string, productGuid: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.DeleteProjectProductOKResponse>): void;
+  deleteProjectProduct(apiToken: string, productGuid: string, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.DeleteProjectProductOKResponse>, callback?: msRest.ServiceCallback<Models.DeleteProjectProductOKResponse>): Promise<Models.DeleteProjectProductResponse> {
+    return this.sendOperationRequest(
+      {
+        apiToken,
+        productGuid,
+        options
+      },
+      deleteProjectProductOperationSpec,
+      callback) as Promise<Models.DeleteProjectProductResponse>;
+  }
 }
 
 // Operation Specifications
@@ -1500,7 +1582,7 @@ const editProjectOperationSpec: msRest.OperationSpec = {
   queryParameters: [
     Parameters.apiToken,
     Parameters.projectGuid,
-    Parameters.description
+    Parameters.description0
   ],
   responses: {
     200: {
@@ -1594,7 +1676,7 @@ const createCardOperationSpec: msRest.OperationSpec = {
     Parameters.apiToken,
     Parameters.columnGuid0,
     Parameters.name0,
-    Parameters.description,
+    Parameters.description0,
     Parameters.columnOrder
   ],
   responses: {
@@ -1613,7 +1695,7 @@ const editCardOperationSpec: msRest.OperationSpec = {
     Parameters.apiToken,
     Parameters.cardGuid,
     Parameters.name1,
-    Parameters.description,
+    Parameters.description0,
     Parameters.columnOrder,
     Parameters.columnGuid1
   ],
@@ -2005,6 +2087,44 @@ const getProjectProductsOperationSpec: msRest.OperationSpec = {
   responses: {
     200: {
       bodyMapper: Mappers.GetProjectProductsOKResponse
+    },
+    default: {}
+  },
+  serializer
+};
+
+const postProjectProductOperationSpec: msRest.OperationSpec = {
+  httpMethod: "POST",
+  path: "api/v1/project/product/new",
+  queryParameters: [
+    Parameters.apiToken,
+    Parameters.projectGuid,
+    Parameters.name0,
+    Parameters.description1,
+    Parameters.usdPrice,
+    Parameters.url,
+    Parameters.useUrl,
+    Parameters.durationHours
+  ],
+  responses: {
+    201: {
+      bodyMapper: Mappers.PostProjectProductCreatedResponse
+    },
+    default: {}
+  },
+  serializer
+};
+
+const deleteProjectProductOperationSpec: msRest.OperationSpec = {
+  httpMethod: "DELETE",
+  path: "api/v1/project/product/delete",
+  queryParameters: [
+    Parameters.apiToken,
+    Parameters.productGuid
+  ],
+  responses: {
+    200: {
+      bodyMapper: Mappers.DeleteProjectProductOKResponse
     },
     default: {}
   },

@@ -2498,3 +2498,71 @@ export const GetProjectProductsOKResponse: msRest.CompositeMapper = {
     }
   }
 };
+
+export const PostProjectProductCreatedResponseData: msRest.CompositeMapper = {
+  serializedName: "PostProjectProductCreatedResponse_data",
+  type: {
+    name: "Composite",
+    className: "PostProjectProductCreatedResponseData",
+    modelProperties: {
+      product: {
+        serializedName: "product",
+        type: {
+          name: "Composite",
+          className: "ProjectProduct"
+        }
+      }
+    }
+  }
+};
+
+export const PostProjectProductCreatedResponse: msRest.CompositeMapper = {
+  serializedName: "PostProjectProductCreatedResponse",
+  type: {
+    name: "Composite",
+    className: "PostProjectProductCreatedResponse",
+    modelProperties: {
+      data: {
+        serializedName: "data",
+        type: {
+          name: "Composite",
+          className: "PostProjectProductCreatedResponseData"
+        }
+      }
+    }
+  }
+};
+
+export const DeleteProjectProductOKResponseData: msRest.CompositeMapper = {
+  serializedName: "DeleteProjectProductOKResponse_data",
+  type: {
+    name: "Composite",
+    className: "DeleteProjectProductOKResponseData",
+    modelProperties: {
+      product: {
+        serializedName: "product",
+        type: {
+          name: "Composite",
+          className: "ProjectProduct"
+        }
+      }
+    }
+  }
+};
+
+export const DeleteProjectProductOKResponse: msRest.CompositeMapper = {
+  serializedName: "DeleteProjectProductOKResponse",
+  type: {
+    name: "Composite",
+    className: "DeleteProjectProductOKResponse",
+    modelProperties: {
+      data: {
+        serializedName: "data",
+        type: {
+          name: "Composite",
+          className: "DeleteProjectProductOKResponseData"
+        }
+      }
+    }
+  }
+};

@@ -134,7 +134,7 @@ export const currencyType: msRest.OperationQueryParameter = {
     }
   }
 };
-export const description: msRest.OperationQueryParameter = {
+export const description0: msRest.OperationQueryParameter = {
   parameterPath: [
     "options",
     "description"
@@ -143,6 +143,28 @@ export const description: msRest.OperationQueryParameter = {
     serializedName: "description",
     type: {
       name: "String"
+    }
+  }
+};
+export const description1: msRest.OperationQueryParameter = {
+  parameterPath: "description",
+  mapper: {
+    required: true,
+    serializedName: "description",
+    type: {
+      name: "String"
+    }
+  }
+};
+export const durationHours: msRest.OperationQueryParameter = {
+  parameterPath: [
+    "options",
+    "durationHours"
+  ],
+  mapper: {
+    serializedName: "duration_hours",
+    type: {
+      name: "Number"
     }
   }
 };
@@ -302,6 +324,16 @@ export const password1: msRest.OperationQueryParameter = {
     }
   }
 };
+export const productGuid: msRest.OperationQueryParameter = {
+  parameterPath: "productGuid",
+  mapper: {
+    required: true,
+    serializedName: "product_guid",
+    type: {
+      name: "String"
+    }
+  }
+};
 export const projectGuid: msRest.OperationQueryParameter = {
   parameterPath: "projectGuid",
   mapper: {
@@ -359,6 +391,36 @@ export const status: msRest.OperationQueryParameter = {
   mapper: {
     required: true,
     serializedName: "status",
+    type: {
+      name: "String"
+    }
+  }
+};
+export const url: msRest.OperationQueryParameter = {
+  parameterPath: "url",
+  mapper: {
+    required: true,
+    serializedName: "url",
+    type: {
+      name: "String"
+    }
+  }
+};
+export const usdPrice: msRest.OperationQueryParameter = {
+  parameterPath: "usdPrice",
+  mapper: {
+    required: true,
+    serializedName: "usd_price",
+    type: {
+      name: "Number"
+    }
+  }
+};
+export const useUrl: msRest.OperationQueryParameter = {
+  parameterPath: "useUrl",
+  mapper: {
+    required: true,
+    serializedName: "use_url",
     type: {
       name: "String"
     }

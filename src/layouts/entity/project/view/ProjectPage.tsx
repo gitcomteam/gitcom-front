@@ -7,6 +7,8 @@ import BoardCard from "../../../../components/entity/board/single/card/BoardCart
 import PermissionCheckLink from "../../../../components/link/withChecks/PermissionCheckLink";
 import AuthCheck from "../../../../components/check/auth_check/AuthCheck";
 import AddToLibrary from "../../../../components/entity/my_library/single/action/AddToLibrary";
+import {Link} from "react-router-dom";
+import PermissionCheck from "../../../../components/check/permission_check/single/PermissionCheck";
 
 interface IProps {
     match: {
@@ -133,8 +135,7 @@ class ProjectPage extends React.Component<IProps, IState> {
                 {this.state.boards === null ? <Icon type="loading" style={{fontSize: "2em"}}/> : null}
                 {this.state.boards != null && this.state.boards.length === 0 ? <div>
                     <b>No boards for this project</b>
-                    <br/><br/>
-                    <Button type={"primary"} icon={"plus"}>Add</Button> {/* TODO: check permissions */}
+                    {/* TODO: add board button */}
                 </div> : null}
                 {this.state.boards != null && this.state.boards.map((board: BoardModel, i: number) => {
                     return <Col key={i} md={12} xs={24} className="padding-sm">

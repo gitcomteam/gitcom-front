@@ -1,14 +1,19 @@
 import React from 'react';
 import {Card, Col, Icon, Modal, Popover, Row} from "antd";
-import {CardModel} from "../../../../../client/bindings";
 import styles from './styles.module.css';
 import EntityBudgetContent from "../../../budget/entity/EntityBudgetContent";
 import CardSubmitWorkBlock from "../../../work/single/submit/CardSubmitWorkBlock";
 import CardWorkBlock from "../../../work/many/view/CardWorkBlock";
 import NewInvoice from "../../../invoice/single/create/NewInvoice";
+import MoveCard from "../../action/move/MoveCard";
+import {BoardModel, CardModel} from "../../../../../client/bindings";
+import PermissionCheck from "../../../../check/permission_check/single/PermissionCheck";
+import EditCard from "../../action/edit/EditCard";
+import AuthCheck from "../../../../check/auth_check/AuthCheck";
 
 interface IProps {
-    card: CardModel
+    parentBoard: BoardModel|null,
+    card: CardModel,
 }
 
 interface IState {
@@ -17,6 +22,10 @@ interface IState {
 }
 
 class CardCard extends React.Component<IProps, IState> {
+    public static defaultProps = {
+        parentBoard: null
+    };
+
     constructor(props: IProps) {
         super(props);
         this.state = {
@@ -25,10 +34,21 @@ class CardCard extends React.Component<IProps, IState> {
         }
     }
 
+    componentDidMount(): void {
+        let selectedCardGuid = new URL(window.location.href).searchParams.get('card');
+        if (selectedCardGuid === this.props.card.guid) {
+            this.setState(({
+                showModal: true
+            }));
+        }
+    }
+
     cardOnClick() {
         this.setState({
             showModal: !this.state.showModal
         });
+        let newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?card=' + this.props.card.guid;
+        window.history.pushState({path:newUrl},'',newUrl);
     }
 
     render() {
@@ -54,7 +74,20 @@ class CardCard extends React.Component<IProps, IState> {
                 }}
                 footer={null}
             >
-                <h4 className={"ant-typography text-center"}>Content</h4>
+                <PermissionCheck
+                    entityGuid={this.props.card.guid!}
+                    entityType={"Card"}
+                    requiredPermissions={["write"]}
+                >
+                    <Row type={"flex"}>
+                        <b className="margin-sm-sides">Actions:</b>
+                        <MoveCard card={this.props.card} parentBoard={this.props.parentBoard}/>
+                        <div className="margin-sm-sides"/>
+                        <EditCard card={this.props.card}/>
+                    </Row>
+                </PermissionCheck>
+                <Row className="margin-md-top"/>
+
                 <p>{card.description ? card.description : "no content"}</p>
 
                 <Row className="margin-lg-top">
@@ -73,8 +106,16 @@ class CardCard extends React.Component<IProps, IState> {
                             </Popover>
                         </b>
                         <EntityBudgetContent entityGuid={card.guid!} entityType={"Card"}/>
-                        <Row className="padding-sm"/>
-                        <NewInvoice card={card}/>
+                        <AuthCheck>
+                            <Row className="padding-sm"/>
+                            <NewInvoice
+                                modalLabel={'Task funding'}
+                                entityGuid={card.guid!}
+                                entityType={'Card'}
+                                buttonIcon={"heart"}
+                                buttonLabel={"Fund this task"}
+                            />
+                        </AuthCheck>
                     </Col>
                     <Col md={12} xs={24} className={"padding-md"}>
                         <h4 className={"ant-typography text-center"}>Submitted work <Icon type="clock-circle"/></h4>

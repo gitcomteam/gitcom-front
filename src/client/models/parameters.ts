@@ -18,6 +18,16 @@ export const accessToken: msRest.OperationQueryParameter = {
     }
   }
 };
+export const address: msRest.OperationQueryParameter = {
+  parameterPath: "address",
+  mapper: {
+    required: true,
+    serializedName: "address",
+    type: {
+      name: "String"
+    }
+  }
+};
 export const alias: msRest.OperationQueryParameter = {
   parameterPath: "alias",
   mapper: {
@@ -80,11 +90,45 @@ export const code: msRest.OperationQueryParameter = {
     }
   }
 };
-export const columnGuid: msRest.OperationQueryParameter = {
+export const columnGuid0: msRest.OperationQueryParameter = {
   parameterPath: "columnGuid",
   mapper: {
     required: true,
     serializedName: "column_guid",
+    type: {
+      name: "String"
+    }
+  }
+};
+export const columnGuid1: msRest.OperationQueryParameter = {
+  parameterPath: [
+    "options",
+    "columnGuid"
+  ],
+  mapper: {
+    serializedName: "column_guid",
+    type: {
+      name: "String"
+    }
+  }
+};
+export const columnOrder: msRest.OperationQueryParameter = {
+  parameterPath: [
+    "options",
+    "columnOrder"
+  ],
+  mapper: {
+    serializedName: "column_order",
+    type: {
+      name: "Number"
+    }
+  }
+};
+export const confirmationKey: msRest.OperationQueryParameter = {
+  parameterPath: "confirmationKey",
+  mapper: {
+    required: true,
+    serializedName: "confirmation_key",
     type: {
       name: "String"
     }
@@ -100,7 +144,7 @@ export const currencyType: msRest.OperationQueryParameter = {
     }
   }
 };
-export const description: msRest.OperationQueryParameter = {
+export const description0: msRest.OperationQueryParameter = {
   parameterPath: [
     "options",
     "description"
@@ -112,12 +156,44 @@ export const description: msRest.OperationQueryParameter = {
     }
   }
 };
-export const email: msRest.OperationQueryParameter = {
+export const description1: msRest.OperationQueryParameter = {
+  parameterPath: "description",
+  mapper: {
+    required: true,
+    serializedName: "description",
+    type: {
+      name: "String"
+    }
+  }
+};
+export const durationHours: msRest.OperationQueryParameter = {
+  parameterPath: [
+    "options",
+    "durationHours"
+  ],
+  mapper: {
+    serializedName: "duration_hours",
+    type: {
+      name: "Number"
+    }
+  }
+};
+export const email0: msRest.OperationQueryParameter = {
   parameterPath: [
     "options",
     "email"
   ],
   mapper: {
+    serializedName: "email",
+    type: {
+      name: "String"
+    }
+  }
+};
+export const email1: msRest.OperationQueryParameter = {
+  parameterPath: "email",
+  mapper: {
+    required: true,
     serializedName: "email",
     type: {
       name: "String"
@@ -184,6 +260,38 @@ export const key: msRest.OperationQueryParameter = {
     }
   }
 };
+export const login: msRest.OperationQueryParameter = {
+  parameterPath: "login",
+  mapper: {
+    required: true,
+    serializedName: "login",
+    type: {
+      name: "String"
+    }
+  }
+};
+export const name0: msRest.OperationQueryParameter = {
+  parameterPath: "name",
+  mapper: {
+    required: true,
+    serializedName: "name",
+    type: {
+      name: "String"
+    }
+  }
+};
+export const name1: msRest.OperationQueryParameter = {
+  parameterPath: [
+    "options",
+    "name"
+  ],
+  mapper: {
+    serializedName: "name",
+    type: {
+      name: "String"
+    }
+  }
+};
 export const originId: msRest.OperationQueryParameter = {
   parameterPath: "originId",
   mapper: {
@@ -204,13 +312,33 @@ export const owner: msRest.OperationQueryParameter = {
     }
   }
 };
-export const password: msRest.OperationQueryParameter = {
+export const password0: msRest.OperationQueryParameter = {
   parameterPath: [
     "options",
     "password"
   ],
   mapper: {
     serializedName: "password",
+    type: {
+      name: "String"
+    }
+  }
+};
+export const password1: msRest.OperationQueryParameter = {
+  parameterPath: "password",
+  mapper: {
+    required: true,
+    serializedName: "password",
+    type: {
+      name: "String"
+    }
+  }
+};
+export const productGuid: msRest.OperationQueryParameter = {
+  parameterPath: "productGuid",
+  mapper: {
+    required: true,
+    serializedName: "product_guid",
     type: {
       name: "String"
     }
@@ -236,6 +364,28 @@ export const proof: msRest.OperationQueryParameter = {
     }
   }
 };
+export const referralKey: msRest.OperationQueryParameter = {
+  parameterPath: [
+    "options",
+    "referralKey"
+  ],
+  mapper: {
+    serializedName: "referral_key",
+    type: {
+      name: "String"
+    }
+  }
+};
+export const repoGuid: msRest.OperationQueryParameter = {
+  parameterPath: "repoGuid",
+  mapper: {
+    required: true,
+    serializedName: "repo_guid",
+    type: {
+      name: "String"
+    }
+  }
+};
 export const serviceType: msRest.OperationQueryParameter = {
   parameterPath: "serviceType",
   mapper: {
@@ -251,6 +401,36 @@ export const status: msRest.OperationQueryParameter = {
   mapper: {
     required: true,
     serializedName: "status",
+    type: {
+      name: "String"
+    }
+  }
+};
+export const url: msRest.OperationQueryParameter = {
+  parameterPath: "url",
+  mapper: {
+    required: true,
+    serializedName: "url",
+    type: {
+      name: "String"
+    }
+  }
+};
+export const usdPrice: msRest.OperationQueryParameter = {
+  parameterPath: "usdPrice",
+  mapper: {
+    required: true,
+    serializedName: "usd_price",
+    type: {
+      name: "Number"
+    }
+  }
+};
+export const useUrl: msRest.OperationQueryParameter = {
+  parameterPath: "useUrl",
+  mapper: {
+    required: true,
+    serializedName: "use_url",
     type: {
       name: "String"
     }

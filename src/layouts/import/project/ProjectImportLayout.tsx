@@ -66,7 +66,7 @@ class ProjectImportLayout extends React.Component<IProps, IState> {
             this.setState({
                 isLoaded: true,
                 alreadyImported: true,
-                importedProjectGuid: json.metadata.project_guid
+                importedProjectUri: json.metadata.project.base_uri
             });
             this.redirectToImportedProject();
             return;

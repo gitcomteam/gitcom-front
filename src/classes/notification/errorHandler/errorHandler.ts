@@ -1,15 +1,23 @@
 import {notification} from "antd";
 
 export function handleApiError(response: any): void {
-    // TODO: only in dev mode
-    console.error('RAW error response:');
-    console.error(response);
+    if (process.env.NODE_ENV === "development") {
+        console.error('RAW error response:');
+        console.error(response);
+    }
     if (!response) {
         showUnknownError();
         return;
     }
     let json: any;
     try {
+        if (response.status === 401) {
+            notification['error']({
+                message: 'Unauthorized, please log in again',
+                description: ''
+            });
+            return;
+        }
         if (response.status === 404) {
             notification['error']({
                 message: 'Not found',
@@ -17,7 +25,21 @@ export function handleApiError(response: any): void {
             });
             return;
         }
-        json = JSON.parse(response);
+        json = JSON.parse(response.body);
+        if (response.status === 403) {
+            notification['error']({
+                message: 'Not allowed',
+                description: json.errors[0].message
+            });
+            return;
+        }
+        if (response.status === 422) {
+            notification['error']({
+                message: 'Submitted form is invalid, please try again',
+                description: json.errors[0].message
+            });
+            return;
+        }
     } catch (e) {
         showUnknownError(e);
         return;
@@ -32,7 +54,6 @@ export function handleApiError(response: any): void {
 
 export function showUnknownError(err: any = null) {
     if (err) {
-        // TODO: only in dev mode
         console.error(err);
     }
     console.error('Unknown error, we\'re already working on it :)');

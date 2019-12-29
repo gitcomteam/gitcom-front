@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "version": "0.13.0",
-    "title": "Supporthub",
+    "title": "GitCom",
     "description": "SupportHub API (WIP)",
     "termsOfService": "http://swagger.io/terms/",
     "contact": {
@@ -12,7 +12,7 @@
       "name": "Unknown license"
     }
   },
-  "host": "api.supporthub.com",
+  "host": "api.gitcom.com",
   "basePath": "/api/v1",
   "schemes": [
     "http",
@@ -120,6 +120,14 @@
     {
       "name": "permissions",
       "description": "Permissions related stuff"
+    },
+    {
+      "name": "product",
+      "description": "Project product related operations"
+    },
+    {
+      "name": "withdrawal",
+      "description": "Withdrawal related operations"
     }
   ],
   "paths": {
@@ -157,6 +165,101 @@
                     "token": {
                       "type": "string",
                       "example": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHA"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/register": {
+      "post": {
+        "tags": [
+          "auth"
+        ],
+        "operationId": "postRegister",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "login",
+            "in": "query",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "email",
+            "in": "query",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "password",
+            "in": "query",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "referral_key",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns text (next step)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "response": {
+                      "type": "string",
+                      "example": "Please confirm your email"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/register/confirm_email": {
+      "post": {
+        "tags": [
+          "auth"
+        ],
+        "operationId": "postConfirmEmail",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "confirmation_key",
+            "in": "query",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns JWT token",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "token": {
+                      "type": "string",
+                      "example": "kf1k2f12f912kf1fr1..."
                     }
                   }
                 }
@@ -504,6 +607,45 @@
         }
       }
     },
+    "/repository/get": {
+      "get": {
+        "tags": [
+          "repo"
+        ],
+        "operationId": "getRepo",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "repo_guid",
+            "in": "query",
+            "type": "string",
+            "description": "Repository Guid",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "repository": {
+                      "$ref": "#/definitions/Repository"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/project/get": {
       "get": {
         "tags": [
@@ -807,6 +949,147 @@
         }
       }
     },
+    "/card/create": {
+      "post": {
+        "tags": [
+          "card"
+        ],
+        "operationId": "createCard",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "api_token",
+            "in": "query",
+            "type": "string",
+            "description": "",
+            "required": true
+          },
+          {
+            "name": "column_guid",
+            "in": "query",
+            "type": "string",
+            "description": "",
+            "required": true
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "type": "string",
+            "description": "",
+            "required": true
+          },
+          {
+            "name": "description",
+            "in": "query",
+            "type": "string",
+            "description": "",
+            "required": false
+          },
+          {
+            "name": "column_order",
+            "in": "query",
+            "type": "integer",
+            "description": "",
+            "required": false
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "card": {
+                      "$ref": "#/definitions/Card"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/card/edit": {
+      "patch": {
+        "tags": [
+          "card"
+        ],
+        "operationId": "editCard",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "api_token",
+            "in": "query",
+            "type": "string",
+            "description": "",
+            "required": true
+          },
+          {
+            "name": "card_guid",
+            "in": "query",
+            "type": "string",
+            "description": "",
+            "required": true
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "type": "string",
+            "description": "",
+            "required": false
+          },
+          {
+            "name": "description",
+            "in": "query",
+            "type": "string",
+            "description": "",
+            "required": false
+          },
+          {
+            "name": "column_order",
+            "in": "query",
+            "type": "integer",
+            "description": "",
+            "required": false
+          },
+          {
+            "name": "column_guid",
+            "in": "query",
+            "type": "string",
+            "description": "",
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "card": {
+                      "$ref": "#/definitions/Card"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/card/work/get": {
       "get": {
         "tags": [
@@ -866,19 +1149,7 @@
             "required": true
           },
           {
-            "name": "entity_type",
-            "in": "query",
-            "type": "string",
-            "enum": [
-              "ProjectCategory",
-              "Project",
-              "Board",
-              "Card",
-              "BacklogItem",
-              "UserBalance",
-              "User"
-            ],
-            "required": true
+            "$ref": "#/parameters/entity_type"
           }
         ],
         "responses": {
@@ -1070,19 +1341,7 @@
             "required": true
           },
           {
-            "name": "entity_type",
-            "in": "query",
-            "type": "string",
-            "enum": [
-              "ProjectCategory",
-              "Project",
-              "Board",
-              "Card",
-              "BacklogItem",
-              "UserBalance",
-              "User"
-            ],
-            "required": true
+            "$ref": "#/parameters/entity_type"
           },
           {
             "name": "amount",
@@ -1595,6 +1854,58 @@
         }
       }
     },
+    "/me/library/project/status/get": {
+      "get": {
+        "tags": [
+          "alias",
+          "project"
+        ],
+        "operationId": "getMyLibraryProjectStatus",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "api_token",
+            "in": "query",
+            "type": "string",
+            "description": "",
+            "required": true
+          },
+          {
+            "name": "project_guid",
+            "in": "query",
+            "type": "string",
+            "description": "",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "object",
+                      "properties": {
+                        "in_library": {
+                          "type": "boolean"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/me/get": {
       "get": {
         "tags": [
@@ -1775,16 +2086,7 @@
             "required": true
           },
           {
-            "name": "entity_type",
-            "in": "query",
-            "type": "string",
-            "enum": [
-              "Project",
-              "Board",
-              "BoardColumn",
-              "Card"
-            ],
-            "required": true
+            "$ref": "#/parameters/entity_type"
           }
         ],
         "responses": {
@@ -1874,6 +2176,307 @@
           }
         }
       }
+    },
+    "/project/products/get": {
+      "get": {
+        "tags": [ "product" ],
+        "operationId": "getProjectProducts",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "project_guid",
+            "in": "query",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "products": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/definitions/ProjectProduct"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/project/product/new": {
+      "post": {
+        "tags": [ "product" ],
+        "operationId": "postProjectProduct",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "api_token",
+            "in": "query",
+            "type": "string",
+            "description": "JWT token",
+            "required": true
+          },
+          {
+            "name": "project_guid",
+            "in": "query",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "description",
+            "in": "query",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "usd_price",
+            "in": "query",
+            "type": "number",
+            "required": true
+          },
+          {
+            "name": "url",
+            "in": "query",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "use_url",
+            "in": "query",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "duration_hours",
+            "in": "query",
+            "type": "number"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "product": {
+                      "$ref": "#/definitions/ProjectProduct"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/project/product/delete": {
+      "delete": {
+        "tags": [ "product" ],
+        "operationId": "deleteProjectProduct",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "api_token",
+            "in": "query",
+            "type": "string",
+            "description": "JWT token",
+            "required": true
+          },
+          {
+            "name": "product_guid",
+            "in": "query",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "product": {
+                      "$ref": "#/definitions/ProjectProduct"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/me/withdrawals/get": {
+      "get": {
+        "tags": [
+          "withdrawal"
+        ],
+        "operationId": "getMyWithdrawalRequests",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "api_token",
+            "in": "query",
+            "type": "string",
+            "description": "JWT token",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "withdraw_requests": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/definitions/WithdrawalRequest"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/me/withdrawal/new": {
+      "post": {
+        "tags": [
+          "withdrawal"
+        ],
+        "operationId": "postWithdrawalRequest",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "api_token",
+            "in": "query",
+            "type": "string",
+            "description": "JWT token",
+            "required": true
+          },
+          {
+            "name": "amount",
+            "in": "query",
+            "type": "number",
+            "required": true
+          },
+          {
+            "name": "address",
+            "in": "query",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "currency_type",
+            "in": "query",
+            "type": "string",
+            "enum": [
+              "Usd",
+              "BitCoin",
+              "Ethereum",
+              "Erc20Token",
+              "Waves",
+              "WavesToken",
+              "LiteCoin"
+            ],
+            "required": true
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "withdraw_request": {
+                      "$ref": "#/definitions/WithdrawalRequest"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "parameters": {
+    "entity_type": {
+      "name": "entity_type",
+      "in": "query",
+      "type": "string",
+      "enum": [
+        "ProjectCategory",
+        "Project",
+        "Board",
+        "Card",
+        "BacklogItem",
+        "UserBalance",
+        "User",
+        "ProjectProductPurchase",
+        "BoardColumn"
+      ],
+      "required": true
+    },
+    "currency_type": {
+      "name": "currency_type",
+      "in": "query",
+      "type": "string",
+      "enum": [
+        "Usd",
+        "BitCoin",
+        "Ethereum",
+        "Erc20Token",
+        "Waves",
+        "WavesToken",
+        "LiteCoin"
+      ]
     }
   },
   "definitions": {
@@ -1957,6 +2560,10 @@
         "base_uri": {
           "type": "string",
           "example": "owner/project-name"
+        },
+        "stars_count": {
+          "type": "number",
+          "example": 3
         },
         "created_at": {
           "type": "string",
@@ -2295,6 +2902,78 @@
         }
       }
     },
+    "ProjectProduct": {
+      "type": "object",
+      "properties": {
+        "guid": {
+          "type": "string",
+          "example": "46e647fc-9ebc-4d40-bcff-f81af991ee88"
+        },
+        "name": {
+          "type": "string",
+          "example": "Professional edition"
+        },
+        "description": {
+          "type": "string",
+          "example": "List of additional features here"
+        },
+        "url": {
+          "type": "string",
+          "description": "url to view product info (optional)",
+          "example": "https://website.com/my-product/info"
+        },
+        "project_guid": {
+          "type": "string",
+          "example": "46e647fc-9ebc-4d40-bcff-f81af991ee88"
+        },
+        "usd_price": {
+          "type": "number",
+          "example": 2.25
+        },
+        "duration_hours": {
+          "type": "integer",
+          "example": "5"
+        },
+        "created_at": {
+          "type": "string",
+          "example": "2019-10-06T17:14:54.844933"
+        },
+        "updated_at": {
+          "type": "string",
+          "example": "2019-10-06T17:14:54.844933"
+        }
+      }
+    },
+    "WithdrawalRequest": {
+      "type": "object",
+      "properties": {
+        "guid": {
+          "type": "string",
+          "example": "46e647fc-9ebc-4d40-bcff-f81af991ee88"
+        },
+        "user_guid": {
+          "type": "string",
+          "example": "3fbc4d65-8ac8-468d-b5fd-51cdcaae5e2c"
+        },
+        "amount": {
+          "type": "number",
+          "example": 0.172
+        },
+        "address": {
+          "type": "string",
+          "example": "my0paypal@gmail.com",
+          "description": "Users email for PayPal or cryptocurrency address"
+        },
+        "paid": {
+          "type": "boolean",
+          "example": false
+        },
+        "created_at": {
+          "type": "string",
+          "example": "2019-10-06T17:14:54.844933"
+        }
+      }
+    },
     "EntityType": {
       "type": "string",
       "example": "Card",
@@ -2305,7 +2984,9 @@
         "Card",
         "BacklogItem",
         "UserBalance",
-        "User"
+        "User",
+        "ProjectProductPurchase",
+        "BoardColumn"
       ]
     },
     "CurrencyType": {

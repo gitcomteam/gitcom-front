@@ -47,6 +47,7 @@ export interface Project {
   repositoryGuid?: string;
   creatorGuid?: string;
   baseUri?: string;
+  starsCount?: number;
   createdAt?: string;
   updatedAt?: string;
 }
@@ -133,7 +134,7 @@ export interface FundingBalance {
   entityGuid?: string;
   /**
    * Possible values include: 'ProjectCategory', 'Project', 'Board', 'Card', 'BacklogItem',
-   * 'UserBalance', 'User'
+   * 'UserBalance', 'User', 'ProjectProductPurchase', 'BoardColumn'
    */
   entityType?: EntityType;
   amount?: number;
@@ -166,7 +167,7 @@ export interface Invoice {
   entityGuid?: string;
   /**
    * Possible values include: 'ProjectCategory', 'Project', 'Board', 'Card', 'BacklogItem',
-   * 'UserBalance', 'User'
+   * 'UserBalance', 'User', 'ProjectProductPurchase', 'BoardColumn'
    */
   entityType?: EntityType1;
   amount?: number;
@@ -217,6 +218,39 @@ export interface LibraryItem {
 }
 
 /**
+ * An interface representing ProjectProduct.
+ */
+export interface ProjectProduct {
+  guid?: string;
+  name?: string;
+  description?: string;
+  /**
+   * url to view product info (optional)
+   */
+  url?: string;
+  projectGuid?: string;
+  usdPrice?: number;
+  durationHours?: number;
+  createdAt?: string;
+  updatedAt?: string;
+}
+
+/**
+ * An interface representing WithdrawalRequest.
+ */
+export interface WithdrawalRequest {
+  guid?: string;
+  userGuid?: string;
+  amount?: number;
+  /**
+   * Users email for PayPal or cryptocurrency address
+   */
+  address?: string;
+  paid?: boolean;
+  createdAt?: string;
+}
+
+/**
  * An interface representing GetLoginOKResponseData.
  */
 export interface GetLoginOKResponseData {
@@ -228,6 +262,34 @@ export interface GetLoginOKResponseData {
  */
 export interface GetLoginOKResponse {
   data?: GetLoginOKResponseData;
+}
+
+/**
+ * An interface representing PostRegisterOKResponseData.
+ */
+export interface PostRegisterOKResponseData {
+  response?: string;
+}
+
+/**
+ * An interface representing PostRegisterOKResponse.
+ */
+export interface PostRegisterOKResponse {
+  data?: PostRegisterOKResponseData;
+}
+
+/**
+ * An interface representing PostConfirmEmailOKResponseData.
+ */
+export interface PostConfirmEmailOKResponseData {
+  token?: string;
+}
+
+/**
+ * An interface representing PostConfirmEmailOKResponse.
+ */
+export interface PostConfirmEmailOKResponse {
+  data?: PostConfirmEmailOKResponseData;
 }
 
 /**
@@ -370,6 +432,20 @@ export interface PostImportRepositoryOKResponse {
 }
 
 /**
+ * An interface representing GetRepoOKResponseData.
+ */
+export interface GetRepoOKResponseData {
+  repository?: Repository;
+}
+
+/**
+ * An interface representing GetRepoOKResponse.
+ */
+export interface GetRepoOKResponse {
+  data?: GetRepoOKResponseData;
+}
+
+/**
  * An interface representing GetProjectOKResponseData.
  */
 export interface GetProjectOKResponseData {
@@ -465,6 +541,34 @@ export interface GetProjectByAliasOKResponseData {
  */
 export interface GetProjectByAliasOKResponse {
   data?: GetProjectByAliasOKResponseData;
+}
+
+/**
+ * An interface representing CreateCardCreatedResponseData.
+ */
+export interface CreateCardCreatedResponseData {
+  card?: Card;
+}
+
+/**
+ * An interface representing CreateCardCreatedResponse.
+ */
+export interface CreateCardCreatedResponse {
+  data?: CreateCardCreatedResponseData;
+}
+
+/**
+ * An interface representing EditCardOKResponseData.
+ */
+export interface EditCardOKResponseData {
+  card?: Card;
+}
+
+/**
+ * An interface representing EditCardOKResponse.
+ */
+export interface EditCardOKResponse {
+  data?: EditCardOKResponseData;
 }
 
 /**
@@ -692,6 +796,27 @@ export interface RemoveProjectFromMyLibraryOKResponse {
 }
 
 /**
+ * An interface representing GetMyLibraryProjectStatusOKResponseDataStatus.
+ */
+export interface GetMyLibraryProjectStatusOKResponseDataStatus {
+  inLibrary?: boolean;
+}
+
+/**
+ * An interface representing GetMyLibraryProjectStatusOKResponseData.
+ */
+export interface GetMyLibraryProjectStatusOKResponseData {
+  status?: GetMyLibraryProjectStatusOKResponseDataStatus;
+}
+
+/**
+ * An interface representing GetMyLibraryProjectStatusOKResponse.
+ */
+export interface GetMyLibraryProjectStatusOKResponse {
+  data?: GetMyLibraryProjectStatusOKResponseData;
+}
+
+/**
  * An interface representing GetMeOKResponseData.
  */
 export interface GetMeOKResponseData {
@@ -790,9 +915,84 @@ export interface GetRandomProjectsOKResponse {
 }
 
 /**
+ * An interface representing GetProjectProductsOKResponseData.
+ */
+export interface GetProjectProductsOKResponseData {
+  products?: ProjectProduct[];
+}
+
+/**
+ * An interface representing GetProjectProductsOKResponse.
+ */
+export interface GetProjectProductsOKResponse {
+  data?: GetProjectProductsOKResponseData;
+}
+
+/**
+ * An interface representing PostProjectProductCreatedResponseData.
+ */
+export interface PostProjectProductCreatedResponseData {
+  product?: ProjectProduct;
+}
+
+/**
+ * An interface representing PostProjectProductCreatedResponse.
+ */
+export interface PostProjectProductCreatedResponse {
+  data?: PostProjectProductCreatedResponseData;
+}
+
+/**
+ * An interface representing DeleteProjectProductOKResponseData.
+ */
+export interface DeleteProjectProductOKResponseData {
+  product?: ProjectProduct;
+}
+
+/**
+ * An interface representing DeleteProjectProductOKResponse.
+ */
+export interface DeleteProjectProductOKResponse {
+  data?: DeleteProjectProductOKResponseData;
+}
+
+/**
+ * An interface representing GetMyWithdrawalRequestsOKResponseData.
+ */
+export interface GetMyWithdrawalRequestsOKResponseData {
+  withdrawRequests?: WithdrawalRequest[];
+}
+
+/**
+ * An interface representing GetMyWithdrawalRequestsOKResponse.
+ */
+export interface GetMyWithdrawalRequestsOKResponse {
+  data?: GetMyWithdrawalRequestsOKResponseData;
+}
+
+/**
+ * An interface representing PostWithdrawalRequestCreatedResponseData.
+ */
+export interface PostWithdrawalRequestCreatedResponseData {
+  withdrawRequest?: WithdrawalRequest;
+}
+
+/**
+ * An interface representing PostWithdrawalRequestCreatedResponse.
+ */
+export interface PostWithdrawalRequestCreatedResponse {
+  data?: PostWithdrawalRequestCreatedResponseData;
+}
+
+/**
  * An interface representing SupportHubApiOptions.
  */
 export interface SupportHubApiOptions extends ServiceClientOptions {
+  /**
+   * Possible values include: 'Usd', 'BitCoin', 'Ethereum', 'Erc20Token', 'Waves', 'WavesToken',
+   * 'LiteCoin'
+   */
+  currencyType?: CurrencyType4;
   baseUri?: string;
 }
 
@@ -802,6 +1002,13 @@ export interface SupportHubApiOptions extends ServiceClientOptions {
 export interface SupportHubApiGetLoginOptionalParams extends msRest.RequestOptionsBase {
   email?: string;
   password?: string;
+}
+
+/**
+ * Optional Parameters.
+ */
+export interface SupportHubApiPostRegisterOptionalParams extends msRest.RequestOptionsBase {
+  referralKey?: string;
 }
 
 /**
@@ -835,6 +1042,31 @@ export interface SupportHubApiEditProjectOptionalParams extends msRest.RequestOp
 }
 
 /**
+ * Optional Parameters.
+ */
+export interface SupportHubApiCreateCardOptionalParams extends msRest.RequestOptionsBase {
+  description?: string;
+  columnOrder?: number;
+}
+
+/**
+ * Optional Parameters.
+ */
+export interface SupportHubApiEditCardOptionalParams extends msRest.RequestOptionsBase {
+  name?: string;
+  description?: string;
+  columnOrder?: number;
+  columnGuid?: string;
+}
+
+/**
+ * Optional Parameters.
+ */
+export interface SupportHubApiPostProjectProductOptionalParams extends msRest.RequestOptionsBase {
+  durationHours?: number;
+}
+
+/**
  * Defines values for ServiceType.
  * Possible values include: 'GitHub', 'GitLab'
  * @readonly
@@ -845,11 +1077,11 @@ export type ServiceType = 'GitHub' | 'GitLab';
 /**
  * Defines values for EntityType.
  * Possible values include: 'ProjectCategory', 'Project', 'Board', 'Card', 'BacklogItem',
- * 'UserBalance', 'User'
+ * 'UserBalance', 'User', 'ProjectProductPurchase', 'BoardColumn'
  * @readonly
  * @enum {string}
  */
-export type EntityType = 'ProjectCategory' | 'Project' | 'Board' | 'Card' | 'BacklogItem' | 'UserBalance' | 'User';
+export type EntityType = 'ProjectCategory' | 'Project' | 'Board' | 'Card' | 'BacklogItem' | 'UserBalance' | 'User' | 'ProjectProductPurchase' | 'BoardColumn';
 
 /**
  * Defines values for CurrencyType.
@@ -872,11 +1104,11 @@ export type CurrencyType1 = 'Usd' | 'BitCoin' | 'Ethereum' | 'Erc20Token' | 'Wav
 /**
  * Defines values for EntityType1.
  * Possible values include: 'ProjectCategory', 'Project', 'Board', 'Card', 'BacklogItem',
- * 'UserBalance', 'User'
+ * 'UserBalance', 'User', 'ProjectProductPurchase', 'BoardColumn'
  * @readonly
  * @enum {string}
  */
-export type EntityType1 = 'ProjectCategory' | 'Project' | 'Board' | 'Card' | 'BacklogItem' | 'UserBalance' | 'User';
+export type EntityType1 = 'ProjectCategory' | 'Project' | 'Board' | 'Card' | 'BacklogItem' | 'UserBalance' | 'User' | 'ProjectProductPurchase' | 'BoardColumn';
 
 /**
  * Defines values for CurrencyType2.
@@ -897,6 +1129,15 @@ export type CurrencyType2 = 'Usd' | 'BitCoin' | 'Ethereum' | 'Erc20Token' | 'Wav
 export type CurrencyType3 = 'Usd' | 'BitCoin' | 'Ethereum' | 'Erc20Token' | 'Waves' | 'WavesToken' | 'LiteCoin';
 
 /**
+ * Defines values for CurrencyType4.
+ * Possible values include: 'Usd', 'BitCoin', 'Ethereum', 'Erc20Token', 'Waves', 'WavesToken',
+ * 'LiteCoin'
+ * @readonly
+ * @enum {string}
+ */
+export type CurrencyType4 = 'Usd' | 'BitCoin' | 'Ethereum' | 'Erc20Token' | 'Waves' | 'WavesToken' | 'LiteCoin';
+
+/**
  * Defines values for ServiceType1.
  * Possible values include: 'GitHub', 'GitLab'
  * @readonly
@@ -907,37 +1148,47 @@ export type ServiceType1 = 'GitHub' | 'GitLab';
 /**
  * Defines values for EntityType2.
  * Possible values include: 'ProjectCategory', 'Project', 'Board', 'Card', 'BacklogItem',
- * 'UserBalance', 'User'
+ * 'UserBalance', 'User', 'ProjectProductPurchase', 'BoardColumn'
  * @readonly
  * @enum {string}
  */
-export type EntityType2 = 'ProjectCategory' | 'Project' | 'Board' | 'Card' | 'BacklogItem' | 'UserBalance' | 'User';
+export type EntityType2 = 'ProjectCategory' | 'Project' | 'Board' | 'Card' | 'BacklogItem' | 'UserBalance' | 'User' | 'ProjectProductPurchase' | 'BoardColumn';
 
 /**
  * Defines values for EntityType3.
  * Possible values include: 'ProjectCategory', 'Project', 'Board', 'Card', 'BacklogItem',
- * 'UserBalance', 'User'
+ * 'UserBalance', 'User', 'ProjectProductPurchase', 'BoardColumn'
  * @readonly
  * @enum {string}
  */
-export type EntityType3 = 'ProjectCategory' | 'Project' | 'Board' | 'Card' | 'BacklogItem' | 'UserBalance' | 'User';
+export type EntityType3 = 'ProjectCategory' | 'Project' | 'Board' | 'Card' | 'BacklogItem' | 'UserBalance' | 'User' | 'ProjectProductPurchase' | 'BoardColumn';
 
 /**
- * Defines values for CurrencyType4.
+ * Defines values for CurrencyType5.
  * Possible values include: 'Usd', 'BitCoin', 'Ethereum', 'Erc20Token', 'Waves', 'WavesToken',
  * 'LiteCoin'
  * @readonly
  * @enum {string}
  */
-export type CurrencyType4 = 'Usd' | 'BitCoin' | 'Ethereum' | 'Erc20Token' | 'Waves' | 'WavesToken' | 'LiteCoin';
+export type CurrencyType5 = 'Usd' | 'BitCoin' | 'Ethereum' | 'Erc20Token' | 'Waves' | 'WavesToken' | 'LiteCoin';
 
 /**
  * Defines values for EntityType4.
- * Possible values include: 'Project', 'Board', 'BoardColumn', 'Card'
+ * Possible values include: 'ProjectCategory', 'Project', 'Board', 'Card', 'BacklogItem',
+ * 'UserBalance', 'User', 'ProjectProductPurchase', 'BoardColumn'
  * @readonly
  * @enum {string}
  */
-export type EntityType4 = 'Project' | 'Board' | 'BoardColumn' | 'Card';
+export type EntityType4 = 'ProjectCategory' | 'Project' | 'Board' | 'Card' | 'BacklogItem' | 'UserBalance' | 'User' | 'ProjectProductPurchase' | 'BoardColumn';
+
+/**
+ * Defines values for CurrencyType6.
+ * Possible values include: 'Usd', 'BitCoin', 'Ethereum', 'Erc20Token', 'Waves', 'WavesToken',
+ * 'LiteCoin'
+ * @readonly
+ * @enum {string}
+ */
+export type CurrencyType6 = 'Usd' | 'BitCoin' | 'Ethereum' | 'Erc20Token' | 'Waves' | 'WavesToken' | 'LiteCoin';
 
 /**
  * Contains response data for the getLogin operation.
@@ -956,6 +1207,46 @@ export type GetLoginResponse = GetLoginOKResponse & {
        * The response body as parsed JSON or XML
        */
       parsedBody: GetLoginOKResponse;
+    };
+};
+
+/**
+ * Contains response data for the postRegister operation.
+ */
+export type PostRegisterResponse = PostRegisterOKResponse & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: PostRegisterOKResponse;
+    };
+};
+
+/**
+ * Contains response data for the postConfirmEmail operation.
+ */
+export type PostConfirmEmailResponse = PostConfirmEmailOKResponse & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: PostConfirmEmailOKResponse;
     };
 };
 
@@ -1100,6 +1391,26 @@ export type PostImportRepositoryResponse = PostImportRepositoryOKResponse & {
 };
 
 /**
+ * Contains response data for the getRepo operation.
+ */
+export type GetRepoResponse = GetRepoOKResponse & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: GetRepoOKResponse;
+    };
+};
+
+/**
  * Contains response data for the getProject operation.
  */
 export type GetProjectResponse = GetProjectOKResponse & {
@@ -1236,6 +1547,46 @@ export type GetProjectByAliasResponse = GetProjectByAliasOKResponse & {
        * The response body as parsed JSON or XML
        */
       parsedBody: GetProjectByAliasOKResponse;
+    };
+};
+
+/**
+ * Contains response data for the createCard operation.
+ */
+export type CreateCardResponse = CreateCardCreatedResponse & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: CreateCardCreatedResponse;
+    };
+};
+
+/**
+ * Contains response data for the editCard operation.
+ */
+export type EditCardResponse = EditCardOKResponse & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: EditCardOKResponse;
     };
 };
 
@@ -1560,6 +1911,26 @@ export type RemoveProjectFromMyLibraryResponse = RemoveProjectFromMyLibraryOKRes
 };
 
 /**
+ * Contains response data for the getMyLibraryProjectStatus operation.
+ */
+export type GetMyLibraryProjectStatusResponse = GetMyLibraryProjectStatusOKResponse & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: GetMyLibraryProjectStatusOKResponse;
+    };
+};
+
+/**
  * Contains response data for the getMe operation.
  */
 export type GetMeResponse = GetMeOKResponse & {
@@ -1696,5 +2067,105 @@ export type GetRandomProjectsResponse = GetRandomProjectsOKResponse & {
        * The response body as parsed JSON or XML
        */
       parsedBody: GetRandomProjectsOKResponse;
+    };
+};
+
+/**
+ * Contains response data for the getProjectProducts operation.
+ */
+export type GetProjectProductsResponse = GetProjectProductsOKResponse & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: GetProjectProductsOKResponse;
+    };
+};
+
+/**
+ * Contains response data for the postProjectProduct operation.
+ */
+export type PostProjectProductResponse = PostProjectProductCreatedResponse & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: PostProjectProductCreatedResponse;
+    };
+};
+
+/**
+ * Contains response data for the deleteProjectProduct operation.
+ */
+export type DeleteProjectProductResponse = DeleteProjectProductOKResponse & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: DeleteProjectProductOKResponse;
+    };
+};
+
+/**
+ * Contains response data for the getMyWithdrawalRequests operation.
+ */
+export type GetMyWithdrawalRequestsResponse = GetMyWithdrawalRequestsOKResponse & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: GetMyWithdrawalRequestsOKResponse;
+    };
+};
+
+/**
+ * Contains response data for the postWithdrawalRequest operation.
+ */
+export type PostWithdrawalRequestResponse = PostWithdrawalRequestCreatedResponse & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: PostWithdrawalRequestCreatedResponse;
     };
 };

@@ -5,8 +5,8 @@ import {GetLoginOKResponse} from "../../../client/models";
 import styles from './styles.module.css';
 import { Redirect } from 'react-router';
 import ConnectButton from "../../../components/external/auth/connectButton/ConnectButton";
-import FacebookLoginButton from "../../../components/external/auth/facebookButton/FacebookLoginButton";
 import GoogleLoginButton from "../../../components/external/auth/googleButton/GoogleLoginButton";
+import {Link} from "react-router-dom";
 
 const { Title } = Typography;
 
@@ -132,6 +132,12 @@ class LoginLayout extends React.Component<IProps, IState> {
                 >Log in</Button>
 
                 <Divider/>
+                <Link to={"/register"}>
+                    <Button icon={"mail"} type={"default"}>Register via email</Button>
+                </Link>
+                <br/>
+
+                <Row className="margin-sm-vertical"><b>Or login via other services:</b></Row>
                 <Row>
                     <Col xs={12}>
                         <ConnectButton
@@ -153,11 +159,6 @@ class LoginLayout extends React.Component<IProps, IState> {
                     </Col>
                 </Row>
                 <Row className={"margin-sm-top"}>
-                    <Col xs={12}>
-                        <FacebookLoginButton
-                            classNames="margin-sm-sides"
-                        />
-                    </Col>
                     <Col xs={12}>
                         <GoogleLoginButton classNames="margin-sm-sides"/>
                     </Col>

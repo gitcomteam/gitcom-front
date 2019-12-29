@@ -45,6 +45,12 @@ class InvoiceContent extends React.Component<IProps, IState> {
     processPatchInvoiceResponse(response: any) {
         let json = JSON.parse(response.bodyAsText);
 
+        if (json.data.invoice.status === 'RequiresConfirmation') {
+            notification['success']({
+                message: 'Invoice payment is pending, it could take up to 24 hours to be confirmed, thanks for your patience'
+            });
+        }
+
         this.setState({
             isLoaded: true,
             invoice: json.data.invoice

@@ -5,6 +5,7 @@ import {handleApiError} from "../../../../../classes/notification/errorHandler/e
 import {Button, notification, Row} from "antd";
 import ProjectInfo from "../../../project/single/info/ProjectInfo";
 import {Link} from "react-router-dom";
+import {retryRequest} from "../../../../../classes/utils/http/retryRequest";
 
 interface IProps {
     item: LibraryItem
@@ -25,7 +26,9 @@ class ItemCard extends React.Component<IProps, IState> {
     }
 
     componentDidMount(): void {
-        this.getProject();
+        retryRequest(() => {
+            this.getProject();
+        }, () => this.state.project !== null, true);
     }
 
     getProject(): void {

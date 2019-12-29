@@ -126,6 +126,10 @@ p, b {
   cursor: pointer;
 }
 
+.select-padding > div {
+  padding: 0 25px;
+}
+
 @media only screen and (min-width: 767px) {
   .desktop-zero-height {
     height: 0;

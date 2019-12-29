@@ -11,12 +11,20 @@ const packageName = "";
 const packageVersion = "";
 
 export class SupportHubApiContext extends msRest.ServiceClient {
+  entityType: string;
+  currencyType?: Models.CurrencyType4;
 
   /**
    * Initializes a new instance of the SupportHubApiContext class.
+   * @param entityType Possible values include: 'ProjectCategory', 'Project', 'Board', 'Card',
+   * 'BacklogItem', 'UserBalance', 'User', 'ProjectProductPurchase', 'BoardColumn'
    * @param [options] The parameter options
    */
-  constructor(options?: Models.SupportHubApiOptions) {
+  constructor(entityType: string, options?: Models.SupportHubApiOptions) {
+    if (entityType == undefined) {
+      throw new Error("'entityType' cannot be null.");
+    }
+
     if (!options) {
       options = {};
     }
@@ -28,7 +36,11 @@ export class SupportHubApiContext extends msRest.ServiceClient {
 
     super(undefined, options);
 
-    this.baseUri = options.baseUri || this.baseUri || "http://api.supporthub.com/api/v1";
+    this.baseUri = options.baseUri || this.baseUri || "http://api.gitcom.com/api/v1";
     this.requestContentType = "application/json; charset=utf-8";
+    this.entityType = entityType;
+    if (options.currencyType !== null && options.currencyType !== undefined) {
+      this.currencyType = options.currencyType;
+    }
   }
 }

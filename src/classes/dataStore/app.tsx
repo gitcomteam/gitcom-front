@@ -10,7 +10,7 @@ class App {
     authorizedUser: UserModel|null = null;
 
     constructor(props: any) {
-        this.apiClient = new SupportHubApi({
+        this.apiClient = new SupportHubApi('Card', {
             baseUri: window.AppConfig.api_url
         });
 

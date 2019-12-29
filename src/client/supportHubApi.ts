@@ -13,10 +13,12 @@ import { SupportHubApiContext } from "./supportHubApiContext";
 class SupportHubApi extends SupportHubApiContext {
   /**
    * Initializes a new instance of the SupportHubApi class.
+   * @param entityType Possible values include: 'ProjectCategory', 'Project', 'Board', 'Card',
+   * 'BacklogItem', 'UserBalance', 'User', 'ProjectProductPurchase', 'BoardColumn'
    * @param [options] The parameter options
    */
-  constructor(options?: Models.SupportHubApiOptions) {
-    super(options);
+  constructor(entityType: string, options?: Models.SupportHubApiOptions) {
+    super(entityType, options);
   }
 
   /**
@@ -40,6 +42,68 @@ class SupportHubApi extends SupportHubApiContext {
       },
       getLoginOperationSpec,
       callback) as Promise<Models.GetLoginResponse>;
+  }
+
+  /**
+   * @param login
+   * @param email
+   * @param password
+   * @param [options] The optional parameters
+   * @returns Promise<Models.PostRegisterResponse>
+   */
+  postRegister(login: string, email: string, password: string, options?: Models.SupportHubApiPostRegisterOptionalParams): Promise<Models.PostRegisterResponse>;
+  /**
+   * @param login
+   * @param email
+   * @param password
+   * @param callback The callback
+   */
+  postRegister(login: string, email: string, password: string, callback: msRest.ServiceCallback<Models.PostRegisterOKResponse>): void;
+  /**
+   * @param login
+   * @param email
+   * @param password
+   * @param options The optional parameters
+   * @param callback The callback
+   */
+  postRegister(login: string, email: string, password: string, options: Models.SupportHubApiPostRegisterOptionalParams, callback: msRest.ServiceCallback<Models.PostRegisterOKResponse>): void;
+  postRegister(login: string, email: string, password: string, options?: Models.SupportHubApiPostRegisterOptionalParams | msRest.ServiceCallback<Models.PostRegisterOKResponse>, callback?: msRest.ServiceCallback<Models.PostRegisterOKResponse>): Promise<Models.PostRegisterResponse> {
+    return this.sendOperationRequest(
+      {
+        login,
+        email,
+        password,
+        options
+      },
+      postRegisterOperationSpec,
+      callback) as Promise<Models.PostRegisterResponse>;
+  }
+
+  /**
+   * @param confirmationKey
+   * @param [options] The optional parameters
+   * @returns Promise<Models.PostConfirmEmailResponse>
+   */
+  postConfirmEmail(confirmationKey: string, options?: msRest.RequestOptionsBase): Promise<Models.PostConfirmEmailResponse>;
+  /**
+   * @param confirmationKey
+   * @param callback The callback
+   */
+  postConfirmEmail(confirmationKey: string, callback: msRest.ServiceCallback<Models.PostConfirmEmailOKResponse>): void;
+  /**
+   * @param confirmationKey
+   * @param options The optional parameters
+   * @param callback The callback
+   */
+  postConfirmEmail(confirmationKey: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.PostConfirmEmailOKResponse>): void;
+  postConfirmEmail(confirmationKey: string, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.PostConfirmEmailOKResponse>, callback?: msRest.ServiceCallback<Models.PostConfirmEmailOKResponse>): Promise<Models.PostConfirmEmailResponse> {
+    return this.sendOperationRequest(
+      {
+        confirmationKey,
+        options
+      },
+      postConfirmEmailOperationSpec,
+      callback) as Promise<Models.PostConfirmEmailResponse>;
   }
 
   /**
@@ -225,6 +289,33 @@ class SupportHubApi extends SupportHubApiContext {
       },
       postImportRepositoryOperationSpec,
       callback) as Promise<Models.PostImportRepositoryResponse>;
+  }
+
+  /**
+   * @param repoGuid Repository Guid
+   * @param [options] The optional parameters
+   * @returns Promise<Models.GetRepoResponse>
+   */
+  getRepo(repoGuid: string, options?: msRest.RequestOptionsBase): Promise<Models.GetRepoResponse>;
+  /**
+   * @param repoGuid Repository Guid
+   * @param callback The callback
+   */
+  getRepo(repoGuid: string, callback: msRest.ServiceCallback<Models.GetRepoOKResponse>): void;
+  /**
+   * @param repoGuid Repository Guid
+   * @param options The optional parameters
+   * @param callback The callback
+   */
+  getRepo(repoGuid: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.GetRepoOKResponse>): void;
+  getRepo(repoGuid: string, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.GetRepoOKResponse>, callback?: msRest.ServiceCallback<Models.GetRepoOKResponse>): Promise<Models.GetRepoResponse> {
+    return this.sendOperationRequest(
+      {
+        repoGuid,
+        options
+      },
+      getRepoOperationSpec,
+      callback) as Promise<Models.GetRepoResponse>;
   }
 
   /**
@@ -425,6 +516,72 @@ class SupportHubApi extends SupportHubApiContext {
   }
 
   /**
+   * @param apiToken
+   * @param columnGuid
+   * @param name
+   * @param [options] The optional parameters
+   * @returns Promise<Models.CreateCardResponse>
+   */
+  createCard(apiToken: string, columnGuid: string, name: string, options?: Models.SupportHubApiCreateCardOptionalParams): Promise<Models.CreateCardResponse>;
+  /**
+   * @param apiToken
+   * @param columnGuid
+   * @param name
+   * @param callback The callback
+   */
+  createCard(apiToken: string, columnGuid: string, name: string, callback: msRest.ServiceCallback<Models.CreateCardCreatedResponse>): void;
+  /**
+   * @param apiToken
+   * @param columnGuid
+   * @param name
+   * @param options The optional parameters
+   * @param callback The callback
+   */
+  createCard(apiToken: string, columnGuid: string, name: string, options: Models.SupportHubApiCreateCardOptionalParams, callback: msRest.ServiceCallback<Models.CreateCardCreatedResponse>): void;
+  createCard(apiToken: string, columnGuid: string, name: string, options?: Models.SupportHubApiCreateCardOptionalParams | msRest.ServiceCallback<Models.CreateCardCreatedResponse>, callback?: msRest.ServiceCallback<Models.CreateCardCreatedResponse>): Promise<Models.CreateCardResponse> {
+    return this.sendOperationRequest(
+      {
+        apiToken,
+        columnGuid,
+        name,
+        options
+      },
+      createCardOperationSpec,
+      callback) as Promise<Models.CreateCardResponse>;
+  }
+
+  /**
+   * @param apiToken
+   * @param cardGuid
+   * @param [options] The optional parameters
+   * @returns Promise<Models.EditCardResponse>
+   */
+  editCard(apiToken: string, cardGuid: string, options?: Models.SupportHubApiEditCardOptionalParams): Promise<Models.EditCardResponse>;
+  /**
+   * @param apiToken
+   * @param cardGuid
+   * @param callback The callback
+   */
+  editCard(apiToken: string, cardGuid: string, callback: msRest.ServiceCallback<Models.EditCardOKResponse>): void;
+  /**
+   * @param apiToken
+   * @param cardGuid
+   * @param options The optional parameters
+   * @param callback The callback
+   */
+  editCard(apiToken: string, cardGuid: string, options: Models.SupportHubApiEditCardOptionalParams, callback: msRest.ServiceCallback<Models.EditCardOKResponse>): void;
+  editCard(apiToken: string, cardGuid: string, options?: Models.SupportHubApiEditCardOptionalParams | msRest.ServiceCallback<Models.EditCardOKResponse>, callback?: msRest.ServiceCallback<Models.EditCardOKResponse>): Promise<Models.EditCardResponse> {
+    return this.sendOperationRequest(
+      {
+        apiToken,
+        cardGuid,
+        options
+      },
+      editCardOperationSpec,
+      callback) as Promise<Models.EditCardResponse>;
+  }
+
+  /**
    * @param cardGuid
    * @param [options] The optional parameters
    * @returns Promise<Models.GetCardWorkResponse>
@@ -453,32 +610,25 @@ class SupportHubApi extends SupportHubApiContext {
 
   /**
    * @param entityGuid
-   * @param entityType Possible values include: 'ProjectCategory', 'Project', 'Board', 'Card',
-   * 'BacklogItem', 'UserBalance', 'User'
    * @param [options] The optional parameters
    * @returns Promise<Models.GetEntityFundingBalancesResponse>
    */
-  getEntityFundingBalances(entityGuid: string, entityType: Models.EntityType2, options?: msRest.RequestOptionsBase): Promise<Models.GetEntityFundingBalancesResponse>;
+  getEntityFundingBalances(entityGuid: string, options?: msRest.RequestOptionsBase): Promise<Models.GetEntityFundingBalancesResponse>;
   /**
    * @param entityGuid
-   * @param entityType Possible values include: 'ProjectCategory', 'Project', 'Board', 'Card',
-   * 'BacklogItem', 'UserBalance', 'User'
    * @param callback The callback
    */
-  getEntityFundingBalances(entityGuid: string, entityType: Models.EntityType2, callback: msRest.ServiceCallback<Models.GetEntityFundingBalancesOKResponse>): void;
+  getEntityFundingBalances(entityGuid: string, callback: msRest.ServiceCallback<Models.GetEntityFundingBalancesOKResponse>): void;
   /**
    * @param entityGuid
-   * @param entityType Possible values include: 'ProjectCategory', 'Project', 'Board', 'Card',
-   * 'BacklogItem', 'UserBalance', 'User'
    * @param options The optional parameters
    * @param callback The callback
    */
-  getEntityFundingBalances(entityGuid: string, entityType: Models.EntityType2, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.GetEntityFundingBalancesOKResponse>): void;
-  getEntityFundingBalances(entityGuid: string, entityType: Models.EntityType2, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.GetEntityFundingBalancesOKResponse>, callback?: msRest.ServiceCallback<Models.GetEntityFundingBalancesOKResponse>): Promise<Models.GetEntityFundingBalancesResponse> {
+  getEntityFundingBalances(entityGuid: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.GetEntityFundingBalancesOKResponse>): void;
+  getEntityFundingBalances(entityGuid: string, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.GetEntityFundingBalancesOKResponse>, callback?: msRest.ServiceCallback<Models.GetEntityFundingBalancesOKResponse>): Promise<Models.GetEntityFundingBalancesResponse> {
     return this.sendOperationRequest(
       {
         entityGuid,
-        entityType,
         options
       },
       getEntityFundingBalancesOperationSpec,
@@ -581,44 +731,37 @@ class SupportHubApi extends SupportHubApiContext {
   /**
    * @param apiToken JWT token
    * @param entityGuid
-   * @param entityType Possible values include: 'ProjectCategory', 'Project', 'Board', 'Card',
-   * 'BacklogItem', 'UserBalance', 'User'
    * @param amount
    * @param currencyType Possible values include: 'Usd', 'BitCoin', 'Ethereum', 'Erc20Token',
    * 'Waves', 'WavesToken', 'LiteCoin'
    * @param [options] The optional parameters
    * @returns Promise<Models.PostInvoiceResponse>
    */
-  postInvoice(apiToken: string, entityGuid: string, entityType: Models.EntityType3, amount: number, currencyType: Models.CurrencyType4, options?: msRest.RequestOptionsBase): Promise<Models.PostInvoiceResponse>;
+  postInvoice(apiToken: string, entityGuid: string, amount: number, currencyType: Models.CurrencyType5, options?: msRest.RequestOptionsBase): Promise<Models.PostInvoiceResponse>;
   /**
    * @param apiToken JWT token
    * @param entityGuid
-   * @param entityType Possible values include: 'ProjectCategory', 'Project', 'Board', 'Card',
-   * 'BacklogItem', 'UserBalance', 'User'
    * @param amount
    * @param currencyType Possible values include: 'Usd', 'BitCoin', 'Ethereum', 'Erc20Token',
    * 'Waves', 'WavesToken', 'LiteCoin'
    * @param callback The callback
    */
-  postInvoice(apiToken: string, entityGuid: string, entityType: Models.EntityType3, amount: number, currencyType: Models.CurrencyType4, callback: msRest.ServiceCallback<Models.PostInvoiceCreatedResponse>): void;
+  postInvoice(apiToken: string, entityGuid: string, amount: number, currencyType: Models.CurrencyType5, callback: msRest.ServiceCallback<Models.PostInvoiceCreatedResponse>): void;
   /**
    * @param apiToken JWT token
    * @param entityGuid
-   * @param entityType Possible values include: 'ProjectCategory', 'Project', 'Board', 'Card',
-   * 'BacklogItem', 'UserBalance', 'User'
    * @param amount
    * @param currencyType Possible values include: 'Usd', 'BitCoin', 'Ethereum', 'Erc20Token',
    * 'Waves', 'WavesToken', 'LiteCoin'
    * @param options The optional parameters
    * @param callback The callback
    */
-  postInvoice(apiToken: string, entityGuid: string, entityType: Models.EntityType3, amount: number, currencyType: Models.CurrencyType4, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.PostInvoiceCreatedResponse>): void;
-  postInvoice(apiToken: string, entityGuid: string, entityType: Models.EntityType3, amount: number, currencyType: Models.CurrencyType4, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.PostInvoiceCreatedResponse>, callback?: msRest.ServiceCallback<Models.PostInvoiceCreatedResponse>): Promise<Models.PostInvoiceResponse> {
+  postInvoice(apiToken: string, entityGuid: string, amount: number, currencyType: Models.CurrencyType5, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.PostInvoiceCreatedResponse>): void;
+  postInvoice(apiToken: string, entityGuid: string, amount: number, currencyType: Models.CurrencyType5, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.PostInvoiceCreatedResponse>, callback?: msRest.ServiceCallback<Models.PostInvoiceCreatedResponse>): Promise<Models.PostInvoiceResponse> {
     return this.sendOperationRequest(
       {
         apiToken,
         entityGuid,
-        entityType,
         amount,
         currencyType,
         options
@@ -930,6 +1073,37 @@ class SupportHubApi extends SupportHubApiContext {
   }
 
   /**
+   * @param apiToken
+   * @param projectGuid
+   * @param [options] The optional parameters
+   * @returns Promise<Models.GetMyLibraryProjectStatusResponse>
+   */
+  getMyLibraryProjectStatus(apiToken: string, projectGuid: string, options?: msRest.RequestOptionsBase): Promise<Models.GetMyLibraryProjectStatusResponse>;
+  /**
+   * @param apiToken
+   * @param projectGuid
+   * @param callback The callback
+   */
+  getMyLibraryProjectStatus(apiToken: string, projectGuid: string, callback: msRest.ServiceCallback<Models.GetMyLibraryProjectStatusOKResponse>): void;
+  /**
+   * @param apiToken
+   * @param projectGuid
+   * @param options The optional parameters
+   * @param callback The callback
+   */
+  getMyLibraryProjectStatus(apiToken: string, projectGuid: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.GetMyLibraryProjectStatusOKResponse>): void;
+  getMyLibraryProjectStatus(apiToken: string, projectGuid: string, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.GetMyLibraryProjectStatusOKResponse>, callback?: msRest.ServiceCallback<Models.GetMyLibraryProjectStatusOKResponse>): Promise<Models.GetMyLibraryProjectStatusResponse> {
+    return this.sendOperationRequest(
+      {
+        apiToken,
+        projectGuid,
+        options
+      },
+      getMyLibraryProjectStatusOperationSpec,
+      callback) as Promise<Models.GetMyLibraryProjectStatusResponse>;
+  }
+
+  /**
    * @param apiToken JWT token
    * @param [options] The optional parameters
    * @returns Promise<Models.GetMeResponse>
@@ -1036,32 +1210,28 @@ class SupportHubApi extends SupportHubApiContext {
   /**
    * @param apiToken JWT token
    * @param entityGuid
-   * @param entityType Possible values include: 'Project', 'Board', 'BoardColumn', 'Card'
    * @param [options] The optional parameters
    * @returns Promise<Models.GetMyEntityPermissionsResponse>
    */
-  getMyEntityPermissions(apiToken: string, entityGuid: string, entityType: Models.EntityType4, options?: msRest.RequestOptionsBase): Promise<Models.GetMyEntityPermissionsResponse>;
+  getMyEntityPermissions(apiToken: string, entityGuid: string, options?: msRest.RequestOptionsBase): Promise<Models.GetMyEntityPermissionsResponse>;
   /**
    * @param apiToken JWT token
    * @param entityGuid
-   * @param entityType Possible values include: 'Project', 'Board', 'BoardColumn', 'Card'
    * @param callback The callback
    */
-  getMyEntityPermissions(apiToken: string, entityGuid: string, entityType: Models.EntityType4, callback: msRest.ServiceCallback<Models.GetMyEntityPermissionsOKResponse>): void;
+  getMyEntityPermissions(apiToken: string, entityGuid: string, callback: msRest.ServiceCallback<Models.GetMyEntityPermissionsOKResponse>): void;
   /**
    * @param apiToken JWT token
    * @param entityGuid
-   * @param entityType Possible values include: 'Project', 'Board', 'BoardColumn', 'Card'
    * @param options The optional parameters
    * @param callback The callback
    */
-  getMyEntityPermissions(apiToken: string, entityGuid: string, entityType: Models.EntityType4, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.GetMyEntityPermissionsOKResponse>): void;
-  getMyEntityPermissions(apiToken: string, entityGuid: string, entityType: Models.EntityType4, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.GetMyEntityPermissionsOKResponse>, callback?: msRest.ServiceCallback<Models.GetMyEntityPermissionsOKResponse>): Promise<Models.GetMyEntityPermissionsResponse> {
+  getMyEntityPermissions(apiToken: string, entityGuid: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.GetMyEntityPermissionsOKResponse>): void;
+  getMyEntityPermissions(apiToken: string, entityGuid: string, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.GetMyEntityPermissionsOKResponse>, callback?: msRest.ServiceCallback<Models.GetMyEntityPermissionsOKResponse>): Promise<Models.GetMyEntityPermissionsResponse> {
     return this.sendOperationRequest(
       {
         apiToken,
         entityGuid,
-        entityType,
         options
       },
       getMyEntityPermissionsOperationSpec,
@@ -1113,6 +1283,184 @@ class SupportHubApi extends SupportHubApiContext {
       getRandomProjectsOperationSpec,
       callback) as Promise<Models.GetRandomProjectsResponse>;
   }
+
+  /**
+   * @param projectGuid
+   * @param [options] The optional parameters
+   * @returns Promise<Models.GetProjectProductsResponse>
+   */
+  getProjectProducts(projectGuid: string, options?: msRest.RequestOptionsBase): Promise<Models.GetProjectProductsResponse>;
+  /**
+   * @param projectGuid
+   * @param callback The callback
+   */
+  getProjectProducts(projectGuid: string, callback: msRest.ServiceCallback<Models.GetProjectProductsOKResponse>): void;
+  /**
+   * @param projectGuid
+   * @param options The optional parameters
+   * @param callback The callback
+   */
+  getProjectProducts(projectGuid: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.GetProjectProductsOKResponse>): void;
+  getProjectProducts(projectGuid: string, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.GetProjectProductsOKResponse>, callback?: msRest.ServiceCallback<Models.GetProjectProductsOKResponse>): Promise<Models.GetProjectProductsResponse> {
+    return this.sendOperationRequest(
+      {
+        projectGuid,
+        options
+      },
+      getProjectProductsOperationSpec,
+      callback) as Promise<Models.GetProjectProductsResponse>;
+  }
+
+  /**
+   * @param apiToken JWT token
+   * @param projectGuid
+   * @param name
+   * @param description
+   * @param usdPrice
+   * @param url
+   * @param useUrl
+   * @param [options] The optional parameters
+   * @returns Promise<Models.PostProjectProductResponse>
+   */
+  postProjectProduct(apiToken: string, projectGuid: string, name: string, description: string, usdPrice: number, url: string, useUrl: string, options?: Models.SupportHubApiPostProjectProductOptionalParams): Promise<Models.PostProjectProductResponse>;
+  /**
+   * @param apiToken JWT token
+   * @param projectGuid
+   * @param name
+   * @param description
+   * @param usdPrice
+   * @param url
+   * @param useUrl
+   * @param callback The callback
+   */
+  postProjectProduct(apiToken: string, projectGuid: string, name: string, description: string, usdPrice: number, url: string, useUrl: string, callback: msRest.ServiceCallback<Models.PostProjectProductCreatedResponse>): void;
+  /**
+   * @param apiToken JWT token
+   * @param projectGuid
+   * @param name
+   * @param description
+   * @param usdPrice
+   * @param url
+   * @param useUrl
+   * @param options The optional parameters
+   * @param callback The callback
+   */
+  postProjectProduct(apiToken: string, projectGuid: string, name: string, description: string, usdPrice: number, url: string, useUrl: string, options: Models.SupportHubApiPostProjectProductOptionalParams, callback: msRest.ServiceCallback<Models.PostProjectProductCreatedResponse>): void;
+  postProjectProduct(apiToken: string, projectGuid: string, name: string, description: string, usdPrice: number, url: string, useUrl: string, options?: Models.SupportHubApiPostProjectProductOptionalParams | msRest.ServiceCallback<Models.PostProjectProductCreatedResponse>, callback?: msRest.ServiceCallback<Models.PostProjectProductCreatedResponse>): Promise<Models.PostProjectProductResponse> {
+    return this.sendOperationRequest(
+      {
+        apiToken,
+        projectGuid,
+        name,
+        description,
+        usdPrice,
+        url,
+        useUrl,
+        options
+      },
+      postProjectProductOperationSpec,
+      callback) as Promise<Models.PostProjectProductResponse>;
+  }
+
+  /**
+   * @param apiToken JWT token
+   * @param productGuid
+   * @param [options] The optional parameters
+   * @returns Promise<Models.DeleteProjectProductResponse>
+   */
+  deleteProjectProduct(apiToken: string, productGuid: string, options?: msRest.RequestOptionsBase): Promise<Models.DeleteProjectProductResponse>;
+  /**
+   * @param apiToken JWT token
+   * @param productGuid
+   * @param callback The callback
+   */
+  deleteProjectProduct(apiToken: string, productGuid: string, callback: msRest.ServiceCallback<Models.DeleteProjectProductOKResponse>): void;
+  /**
+   * @param apiToken JWT token
+   * @param productGuid
+   * @param options The optional parameters
+   * @param callback The callback
+   */
+  deleteProjectProduct(apiToken: string, productGuid: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.DeleteProjectProductOKResponse>): void;
+  deleteProjectProduct(apiToken: string, productGuid: string, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.DeleteProjectProductOKResponse>, callback?: msRest.ServiceCallback<Models.DeleteProjectProductOKResponse>): Promise<Models.DeleteProjectProductResponse> {
+    return this.sendOperationRequest(
+      {
+        apiToken,
+        productGuid,
+        options
+      },
+      deleteProjectProductOperationSpec,
+      callback) as Promise<Models.DeleteProjectProductResponse>;
+  }
+
+  /**
+   * @param apiToken JWT token
+   * @param [options] The optional parameters
+   * @returns Promise<Models.GetMyWithdrawalRequestsResponse>
+   */
+  getMyWithdrawalRequests(apiToken: string, options?: msRest.RequestOptionsBase): Promise<Models.GetMyWithdrawalRequestsResponse>;
+  /**
+   * @param apiToken JWT token
+   * @param callback The callback
+   */
+  getMyWithdrawalRequests(apiToken: string, callback: msRest.ServiceCallback<Models.GetMyWithdrawalRequestsOKResponse>): void;
+  /**
+   * @param apiToken JWT token
+   * @param options The optional parameters
+   * @param callback The callback
+   */
+  getMyWithdrawalRequests(apiToken: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.GetMyWithdrawalRequestsOKResponse>): void;
+  getMyWithdrawalRequests(apiToken: string, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.GetMyWithdrawalRequestsOKResponse>, callback?: msRest.ServiceCallback<Models.GetMyWithdrawalRequestsOKResponse>): Promise<Models.GetMyWithdrawalRequestsResponse> {
+    return this.sendOperationRequest(
+      {
+        apiToken,
+        options
+      },
+      getMyWithdrawalRequestsOperationSpec,
+      callback) as Promise<Models.GetMyWithdrawalRequestsResponse>;
+  }
+
+  /**
+   * @param apiToken JWT token
+   * @param amount
+   * @param address
+   * @param currencyType Possible values include: 'Usd', 'BitCoin', 'Ethereum', 'Erc20Token',
+   * 'Waves', 'WavesToken', 'LiteCoin'
+   * @param [options] The optional parameters
+   * @returns Promise<Models.PostWithdrawalRequestResponse>
+   */
+  postWithdrawalRequest(apiToken: string, amount: number, address: string, currencyType: Models.CurrencyType6, options?: msRest.RequestOptionsBase): Promise<Models.PostWithdrawalRequestResponse>;
+  /**
+   * @param apiToken JWT token
+   * @param amount
+   * @param address
+   * @param currencyType Possible values include: 'Usd', 'BitCoin', 'Ethereum', 'Erc20Token',
+   * 'Waves', 'WavesToken', 'LiteCoin'
+   * @param callback The callback
+   */
+  postWithdrawalRequest(apiToken: string, amount: number, address: string, currencyType: Models.CurrencyType6, callback: msRest.ServiceCallback<Models.PostWithdrawalRequestCreatedResponse>): void;
+  /**
+   * @param apiToken JWT token
+   * @param amount
+   * @param address
+   * @param currencyType Possible values include: 'Usd', 'BitCoin', 'Ethereum', 'Erc20Token',
+   * 'Waves', 'WavesToken', 'LiteCoin'
+   * @param options The optional parameters
+   * @param callback The callback
+   */
+  postWithdrawalRequest(apiToken: string, amount: number, address: string, currencyType: Models.CurrencyType6, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.PostWithdrawalRequestCreatedResponse>): void;
+  postWithdrawalRequest(apiToken: string, amount: number, address: string, currencyType: Models.CurrencyType6, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.PostWithdrawalRequestCreatedResponse>, callback?: msRest.ServiceCallback<Models.PostWithdrawalRequestCreatedResponse>): Promise<Models.PostWithdrawalRequestResponse> {
+    return this.sendOperationRequest(
+      {
+        apiToken,
+        amount,
+        address,
+        currencyType,
+        options
+      },
+      postWithdrawalRequestOperationSpec,
+      callback) as Promise<Models.PostWithdrawalRequestResponse>;
+  }
 }
 
 // Operation Specifications
@@ -1121,12 +1469,45 @@ const getLoginOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "api/v1/login",
   queryParameters: [
-    Parameters.email,
-    Parameters.password
+    Parameters.email0,
+    Parameters.password0
   ],
   responses: {
     200: {
       bodyMapper: Mappers.GetLoginOKResponse
+    },
+    default: {}
+  },
+  serializer
+};
+
+const postRegisterOperationSpec: msRest.OperationSpec = {
+  httpMethod: "POST",
+  path: "api/v1/register",
+  queryParameters: [
+    Parameters.login,
+    Parameters.email1,
+    Parameters.password1,
+    Parameters.referralKey
+  ],
+  responses: {
+    200: {
+      bodyMapper: Mappers.PostRegisterOKResponse
+    },
+    default: {}
+  },
+  serializer
+};
+
+const postConfirmEmailOperationSpec: msRest.OperationSpec = {
+  httpMethod: "POST",
+  path: "api/v1/register/confirm_email",
+  queryParameters: [
+    Parameters.confirmationKey
+  ],
+  responses: {
+    200: {
+      bodyMapper: Mappers.PostConfirmEmailOKResponse
     },
     default: {}
   },
@@ -1234,6 +1615,21 @@ const postImportRepositoryOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
+const getRepoOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "api/v1/repository/get",
+  queryParameters: [
+    Parameters.repoGuid
+  ],
+  responses: {
+    200: {
+      bodyMapper: Mappers.GetRepoOKResponse
+    },
+    default: {}
+  },
+  serializer
+};
+
 const getProjectOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "api/v1/project/get",
@@ -1255,7 +1651,7 @@ const editProjectOperationSpec: msRest.OperationSpec = {
   queryParameters: [
     Parameters.apiToken,
     Parameters.projectGuid,
-    Parameters.description
+    Parameters.description0
   ],
   responses: {
     200: {
@@ -1315,7 +1711,7 @@ const getColumnCardsOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "api/v1/board_column/cards/get",
   queryParameters: [
-    Parameters.columnGuid
+    Parameters.columnGuid0
   ],
   responses: {
     200: {
@@ -1336,6 +1732,45 @@ const getProjectByAliasOperationSpec: msRest.OperationSpec = {
   responses: {
     200: {
       bodyMapper: Mappers.GetProjectByAliasOKResponse
+    },
+    default: {}
+  },
+  serializer
+};
+
+const createCardOperationSpec: msRest.OperationSpec = {
+  httpMethod: "POST",
+  path: "api/v1/card/create",
+  queryParameters: [
+    Parameters.apiToken,
+    Parameters.columnGuid0,
+    Parameters.name0,
+    Parameters.description0,
+    Parameters.columnOrder
+  ],
+  responses: {
+    201: {
+      bodyMapper: Mappers.CreateCardCreatedResponse
+    },
+    default: {}
+  },
+  serializer
+};
+
+const editCardOperationSpec: msRest.OperationSpec = {
+  httpMethod: "PATCH",
+  path: "api/v1/card/edit",
+  queryParameters: [
+    Parameters.apiToken,
+    Parameters.cardGuid,
+    Parameters.name1,
+    Parameters.description0,
+    Parameters.columnOrder,
+    Parameters.columnGuid1
+  ],
+  responses: {
+    200: {
+      bodyMapper: Mappers.EditCardOKResponse
     },
     default: {}
   },
@@ -1598,6 +2033,22 @@ const removeProjectFromMyLibraryOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
+const getMyLibraryProjectStatusOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "api/v1/me/library/project/status/get",
+  queryParameters: [
+    Parameters.apiToken,
+    Parameters.projectGuid
+  ],
+  responses: {
+    200: {
+      bodyMapper: Mappers.GetMyLibraryProjectStatusOKResponse
+    },
+    default: {}
+  },
+  serializer
+};
+
 const getMeOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "api/v1/me/get",
@@ -1690,6 +2141,92 @@ const getRandomProjectsOperationSpec: msRest.OperationSpec = {
   responses: {
     200: {
       bodyMapper: Mappers.GetRandomProjectsOKResponse
+    },
+    default: {}
+  },
+  serializer
+};
+
+const getProjectProductsOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "api/v1/project/products/get",
+  queryParameters: [
+    Parameters.projectGuid
+  ],
+  responses: {
+    200: {
+      bodyMapper: Mappers.GetProjectProductsOKResponse
+    },
+    default: {}
+  },
+  serializer
+};
+
+const postProjectProductOperationSpec: msRest.OperationSpec = {
+  httpMethod: "POST",
+  path: "api/v1/project/product/new",
+  queryParameters: [
+    Parameters.apiToken,
+    Parameters.projectGuid,
+    Parameters.name0,
+    Parameters.description1,
+    Parameters.usdPrice,
+    Parameters.url,
+    Parameters.useUrl,
+    Parameters.durationHours
+  ],
+  responses: {
+    201: {
+      bodyMapper: Mappers.PostProjectProductCreatedResponse
+    },
+    default: {}
+  },
+  serializer
+};
+
+const deleteProjectProductOperationSpec: msRest.OperationSpec = {
+  httpMethod: "DELETE",
+  path: "api/v1/project/product/delete",
+  queryParameters: [
+    Parameters.apiToken,
+    Parameters.productGuid
+  ],
+  responses: {
+    200: {
+      bodyMapper: Mappers.DeleteProjectProductOKResponse
+    },
+    default: {}
+  },
+  serializer
+};
+
+const getMyWithdrawalRequestsOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "api/v1/me/withdrawals/get",
+  queryParameters: [
+    Parameters.apiToken
+  ],
+  responses: {
+    200: {
+      bodyMapper: Mappers.GetMyWithdrawalRequestsOKResponse
+    },
+    default: {}
+  },
+  serializer
+};
+
+const postWithdrawalRequestOperationSpec: msRest.OperationSpec = {
+  httpMethod: "POST",
+  path: "api/v1/me/withdrawal/new",
+  queryParameters: [
+    Parameters.apiToken,
+    Parameters.amount,
+    Parameters.address,
+    Parameters.currencyType
+  ],
+  responses: {
+    201: {
+      bodyMapper: Mappers.PostWithdrawalRequestCreatedResponse
     },
     default: {}
   },

@@ -1,13 +1,12 @@
 import React from "react";
 import {Link} from "react-router-dom";
 import {Button, Icon} from "antd";
-import {handleApiError} from "../../../classes/notification/errorHandler/errorHandler";
-import {EntityType4} from "../../../client/models";
+import {EntityType} from "../../../client/models";
 
 interface IProps {
     label: string,
     entityGuid: string,
-    entityType: EntityType4,
+    entityType: EntityType,
     requiredPermissions: string[],
     icon: string|null,
     url: string
@@ -38,7 +37,8 @@ class PermissionCheckLink extends React.Component<IProps, IState> {
     }
 
     getPermissions() {
-        window.App.apiClient.getMyEntityPermissions(window.App.apiToken, this.props.entityGuid, this.props.entityType)
+        window.App.apiClient.entityType = this.props.entityType;
+        window.App.apiClient.getMyEntityPermissions(window.App.apiToken, this.props.entityGuid)
             .then((result) =>
                 this.processGotPermissions(result._response))
             .catch(() => this.processApiError());

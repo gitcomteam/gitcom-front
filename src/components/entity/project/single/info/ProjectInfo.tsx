@@ -1,8 +1,9 @@
 import React from 'react';
 import {ProjectModel} from "../../../../../client/bindings";
 import {handleApiError} from "../../../../../classes/notification/errorHandler/errorHandler";
-import {Button, Divider, Icon, Row} from "antd";
+import {Button, Icon, Row} from "antd";
 import moment from "moment";
+import {retryRequest} from "../../../../../classes/utils/http/retryRequest";
 
 interface IProps {
     guid: string|null,
@@ -36,8 +37,11 @@ class ProjectInfo extends React.Component<IProps, IState> {
                 project: this.props.project
             });
             return;
+        } else {
+            retryRequest(() => {
+                this.getProject();
+            }, () => this.state.isLoaded, true);
         }
-        this.getProject();
     }
 
     getProject() {
@@ -54,6 +58,8 @@ class ProjectInfo extends React.Component<IProps, IState> {
             isLoaded: true,
             project: json.data.project
         });
+
+        console.log('state UPDATD!');
     }
 
     render() {
@@ -66,14 +72,14 @@ class ProjectInfo extends React.Component<IProps, IState> {
         return <div>
             <b>{project.name!}</b>
             <br/><br/>
-            <p className="text-left">
+            <div className="text-left">
                 {project.description!}<br/>
                 <Row className="margin-xs"/>
-            </p>
+            </div>
             <Row className="text-left">
                 <i>Created:</i> {moment(project.created_at).format('MMMM Do YYYY')}
                 <br/><br/>
-                <Button icon={"star"}>?</Button>
+                <Button icon={"star"}> {project.stars_count}</Button>
             </Row>
         </div>;
     }

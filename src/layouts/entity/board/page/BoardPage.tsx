@@ -101,7 +101,7 @@ class BoardPage extends React.Component<IProps, IState> {
             <div className={styles.columnsBlock}>
                 {this.state.columns != null && this.state.columns.map((column: ColumnModel, i: number) => {
                     return <div key={i} className={styles.columnBlock + " padding-sm"}>
-                        <ColumnCard column={column}/>
+                        <ColumnCard column={column} parentBoard={this.state.board}/>
                     </div>;
                 })}
             </div>

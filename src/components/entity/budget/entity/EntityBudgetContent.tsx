@@ -31,7 +31,8 @@ class EntityBudgetContent extends React.Component<IProps, IState> {
     }
 
     getData(): void {
-        window.App.apiClient.getEntityFundingBalances(this.props.entityGuid, this.props.entityType)
+        window.App.apiClient.entityType = this.props.entityType;
+        window.App.apiClient.getEntityFundingBalances(this.props.entityGuid)
             .then((result) =>
                 this.processResponse(result._response))
             .catch((error) => handleApiError(error.response));

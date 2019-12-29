@@ -1,4 +1,4 @@
-import {CurrencyType, CurrencyType1, CurrencyType3, EntityType, EntityType1, UserBalance} from "./models";
+import {CurrencyType, CurrencyType1, CurrencyType3, EntityType} from "./models";
 
 export class ProjectModel {
     guid?: string;
@@ -7,6 +7,7 @@ export class ProjectModel {
     repository_guid?: string;
     creator_guid?: string;
     base_uri?: string;
+    stars_count?: number;
     created_at?: string;
     updated_at?: string;
 }
@@ -82,7 +83,7 @@ export class InvoiceModel {
      * Possible values include: 'ProjectCategory', 'Project', 'Board', 'Card', 'BacklogItem',
      * 'UserBalance'
      */
-    entity_type?: EntityType1;
+    entity_type?: EntityType;
     amount?: number;
     status?: string;
     /**
@@ -131,3 +132,27 @@ export class LibraryItem {
     created_at?: string;
 }
 
+export class ProjectProduct {
+    guid?: string;
+    name?: string;
+    description?: string;
+    /**
+     * url to view product info (optional)
+     */
+    url?: string;
+    project_guid?: string;
+    usd_price?: number;
+    duration_hours?: number;
+    users_count?: number;
+    created_at?: string;
+    updated_at?: string;
+}
+
+export interface WithdrawalRequest {
+    guid?: string;
+    user_guid?: string;
+    amount?: number;
+    address?: string;
+    paid?: boolean;
+    created_at?: string;
+}

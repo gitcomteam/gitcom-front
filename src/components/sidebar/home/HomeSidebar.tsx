@@ -52,6 +52,9 @@ class HomeSidebar extends React.Component {
                         <Menu.Item key="subscription" className={"text-left"}>
                             <Link to={"/account/subscription"}><Icon type={"dollar"}/>Subscription</Link>
                         </Menu.Item>
+                        <Menu.Item key="withdrawals" className={"text-left"}>
+                            <Link to={"/account/withdrawals"}><Icon type={"dollar"}/>Withdrawal requests</Link>
+                        </Menu.Item>
                     </SubMenu>
                     <Menu.Item key="integrations" className={"text-left"}>
                         <Link to={"/home/integrations"}><Icon type={"github"}/>Integrations</Link>

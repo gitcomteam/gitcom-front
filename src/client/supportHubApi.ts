@@ -737,7 +737,7 @@ class SupportHubApi extends SupportHubApiContext {
    * @param [options] The optional parameters
    * @returns Promise<Models.PostInvoiceResponse>
    */
-  postInvoice(apiToken: string, entityGuid: string, amount: number, currencyType: Models.CurrencyType4, options?: msRest.RequestOptionsBase): Promise<Models.PostInvoiceResponse>;
+  postInvoice(apiToken: string, entityGuid: string, amount: number, currencyType: Models.CurrencyType5, options?: msRest.RequestOptionsBase): Promise<Models.PostInvoiceResponse>;
   /**
    * @param apiToken JWT token
    * @param entityGuid
@@ -746,7 +746,7 @@ class SupportHubApi extends SupportHubApiContext {
    * 'Waves', 'WavesToken', 'LiteCoin'
    * @param callback The callback
    */
-  postInvoice(apiToken: string, entityGuid: string, amount: number, currencyType: Models.CurrencyType4, callback: msRest.ServiceCallback<Models.PostInvoiceCreatedResponse>): void;
+  postInvoice(apiToken: string, entityGuid: string, amount: number, currencyType: Models.CurrencyType5, callback: msRest.ServiceCallback<Models.PostInvoiceCreatedResponse>): void;
   /**
    * @param apiToken JWT token
    * @param entityGuid
@@ -756,8 +756,8 @@ class SupportHubApi extends SupportHubApiContext {
    * @param options The optional parameters
    * @param callback The callback
    */
-  postInvoice(apiToken: string, entityGuid: string, amount: number, currencyType: Models.CurrencyType4, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.PostInvoiceCreatedResponse>): void;
-  postInvoice(apiToken: string, entityGuid: string, amount: number, currencyType: Models.CurrencyType4, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.PostInvoiceCreatedResponse>, callback?: msRest.ServiceCallback<Models.PostInvoiceCreatedResponse>): Promise<Models.PostInvoiceResponse> {
+  postInvoice(apiToken: string, entityGuid: string, amount: number, currencyType: Models.CurrencyType5, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.PostInvoiceCreatedResponse>): void;
+  postInvoice(apiToken: string, entityGuid: string, amount: number, currencyType: Models.CurrencyType5, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.PostInvoiceCreatedResponse>, callback?: msRest.ServiceCallback<Models.PostInvoiceCreatedResponse>): Promise<Models.PostInvoiceResponse> {
     return this.sendOperationRequest(
       {
         apiToken,
@@ -1391,6 +1391,71 @@ class SupportHubApi extends SupportHubApiContext {
       },
       deleteProjectProductOperationSpec,
       callback) as Promise<Models.DeleteProjectProductResponse>;
+  }
+
+  /**
+   * @param apiToken JWT token
+   * @param [options] The optional parameters
+   * @returns Promise<Models.GetMyWithdrawalRequestsResponse>
+   */
+  getMyWithdrawalRequests(apiToken: string, options?: msRest.RequestOptionsBase): Promise<Models.GetMyWithdrawalRequestsResponse>;
+  /**
+   * @param apiToken JWT token
+   * @param callback The callback
+   */
+  getMyWithdrawalRequests(apiToken: string, callback: msRest.ServiceCallback<Models.GetMyWithdrawalRequestsOKResponse>): void;
+  /**
+   * @param apiToken JWT token
+   * @param options The optional parameters
+   * @param callback The callback
+   */
+  getMyWithdrawalRequests(apiToken: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.GetMyWithdrawalRequestsOKResponse>): void;
+  getMyWithdrawalRequests(apiToken: string, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.GetMyWithdrawalRequestsOKResponse>, callback?: msRest.ServiceCallback<Models.GetMyWithdrawalRequestsOKResponse>): Promise<Models.GetMyWithdrawalRequestsResponse> {
+    return this.sendOperationRequest(
+      {
+        apiToken,
+        options
+      },
+      getMyWithdrawalRequestsOperationSpec,
+      callback) as Promise<Models.GetMyWithdrawalRequestsResponse>;
+  }
+
+  /**
+   * @param apiToken JWT token
+   * @param amount
+   * @param currencyType Possible values include: 'Usd', 'BitCoin', 'Ethereum', 'Erc20Token',
+   * 'Waves', 'WavesToken', 'LiteCoin'
+   * @param [options] The optional parameters
+   * @returns Promise<Models.PostWithdrawalRequestResponse>
+   */
+  postWithdrawalRequest(apiToken: string, amount: number, currencyType: Models.CurrencyType6, options?: msRest.RequestOptionsBase): Promise<Models.PostWithdrawalRequestResponse>;
+  /**
+   * @param apiToken JWT token
+   * @param amount
+   * @param currencyType Possible values include: 'Usd', 'BitCoin', 'Ethereum', 'Erc20Token',
+   * 'Waves', 'WavesToken', 'LiteCoin'
+   * @param callback The callback
+   */
+  postWithdrawalRequest(apiToken: string, amount: number, currencyType: Models.CurrencyType6, callback: msRest.ServiceCallback<Models.PostWithdrawalRequestCreatedResponse>): void;
+  /**
+   * @param apiToken JWT token
+   * @param amount
+   * @param currencyType Possible values include: 'Usd', 'BitCoin', 'Ethereum', 'Erc20Token',
+   * 'Waves', 'WavesToken', 'LiteCoin'
+   * @param options The optional parameters
+   * @param callback The callback
+   */
+  postWithdrawalRequest(apiToken: string, amount: number, currencyType: Models.CurrencyType6, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.PostWithdrawalRequestCreatedResponse>): void;
+  postWithdrawalRequest(apiToken: string, amount: number, currencyType: Models.CurrencyType6, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.PostWithdrawalRequestCreatedResponse>, callback?: msRest.ServiceCallback<Models.PostWithdrawalRequestCreatedResponse>): Promise<Models.PostWithdrawalRequestResponse> {
+    return this.sendOperationRequest(
+      {
+        apiToken,
+        amount,
+        currencyType,
+        options
+      },
+      postWithdrawalRequestOperationSpec,
+      callback) as Promise<Models.PostWithdrawalRequestResponse>;
   }
 }
 
@@ -2125,6 +2190,38 @@ const deleteProjectProductOperationSpec: msRest.OperationSpec = {
   responses: {
     200: {
       bodyMapper: Mappers.DeleteProjectProductOKResponse
+    },
+    default: {}
+  },
+  serializer
+};
+
+const getMyWithdrawalRequestsOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "api/v1/me/withdrawals/get",
+  queryParameters: [
+    Parameters.apiToken
+  ],
+  responses: {
+    200: {
+      bodyMapper: Mappers.GetMyWithdrawalRequestsOKResponse
+    },
+    default: {}
+  },
+  serializer
+};
+
+const postWithdrawalRequestOperationSpec: msRest.OperationSpec = {
+  httpMethod: "POST",
+  path: "api/v1/me/withdrawal/new",
+  queryParameters: [
+    Parameters.apiToken,
+    Parameters.amount,
+    Parameters.currencyType
+  ],
+  responses: {
+    201: {
+      bodyMapper: Mappers.PostWithdrawalRequestCreatedResponse
     },
     default: {}
   },

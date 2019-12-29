@@ -22,6 +22,7 @@ import ConfirmEmailLayout from "./layouts/auth/confirmEmail/ConfirmEmailLayout";
 import NotFoundLayout from "./layouts/404/NotFoundLayout";
 import HelpLayout from "./layouts/help/HelpLayout";
 import EditProjectPricingLayout from "./layouts/entity/project/pricing/edit/EditProjectPricingLayout";
+import WithdrawalsLayout from "./layouts/account/withdrawals/WithdrawalsLayout";
 
 class Routes extends React.Component {
     render() {
@@ -46,6 +47,7 @@ class Routes extends React.Component {
                     <Route path="/account/billing" exact component={BillingLayout}/>
                     <Route path="/account/settings" exact component={SettingsLayout}/>
                     <Route path="/account/subscription" exact component={SubscriptionLayout}/>
+                    <Route path="/account/withdrawals" exact component={WithdrawalsLayout}/>
                     <Route path="/account/library" exact component={LibraryLayout}/>
 
                     <Route path="/external/:serviceType/repositories" exact component={ExternalRepoLayout}/>

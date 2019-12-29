@@ -5,6 +5,7 @@ import PricingBlock from "../../../../../components/entity/product/pricing_block
 import {ProjectModel, ProjectProduct} from "../../../../../client/bindings";
 import {handleApiError} from "../../../../../classes/notification/errorHandler/errorHandler";
 import NewProductButton from "../../../../../components/entity/product/action/new/NewProductButton";
+import DeleteProductButton from "../../../../../components/entity/product/action/delete/DeleteProductButton";
 
 interface IProps {
     match: {
@@ -131,8 +132,9 @@ class EditProjectPricingLayout extends React.Component<IProps, IState> {
                             <b>Possible actions:</b><br/>
                             <Row className="text-left">
                                 {product.users_count! > 0 ? <p>
-                                    You cannot delete product owned by others
-                                </p> : <Button type={"danger"} icon={"delete"} disabled>Delete</Button>}
+                                    You cannot delete product with active users
+                                </p> : null}
+                                <DeleteProductButton product={product}/>
                             </Row>
                         </Col>
                     </Row>

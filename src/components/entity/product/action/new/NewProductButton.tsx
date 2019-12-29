@@ -1,5 +1,5 @@
 import React, {SyntheticEvent} from "react";
-import {Button, Col, Input, Modal, notification, Row} from "antd";
+import {Button, Col, Input, Modal, notification, Row, Switch} from "antd";
 import {handleApiError} from "../../../../../classes/notification/errorHandler/errorHandler";
 
 const { TextArea } = Input;
@@ -16,7 +16,8 @@ interface IState {
         description: string,
         amount: number,
         url: string,
-        use_url: string
+        use_url: string,
+        duration_hours: number
     }
 }
 
@@ -29,9 +30,10 @@ class NewProductButton extends React.Component<IProps, IState> {
             form: {
                 name: 'Pro edition',
                 description: 'product description',
+                amount: 0,
                 url: '',
                 use_url: '',
-                amount: 0
+                duration_hours: 0
             }
         }
     }
@@ -57,17 +59,28 @@ class NewProductButton extends React.Component<IProps, IState> {
     createProduct() {
         let form = this.state.form;
         window.App.apiClient.postProjectProduct(
-            window.App.apiToken!, this.props.projectGuid, form.name, form.description, form.url, form.use_url
+            window.App.apiToken!, this.props.projectGuid, form.name, form.description, form.amount, form.url, form.use_url, {
+                durationHours: this.state.form.duration_hours
+            }
         )
             .then(() => {
                 notification['success']({
                     message: 'Product was created successfully!'
                 });
+                this.setState({showModal: false});
                 setTimeout(() => {
                     window.location.reload();
                 }, 1500);
             })
-            .catch((error) => handleApiError(error.response));
+            .catch((error) => {
+                try {
+                    notification['error']({
+                        message: JSON.parse(error.response.body).errors[0].message
+                    });
+                } catch (e) {
+                    handleApiError(error.response);
+                }
+            });
     }
 
     render() {
@@ -121,12 +134,30 @@ class NewProductButton extends React.Component<IProps, IState> {
                 <Row className={"margin-sm-top"}>
                     <Col md={8} xs={24}>
                         <b>Download / use URL</b><br/>
-                        <p>(Optional) Provide url where customer can use / download this product</p>
+                        <p>Provide url where customer can use / download this product</p>
                     </Col>
                     <Col md={16} xs={24}>
                         <Input
                             onChange={(e) => {this.updateForm('info_url', e.target.value)}}
                             placeholder={'https://my-product.com/download?licence_key=12dk12di9k120d1k2d'}
+                        />
+                    </Col>
+                </Row>
+                <Row className={"margin-sm-top"}>
+                    <Col md={8} xs={24}>
+                        <b>Subscription:</b>
+                        <p>User will have to pay this amount per month, otherwise it will be one time purchase</p>
+                    </Col>
+                    <Col md={16} xs={24}>
+                        <Switch
+                            onChange={(is_subscription) => {
+                                let form = this.state.form;
+                                form.duration_hours = is_subscription ? 720 : 0;
+                                this.setState({
+                                    form
+                                });
+                                console.log(this.state.form);
+                            }}
                         />
                     </Col>
                 </Row>

@@ -156,6 +156,18 @@ export const description1: msRest.OperationQueryParameter = {
     }
   }
 };
+export const durationHours: msRest.OperationQueryParameter = {
+  parameterPath: [
+    "options",
+    "durationHours"
+  ],
+  mapper: {
+    serializedName: "duration_hours",
+    type: {
+      name: "Number"
+    }
+  }
+};
 export const email0: msRest.OperationQueryParameter = {
   parameterPath: [
     "options",
@@ -312,6 +324,16 @@ export const password1: msRest.OperationQueryParameter = {
     }
   }
 };
+export const productGuid: msRest.OperationQueryParameter = {
+  parameterPath: "productGuid",
+  mapper: {
+    required: true,
+    serializedName: "product_guid",
+    type: {
+      name: "String"
+    }
+  }
+};
 export const projectGuid: msRest.OperationQueryParameter = {
   parameterPath: "projectGuid",
   mapper: {
@@ -381,6 +403,16 @@ export const url: msRest.OperationQueryParameter = {
     serializedName: "url",
     type: {
       name: "String"
+    }
+  }
+};
+export const usdPrice: msRest.OperationQueryParameter = {
+  parameterPath: "usdPrice",
+  mapper: {
+    required: true,
+    serializedName: "usd_price",
+    type: {
+      name: "Number"
     }
   }
 };

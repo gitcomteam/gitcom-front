@@ -2247,6 +2247,12 @@
             "required": true
           },
           {
+            "name": "usd_price",
+            "in": "query",
+            "type": "number",
+            "required": true
+          },
+          {
             "name": "url",
             "in": "query",
             "type": "string",
@@ -2257,10 +2263,58 @@
             "in": "query",
             "type": "string",
             "required": true
+          },
+          {
+            "name": "duration_hours",
+            "in": "query",
+            "type": "number"
           }
         ],
         "responses": {
           "201": {
+            "description": "",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "product": {
+                      "$ref": "#/definitions/ProjectProduct"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/project/product/delete": {
+      "delete": {
+        "tags": [ "product" ],
+        "operationId": "deleteProjectProduct",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "api_token",
+            "in": "query",
+            "type": "string",
+            "description": "JWT token",
+            "required": true
+          },
+          {
+            "name": "product_guid",
+            "in": "query",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
             "description": "",
             "schema": {
               "type": "object",
@@ -2739,7 +2793,8 @@
         },
         "url": {
           "type": "string",
-          "description": "url to view product info (optional)"
+          "description": "url to view product info (optional)",
+          "example": "https://website.com/my-product/info"
         },
         "project_guid": {
           "type": "string",

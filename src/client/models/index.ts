@@ -928,6 +928,20 @@ export interface PostProjectProductCreatedResponse {
 }
 
 /**
+ * An interface representing DeleteProjectProductOKResponseData.
+ */
+export interface DeleteProjectProductOKResponseData {
+  product?: ProjectProduct;
+}
+
+/**
+ * An interface representing DeleteProjectProductOKResponse.
+ */
+export interface DeleteProjectProductOKResponse {
+  data?: DeleteProjectProductOKResponseData;
+}
+
+/**
  * An interface representing SupportHubApiOptions.
  */
 export interface SupportHubApiOptions extends ServiceClientOptions {
@@ -995,6 +1009,13 @@ export interface SupportHubApiEditCardOptionalParams extends msRest.RequestOptio
   description?: string;
   columnOrder?: number;
   columnGuid?: string;
+}
+
+/**
+ * Optional Parameters.
+ */
+export interface SupportHubApiPostProjectProductOptionalParams extends msRest.RequestOptionsBase {
+  durationHours?: number;
 }
 
 /**
@@ -2020,5 +2041,25 @@ export type PostProjectProductResponse = PostProjectProductCreatedResponse & {
        * The response body as parsed JSON or XML
        */
       parsedBody: PostProjectProductCreatedResponse;
+    };
+};
+
+/**
+ * Contains response data for the deleteProjectProduct operation.
+ */
+export type DeleteProjectProductResponse = DeleteProjectProductOKResponse & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: DeleteProjectProductOKResponse;
     };
 };

@@ -236,6 +236,21 @@ export interface ProjectProduct {
 }
 
 /**
+ * An interface representing WithdrawalRequest.
+ */
+export interface WithdrawalRequest {
+  guid?: string;
+  userGuid?: string;
+  amount?: number;
+  /**
+   * Users email for PayPal or cryptocurrency address
+   */
+  address?: string;
+  paid?: boolean;
+  createdAt?: string;
+}
+
+/**
  * An interface representing GetLoginOKResponseData.
  */
 export interface GetLoginOKResponseData {
@@ -942,9 +957,42 @@ export interface DeleteProjectProductOKResponse {
 }
 
 /**
+ * An interface representing GetMyWithdrawalRequestsOKResponseData.
+ */
+export interface GetMyWithdrawalRequestsOKResponseData {
+  withdrawRequests?: WithdrawalRequest[];
+}
+
+/**
+ * An interface representing GetMyWithdrawalRequestsOKResponse.
+ */
+export interface GetMyWithdrawalRequestsOKResponse {
+  data?: GetMyWithdrawalRequestsOKResponseData;
+}
+
+/**
+ * An interface representing PostWithdrawalRequestCreatedResponseData.
+ */
+export interface PostWithdrawalRequestCreatedResponseData {
+  withdrawRequest?: WithdrawalRequest;
+}
+
+/**
+ * An interface representing PostWithdrawalRequestCreatedResponse.
+ */
+export interface PostWithdrawalRequestCreatedResponse {
+  data?: PostWithdrawalRequestCreatedResponseData;
+}
+
+/**
  * An interface representing SupportHubApiOptions.
  */
 export interface SupportHubApiOptions extends ServiceClientOptions {
+  /**
+   * Possible values include: 'Usd', 'BitCoin', 'Ethereum', 'Erc20Token', 'Waves', 'WavesToken',
+   * 'LiteCoin'
+   */
+  currencyType?: CurrencyType4;
   baseUri?: string;
 }
 
@@ -1081,6 +1129,15 @@ export type CurrencyType2 = 'Usd' | 'BitCoin' | 'Ethereum' | 'Erc20Token' | 'Wav
 export type CurrencyType3 = 'Usd' | 'BitCoin' | 'Ethereum' | 'Erc20Token' | 'Waves' | 'WavesToken' | 'LiteCoin';
 
 /**
+ * Defines values for CurrencyType4.
+ * Possible values include: 'Usd', 'BitCoin', 'Ethereum', 'Erc20Token', 'Waves', 'WavesToken',
+ * 'LiteCoin'
+ * @readonly
+ * @enum {string}
+ */
+export type CurrencyType4 = 'Usd' | 'BitCoin' | 'Ethereum' | 'Erc20Token' | 'Waves' | 'WavesToken' | 'LiteCoin';
+
+/**
  * Defines values for ServiceType1.
  * Possible values include: 'GitHub', 'GitLab'
  * @readonly
@@ -1107,13 +1164,13 @@ export type EntityType2 = 'ProjectCategory' | 'Project' | 'Board' | 'Card' | 'Ba
 export type EntityType3 = 'ProjectCategory' | 'Project' | 'Board' | 'Card' | 'BacklogItem' | 'UserBalance' | 'User' | 'ProjectProductPurchase' | 'BoardColumn';
 
 /**
- * Defines values for CurrencyType4.
+ * Defines values for CurrencyType5.
  * Possible values include: 'Usd', 'BitCoin', 'Ethereum', 'Erc20Token', 'Waves', 'WavesToken',
  * 'LiteCoin'
  * @readonly
  * @enum {string}
  */
-export type CurrencyType4 = 'Usd' | 'BitCoin' | 'Ethereum' | 'Erc20Token' | 'Waves' | 'WavesToken' | 'LiteCoin';
+export type CurrencyType5 = 'Usd' | 'BitCoin' | 'Ethereum' | 'Erc20Token' | 'Waves' | 'WavesToken' | 'LiteCoin';
 
 /**
  * Defines values for EntityType4.
@@ -1123,6 +1180,15 @@ export type CurrencyType4 = 'Usd' | 'BitCoin' | 'Ethereum' | 'Erc20Token' | 'Wav
  * @enum {string}
  */
 export type EntityType4 = 'ProjectCategory' | 'Project' | 'Board' | 'Card' | 'BacklogItem' | 'UserBalance' | 'User' | 'ProjectProductPurchase' | 'BoardColumn';
+
+/**
+ * Defines values for CurrencyType6.
+ * Possible values include: 'Usd', 'BitCoin', 'Ethereum', 'Erc20Token', 'Waves', 'WavesToken',
+ * 'LiteCoin'
+ * @readonly
+ * @enum {string}
+ */
+export type CurrencyType6 = 'Usd' | 'BitCoin' | 'Ethereum' | 'Erc20Token' | 'Waves' | 'WavesToken' | 'LiteCoin';
 
 /**
  * Contains response data for the getLogin operation.
@@ -2061,5 +2127,45 @@ export type DeleteProjectProductResponse = DeleteProjectProductOKResponse & {
        * The response body as parsed JSON or XML
        */
       parsedBody: DeleteProjectProductOKResponse;
+    };
+};
+
+/**
+ * Contains response data for the getMyWithdrawalRequests operation.
+ */
+export type GetMyWithdrawalRequestsResponse = GetMyWithdrawalRequestsOKResponse & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: GetMyWithdrawalRequestsOKResponse;
+    };
+};
+
+/**
+ * Contains response data for the postWithdrawalRequest operation.
+ */
+export type PostWithdrawalRequestResponse = PostWithdrawalRequestCreatedResponse & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: PostWithdrawalRequestCreatedResponse;
     };
 };

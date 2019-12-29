@@ -147,3 +147,12 @@ export class ProjectProduct {
     created_at?: string;
     updated_at?: string;
 }
+
+export interface WithdrawalRequest {
+    guid?: string;
+    user_guid?: string;
+    amount?: number;
+    address?: string;
+    paid?: boolean;
+    created_at?: string;
+}

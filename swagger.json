@@ -124,6 +124,10 @@
     {
       "name": "product",
       "description": "Project product related operations"
+    },
+    {
+      "name": "withdrawal",
+      "description": "Withdrawal related operations"
     }
   ],
   "paths": {
@@ -2332,6 +2336,114 @@
           }
         }
       }
+    },
+    "/me/withdrawals/get": {
+      "get": {
+        "tags": [
+          "withdrawal"
+        ],
+        "operationId": "getMyWithdrawalRequests",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "api_token",
+            "in": "query",
+            "type": "string",
+            "description": "JWT token",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "withdraw_requests": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/definitions/WithdrawalRequest"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/me/withdrawal/new": {
+      "post": {
+        "tags": [
+          "withdrawal"
+        ],
+        "operationId": "postWithdrawalRequest",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "api_token",
+            "in": "query",
+            "type": "string",
+            "description": "JWT token",
+            "required": true
+          },
+          {
+            "name": "amount",
+            "in": "query",
+            "type": "number",
+            "required": true
+          },
+          {
+            "name": "address",
+            "in": "query",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "currency_type",
+            "in": "query",
+            "type": "string",
+            "enum": [
+              "Usd",
+              "BitCoin",
+              "Ethereum",
+              "Erc20Token",
+              "Waves",
+              "WavesToken",
+              "LiteCoin"
+            ],
+            "required": true
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "withdraw_request": {
+                      "$ref": "#/definitions/WithdrawalRequest"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "parameters": {
@@ -2351,6 +2463,20 @@
         "BoardColumn"
       ],
       "required": true
+    },
+    "currency_type": {
+      "name": "currency_type",
+      "in": "query",
+      "type": "string",
+      "enum": [
+        "Usd",
+        "BitCoin",
+        "Ethereum",
+        "Erc20Token",
+        "Waves",
+        "WavesToken",
+        "LiteCoin"
+      ]
     }
   },
   "definitions": {
@@ -2813,6 +2939,36 @@
           "example": "2019-10-06T17:14:54.844933"
         },
         "updated_at": {
+          "type": "string",
+          "example": "2019-10-06T17:14:54.844933"
+        }
+      }
+    },
+    "WithdrawalRequest": {
+      "type": "object",
+      "properties": {
+        "guid": {
+          "type": "string",
+          "example": "46e647fc-9ebc-4d40-bcff-f81af991ee88"
+        },
+        "user_guid": {
+          "type": "string",
+          "example": "3fbc4d65-8ac8-468d-b5fd-51cdcaae5e2c"
+        },
+        "amount": {
+          "type": "number",
+          "example": 0.172
+        },
+        "address": {
+          "type": "string",
+          "example": "my0paypal@gmail.com",
+          "description": "Users email for PayPal or cryptocurrency address"
+        },
+        "paid": {
+          "type": "boolean",
+          "example": false
+        },
+        "created_at": {
           "type": "string",
           "example": "2019-10-06T17:14:54.844933"
         }

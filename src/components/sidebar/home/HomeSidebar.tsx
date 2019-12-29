@@ -9,13 +9,15 @@ class HomeSidebar extends React.Component {
     static getActiveMenuKeys(): string[] {
         switch (window.location.pathname) {
             case "/account":
-                return ["sub1", "account"];
+                return ["account_sub", "account"];
             case "/account/billing":
-                return ["sub1", "billing"];
+                return ["account_sub", "billing"];
             case "/account/settings":
-                return ["sub1", "settings"];
+                return ["account_sub", "settings"];
             case "/account/subscription":
-                return ["sub1", "subscription"];
+                return ["account_sub", "subscription"];
+            case "/account/withdrawals":
+                return ["account_sub", "withdrawals"];
 
             case "/home/integrations":
                 return ["integrations"];
@@ -39,7 +41,7 @@ class HomeSidebar extends React.Component {
                         <Link to={"/account/library"}><Icon type={"appstore"}/>My library</Link>
                     </Menu.Item>
                     <SubMenu
-                        key="sub1"
+                        key="account_sub"
                         title={<span><Icon type="user"/>Account</span>}
                         className={"text-left"}
                     >
@@ -51,6 +53,9 @@ class HomeSidebar extends React.Component {
                         </Menu.Item>
                         <Menu.Item key="subscription" className={"text-left"}>
                             <Link to={"/account/subscription"}><Icon type={"dollar"}/>Subscription</Link>
+                        </Menu.Item>
+                        <Menu.Item key="withdrawals" className={"text-left"}>
+                            <Link to={"/account/withdrawals"}><Icon type={"dollar"}/>Withdrawals</Link>
                         </Menu.Item>
                     </SubMenu>
                     <Menu.Item key="integrations" className={"text-left"}>

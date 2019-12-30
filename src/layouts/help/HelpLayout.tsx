@@ -26,7 +26,7 @@ class HelpLayout extends React.Component<IProps, IState> {
                 content: <div>You need to go to project settings - pricing and set up possible plans there.</div>
             },
             {
-                question: "Is there a fee each product purchase?",
+                question: "Are there any fees?",
                 content: <div>Yes, there are 5% withdrawal fee for all users & developers (excluding payment fee for currencies such as BitCoin)</div>
             }
         ];

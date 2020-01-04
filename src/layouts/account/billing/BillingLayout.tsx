@@ -4,17 +4,29 @@ import WarningBlock from "../../../components/info/payment/WarningBlock/WarningB
 import InvoiceCardsList from "../../../components/entity/invoice/many/Cards/InvoiceCardsList";
 import {Row} from "antd";
 import UserBalanceCard from "../../../components/entity/user_balance/single/card/UserBalanceCard";
+import NewInvoice from "../../../components/entity/invoice/single/create/NewInvoice";
 
 interface IProps {
 }
 
 interface IState {
+    isUserLoaded: boolean
 }
 
 class BillingLayout extends React.Component<IProps, IState> {
     constructor(props: IProps) {
         super(props);
-        this.state = {}
+        this.state = {
+            isUserLoaded: false
+        }
+    }
+
+    componentDidMount(): void {
+        setTimeout(() => {
+            this.setState({
+                isUserLoaded: window.App.authorizedUser !== null
+            });
+        },750);
     }
 
     render() {
@@ -24,6 +36,18 @@ class BillingLayout extends React.Component<IProps, IState> {
             <h4 className={"ant-typography"}>Account balance</h4>
 
             <UserBalanceCard/>
+
+            {
+                this.state.isUserLoaded ? <Row className="margin-sm-top">
+                    <NewInvoice
+                        modalLabel={"Deposit to my account"}
+                        buttonLabel={"Deposit"}
+                        defaultAmount={0.5}
+                        entityGuid={window.App.authorizedUser!.guid!}
+                        entityType={'User'}
+                    />
+                </Row> : null
+            }
 
             <WarningBlock/>
 

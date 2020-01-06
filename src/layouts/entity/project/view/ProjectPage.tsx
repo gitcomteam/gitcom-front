@@ -7,8 +7,6 @@ import BoardCard from "../../../../components/entity/board/single/card/BoardCart
 import PermissionCheckLink from "../../../../components/link/withChecks/PermissionCheckLink";
 import AuthCheck from "../../../../components/check/auth_check/AuthCheck";
 import AddToLibrary from "../../../../components/entity/my_library/single/action/AddToLibrary";
-import {Link} from "react-router-dom";
-import PermissionCheck from "../../../../components/check/permission_check/single/PermissionCheck";
 
 interface IProps {
     match: {
@@ -119,8 +117,8 @@ class ProjectPage extends React.Component<IProps, IState> {
                     <Card>
                         <h3 className={"ant-typography"}><Icon type={"github"}/> Repository</h3>
                         <Row>
-                            <a target="_blank" rel="noopener noreferrer" href={"https://github.com"}>
-                                <Button type={"default"}>View on GitHub?</Button>
+                            <a target="_blank" rel="noopener noreferrer" href={`https://github.com/${project.base_uri}`}>
+                                <Button type={"default"}>View on GitHub</Button>
                             </a>
                         </Row>
                     </Card>

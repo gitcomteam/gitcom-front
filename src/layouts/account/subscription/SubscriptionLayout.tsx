@@ -34,7 +34,7 @@ class SubscriptionLayout extends React.Component<IProps, IState> {
                             <UserSetting
                                 settingName={"Subscription currency"}
                                 settingKey={"subscription_currency"}
-                                allowedValues={["BitCoin", "LiteCoin"]}
+                                allowedValues={["Usd", "BitCoin", "Ethereum", "LiteCoin", "Waves"]}
                                 type="select"
                                 defaultValue={"string"}
                             />

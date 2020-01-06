@@ -1,6 +1,6 @@
 import React from "react";
 import FullPageWithSideBar from "../../../../../components/layout/simple/fullpagewithsidebar/FullPageWithSidebar";
-import {Button, Col, Divider, Icon, Row} from "antd";
+import {Col, Divider, Icon, Row} from "antd";
 import PricingBlock from "../../../../../components/entity/product/pricing_block/single/PricingBlock";
 import {ProjectModel, ProjectProduct} from "../../../../../client/bindings";
 import {handleApiError} from "../../../../../classes/notification/errorHandler/errorHandler";

@@ -18,7 +18,7 @@ class DeveloperQuickstartLayout extends React.Component {
                         <br/>
                         <Row className={"margin-md-top"}/>
                         <div className={"text-left margin-md-top"}>
-                            <b>Here are 4 steps that can help you get started <Icon type="smile" style={{fontSize: "1.2em"}}/></b>
+                            <b>Here are 4 steps that can help you get started <Icon type="rocket" style={{fontSize: "1.2em"}}/></b>
                             <p>
                                 1. <a href={"/login"} target="_blank" rel="noopener noreferrer">Sign in</a> into your
                                 account
@@ -43,7 +43,7 @@ class DeveloperQuickstartLayout extends React.Component {
                                         height: "150px"
                                     }} className={"image-rounded"}/>
                                 </div>
-                                4. That's it! Thank you. <Icon type="smile" style={{fontSize: "1.2em"}}/> We'll reach out to you when one of your projects will receive
+                                4. <i>That's it! Thank you.</i> <Icon type="smile" style={{fontSize: "1.2em"}}/> We'll reach out to you when one of your projects will receive
                                 their first donation
                                 <br/>
                                 <Row className={"margin-md-top"}/>
@@ -52,7 +52,22 @@ class DeveloperQuickstartLayout extends React.Component {
                                 to be able to discuss platform upcoming features and improvement ideas
                             </p>
                         </div>
-                        <b>How funding works</b>
+
+                        <h4 className={"ant-typography"}>How funding works</h4>
+                        <b>
+                            There are a few ways how your projects can get funding:
+                        </b>
+                        <p className={"text-left"}>
+                            <br/>
+                            1. <i>Selling subscription or using open core model</i> - you can setup pricing plans for your
+                            open source projects and users will be able to subscribe and pay on monthly basis or purchase
+                            licence - that's up to you.
+                            <br/>
+                            2. <i>Subscription distribution</i> - your projects can receive part of user monthly subscription
+                            (from any user, distributed across projects that user liked)
+                            <br/>
+                            3. <i>Donation</i>
+                        </p>
                     </Card>
                 </Col>
             </Row>

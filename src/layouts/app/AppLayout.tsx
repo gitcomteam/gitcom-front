@@ -47,7 +47,7 @@ class AppLayout extends React.Component {
                         {this.props.children}
                     </div>
                     <Footer style={{textAlign: 'center'}}>
-                        GitCom <Icon type={"copyright"}/> 2019
+                        GitCom <Icon type={"copyright"}/> 2019-2020
                     </Footer>
                 </Layout>
             </div>

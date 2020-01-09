@@ -10,7 +10,7 @@ class DeveloperQuickstartLayout extends React.Component {
                 <Col lg={16} md={18} xs={24}>
                     <Card>
                         <h3 className={"ant-typography"}>GitCom developer quickstart</h3>
-                        <b>GitCom is a platform that can help you to monetize your open source projects</b>
+                        <b>GitCom is a platform that can help you monetize your open source projects</b>
                         <Row className={"margin-md-top"}/>
                         <a href={"https://start.gitcom.org"} target="_blank" rel="noopener noreferrer">
                             <Button icon={"question"} type={"default"}>How it works?</Button>

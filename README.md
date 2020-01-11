@@ -5,8 +5,13 @@
   <img src="https://img.shields.io/discord/658128774679756820?logo=discord" alt="chat on Discord">
 </a>
 
-### Description:
 This is the main frontend application hosted at [gitcom.org](https://gitcom.org)
+
+### Brief description
+This platform can help:
+1. users: it will provide an easy way for users to support independent developers via subscription or donations and get rewards in return
+2. developers: help to earn from their open source projects via multiple monetization plans such as open-core, subscription, donations and so on.
+More details on [GitCom landing page](https://start.gitcom.org)
 
 ### Tech stack: :hammer_and_wrench:
 Project is built using [Crete react app](https://github.com/facebook/create-react-app) & Typescript

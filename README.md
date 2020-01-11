@@ -14,7 +14,7 @@ This platform can help:
 More details on [GitCom landing page](https://start.gitcom.org)
 
 ### Tech stack: :hammer_and_wrench:
-Project is built using [Crete react app](https://github.com/facebook/create-react-app) & Typescript
+Project is built using [Create react app](https://github.com/facebook/create-react-app) & Typescript
 
 ### Contribution:
 Thank you for considering contributing to this repo, feel free to open a PR with any improvement, feature or bugfix.  

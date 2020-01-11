@@ -6,7 +6,7 @@
 </a>
 
 ### Description:
-This is the main frontend application hosted at [https://gitcom.org](gitcom.org)
+This is the main frontend application hosted at [gitcom.org](https://gitcom.org)
 
 ### Tech stack: :hammer_and_wrench:
 Project is built using [Crete react app](https://github.com/facebook/create-react-app) & Typescript

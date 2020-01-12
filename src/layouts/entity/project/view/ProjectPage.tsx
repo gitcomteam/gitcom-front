@@ -7,6 +7,7 @@ import BoardCard from "../../../../components/entity/board/single/card/BoardCart
 import PermissionCheckLink from "../../../../components/link/withChecks/PermissionCheckLink";
 import AuthCheck from "../../../../components/check/auth_check/AuthCheck";
 import AddToLibrary from "../../../../components/entity/my_library/single/action/AddToLibrary";
+import RepoCard from "../../../../components/external/repo/card/RepoCard";
 
 interface IProps {
     match: {
@@ -113,15 +114,7 @@ class ProjectPage extends React.Component<IProps, IState> {
                     </div>
                 </Col>
                 <Col md={12} xs={24} className="margin-sm-top">
-                    {/* TODO: extract into repository card */}
-                    <Card>
-                        <h3 className={"ant-typography"}><Icon type={"github"}/> Repository</h3>
-                        <Row>
-                            <a target="_blank" rel="noopener noreferrer" href={`https://github.com/${project.base_uri}`}>
-                                <Button type={"default"}>View on GitHub</Button>
-                            </a>
-                        </Row>
-                    </Card>
+                    <RepoCard project={project}/>
                 </Col>
             </Row>
 

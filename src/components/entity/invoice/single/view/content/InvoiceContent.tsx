@@ -4,18 +4,21 @@ import {Button, Icon, notification, Row, Tag} from "antd";
 import {handleApiError} from "../../../../../../classes/notification/errorHandler/errorHandler";
 import copy from 'copy-to-clipboard';
 import moment from "moment";
+import {CurrencyType} from "../../../../../../client/models";
 
 interface IProps {
-    invoice: InvoiceModel|null
+    invoice: InvoiceModel|null,
+    showHelpLabel: boolean
 }
 
 interface IState {
     isLoaded: boolean,
-    invoice: InvoiceModel|null
+    invoice: InvoiceModel|null,
 }
 
 class InvoiceContent extends React.Component<IProps, IState> {
     public static defaultProps = {
+        showHelpLabel: false,
         invoice: null
     };
 
@@ -65,6 +68,23 @@ class InvoiceContent extends React.Component<IProps, IState> {
         });
     }
 
+    getHelpLabel(currencyType: CurrencyType, amount: any = 0) {
+        switch (currencyType) {
+            case "Usd":
+                return `Please send ${amount} US$ to the PayPal email address provided below:`;
+            case "BitCoin":
+            case "Waves":
+            case "LiteCoin":
+            case "Ethereum":
+                return `Please send ${amount} ${currencyType} to the ${currencyType} address provided below:`;
+            case "Erc20Token":
+                return `Please send ${amount} Erc20 (Ethereum tokens) to the Ethereum address provided below:`;
+            case "WavesToken":
+                return `Please send ${amount} Erc20 (Ethereum tokens) to the Ethereum address provided below:`;
+        }
+        return "";
+    }
+
     render() {
         if (!this.state.isLoaded) {
             return <Icon type="loading" style={{fontSize: "2em"}}/>;
@@ -91,6 +111,10 @@ class InvoiceContent extends React.Component<IProps, IState> {
 
         return <div>
             <Row className={"text-left"}>
+                {
+                    this.props.showHelpLabel ?
+                        <p>{this.getHelpLabel(invoice.currency_type!, invoice.amount!)}</p> : null
+                }
                 <b>Address: </b> {invoice.wallet!.address}
                 <Button
                     type="default" icon="copy" className="margin-sm-sides"

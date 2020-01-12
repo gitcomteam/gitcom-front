@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './styles.module.css';
-import {Icon, Layout, Menu, notification} from 'antd';
+import {Button, Icon, Layout, Menu, notification} from 'antd';
 
 const { Header, Footer } = Layout;
 
@@ -15,7 +15,11 @@ class AppLayout extends React.Component {
     }
 
     render() {
-        let loginOrHomeLink = <Menu.Item key="3"><Link to={"/login"}>Log in</Link></Menu.Item>;
+        let loginOrHomeLink = <Menu.Item key="3">
+            <Button type="primary">
+                <Link to={"/login"}>Sign in</Link>
+            </Button>
+        </Menu.Item>;
 
         if (window.App.isAuthorized()) {
             loginOrHomeLink = <Menu.Item key="3"><Link to={"/account/library"}><Icon type={"home"}/>Home</Link></Menu.Item>
@@ -47,7 +51,7 @@ class AppLayout extends React.Component {
                         {this.props.children}
                     </div>
                     <Footer style={{textAlign: 'center'}}>
-                        GitCom <Icon type={"copyright"}/> 2019
+                        GitCom <Icon type={"copyright"}/> 2019-2020
                     </Footer>
                 </Layout>
             </div>

@@ -48,7 +48,7 @@ class NewInvoice extends React.Component<IProps, IState> {
             showInvoiceModal: false,
 
             selectedCurrency: null,
-            currencyAmount: 0,
+            currencyAmount: this.props.defaultAmount,
             isLoaded: false,
             isButtonPressed: false,
             invoice: null
@@ -134,6 +134,7 @@ class NewInvoice extends React.Component<IProps, IState> {
             .then((result) =>
                 this.processPostInvoice(result._response))
             .catch((error) => {
+                this.setState({isButtonPressed: false});
                 console.error(error);
                 this.handleApiError(error.response)
             });
@@ -185,7 +186,7 @@ class NewInvoice extends React.Component<IProps, IState> {
                 footer={null}
             >
                 <WarningBlock/>
-                {this.state.invoice ? <InvoiceContent invoice={this.state.invoice}/> : null}
+                {this.state.invoice ? <InvoiceContent invoice={this.state.invoice} showHelpLabel={true}/> : null}
             </Modal>
             <Modal
                 title={<b className="text-center">{this.props.modalLabel}</b>}

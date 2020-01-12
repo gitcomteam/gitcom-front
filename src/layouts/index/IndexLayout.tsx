@@ -8,10 +8,9 @@ class IndexLayout extends React.Component {
         return (
             <FullContainerPage>
                 <h1 className={"ant-typography margin-sm"}>GitCom</h1>
-                <h3 className={"ant-typography margin-sm"}>New look at open source and its monetization</h3>
-                <p className="text-left">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                <h3 className={"ant-typography margin-sm"}>Community-Driven open source marketplace</h3>
 
-                <a href={"https://info.gitcom.org"}>
+                <a href={"https://start.gitcom.org"} target="_blank" rel="noopener noreferrer">
                     <Button icon={"question"} type={"default"}>How it works?</Button>
                 </a>
 

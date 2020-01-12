@@ -1,4 +1,4 @@
-import {CurrencyType, CurrencyType1, CurrencyType3, EntityType} from "./models";
+import {CurrencyType, CurrencyType1, CurrencyType3, EntityType, User} from "./models";
 
 export class ProjectModel {
     guid?: string;
@@ -154,5 +154,14 @@ export interface WithdrawalRequest {
     amount?: number;
     address?: string;
     paid?: boolean;
+    created_at?: string;
+}
+
+export interface Repository {
+    guid?: string;
+    creator?: User;
+    title?: string;
+    repo_url?: string;
+    origin_id?: string;
     created_at?: string;
 }

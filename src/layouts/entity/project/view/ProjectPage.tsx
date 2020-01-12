@@ -7,8 +7,9 @@ import BoardCard from "../../../../components/entity/board/single/card/BoardCart
 import PermissionCheckLink from "../../../../components/link/withChecks/PermissionCheckLink";
 import AuthCheck from "../../../../components/check/auth_check/AuthCheck";
 import AddToLibrary from "../../../../components/entity/my_library/single/action/AddToLibrary";
+import RepoCard from "../../../../components/external/repo/card/RepoCard";
 import {Link} from "react-router-dom";
-import PermissionCheck from "../../../../components/check/permission_check/single/PermissionCheck";
+import NewInvoice from "../../../../components/entity/invoice/single/create/NewInvoice";
 
 interface IProps {
     match: {
@@ -89,21 +90,39 @@ class ProjectPage extends React.Component<IProps, IState> {
         return <FullPageWithSideBar sidebarType={"project_view"}>
             <h2 className={"ant-typography"}>{project.name}</h2>
             <p>{project.description}</p>
-            <Row className="padding-sm">
-                {/* TODO: add likes count */}
-                <AuthCheck>
-                    <AddToLibrary project={project}/>
-                </AuthCheck>
-            </Row>
-            <Row className="padding-sm">
-                <PermissionCheckLink
-                    label={"Edit"}
-                    entityGuid={project.guid!}
-                    entityType={"Project"}
-                    icon={"edit"}
-                    requiredPermissions={["write"]}
-                    url={`/${project.base_uri}/edit`}
-                />
+            <Row className="padding-sm" style={{display: "flex", justifyContent: "center"}}>
+                <Button className={"margin-sm-sides"} icon={"star"}> {project.stars_count}</Button>
+                <div className={"margin-sm-sides"}>
+                    <AuthCheck>
+                        <AddToLibrary  project={project}/>
+                    </AuthCheck>
+                </div>
+                <div className={"margin-sm-sides"}>
+                    <PermissionCheckLink
+                        label={"Edit"}
+                        entityGuid={project.guid!}
+                        entityType={"Project"}
+                        icon={"edit"}
+                        requiredPermissions={["write"]}
+                        url={`/${project.base_uri}/edit`}
+                    />
+                </div>
+                <div className={"margin-sm-sides"}>
+                    {
+                        window.App.isAuthorized() ?
+                            <NewInvoice
+                                modalLabel={`Support ${project.name}`}
+                                buttonLabel={"Support"}
+                                defaultAmount={0.1}
+                                entityGuid={project.guid!}
+                                entityType={'Project'}
+                            /> : <p>
+                                <Link to={"/login"}>
+                                    <Button type={"primary"}>Sign in</Button>
+                                </Link> to support this project
+                            </p>
+                    }
+                </div>
             </Row>
 
             <Row>
@@ -115,15 +134,7 @@ class ProjectPage extends React.Component<IProps, IState> {
                     </div>
                 </Col>
                 <Col md={12} xs={24} className="margin-sm-top">
-                    {/* TODO: extract into repository card */}
-                    <Card>
-                        <h3 className={"ant-typography"}><Icon type={"github"}/> Repository</h3>
-                        <Row>
-                            <a target="_blank" rel="noopener noreferrer" href={"https://github.com"}>
-                                <Button type={"default"}>View on GitHub?</Button>
-                            </a>
-                        </Row>
-                    </Card>
+                    <RepoCard project={project}/>
                 </Col>
             </Row>
 

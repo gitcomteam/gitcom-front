@@ -23,6 +23,7 @@ import NotFoundLayout from "./layouts/404/NotFoundLayout";
 import HelpLayout from "./layouts/help/HelpLayout";
 import EditProjectPricingLayout from "./layouts/entity/project/pricing/edit/EditProjectPricingLayout";
 import WithdrawalsLayout from "./layouts/account/withdrawals/WithdrawalsLayout";
+import DeveloperQuickstartLayout from "./layouts/quickstart/developer/DeveloperQuickstartLayout";
 
 class Routes extends React.Component {
     render() {
@@ -51,6 +52,10 @@ class Routes extends React.Component {
                     <Route path="/account/library" exact component={LibraryLayout}/>
 
                     <Route path="/external/:serviceType/repositories" exact component={ExternalRepoLayout}/>
+
+                    {/* Quickstart pages */}
+
+                    <Route path="/quickstart/developer" exact component={DeveloperQuickstartLayout}/>
 
                     {/* External auth routes */}
 

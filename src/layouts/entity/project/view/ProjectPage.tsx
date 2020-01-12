@@ -7,6 +7,7 @@ import BoardCard from "../../../../components/entity/board/single/card/BoardCart
 import PermissionCheckLink from "../../../../components/link/withChecks/PermissionCheckLink";
 import AuthCheck from "../../../../components/check/auth_check/AuthCheck";
 import AddToLibrary from "../../../../components/entity/my_library/single/action/AddToLibrary";
+import RepoCard from "../../../../components/external/repo/card/RepoCard";
 
 interface IProps {
     match: {
@@ -124,6 +125,8 @@ class ProjectPage extends React.Component<IProps, IState> {
                     </Card>
                 </Col>
             </Row>
+
+            <RepoCard/>
 
             <Divider/>
 

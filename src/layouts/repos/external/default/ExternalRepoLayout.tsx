@@ -2,7 +2,7 @@ import React from "react";
 import FullPageWithSideBar from "../../../../components/layout/simple/fullpagewithsidebar/FullPageWithSidebar";
 import {Col, Icon, notification, Row} from "antd";
 import {handleApiError} from "../../../../classes/notification/errorHandler/errorHandler";
-import ExternalRepoCard from "../../../../components/external/repo/card/ExternalRepoCard";
+import ExternalRepoCard from "../../../../components/external/external_repo/card/ExternalRepoCard";
 
 interface IProps {
     match: {

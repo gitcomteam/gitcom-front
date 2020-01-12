@@ -1,7 +1,7 @@
 import React from "react";
 import FullPageWithSideBar from "../../../../components/layout/simple/fullpagewithsidebar/FullPageWithSidebar";
 import {handleApiError} from "../../../../classes/notification/errorHandler/errorHandler";
-import {Button, Card, Col, Divider, Icon, Row} from "antd";
+import {Button, Col, Divider, Icon, Row} from "antd";
 import {BoardModel, ProjectModel} from "../../../../client/bindings";
 import BoardCard from "../../../../components/entity/board/single/card/BoardCart";
 import PermissionCheckLink from "../../../../components/link/withChecks/PermissionCheckLink";
@@ -89,7 +89,7 @@ class ProjectPage extends React.Component<IProps, IState> {
             <h2 className={"ant-typography"}>{project.name}</h2>
             <p>{project.description}</p>
             <Row className="padding-sm">
-                {/* TODO: add likes count */}
+                <Button icon={"star"}> {project.stars_count}</Button>
                 <AuthCheck>
                     <AddToLibrary project={project}/>
                 </AuthCheck>

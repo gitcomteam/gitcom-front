@@ -134,6 +134,7 @@ class NewInvoice extends React.Component<IProps, IState> {
             .then((result) =>
                 this.processPostInvoice(result._response))
             .catch((error) => {
+                this.setState({isButtonPressed: false});
                 console.error(error);
                 this.handleApiError(error.response)
             });

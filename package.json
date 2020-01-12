@@ -1,6 +1,6 @@
 {
   "name": "gitcom-front",
-  "version": "0.10.0",
+  "version": "0.11.0",
   "private": true,
   "dependencies": {
     "@azure/ms-rest-js": "^2.0.5",

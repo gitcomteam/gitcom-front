@@ -874,6 +874,39 @@ export const PostRegisterOKResponse: msRest.CompositeMapper = {
   }
 };
 
+export const PostLazyRegisterOKResponseData: msRest.CompositeMapper = {
+  serializedName: "PostLazyRegisterOKResponse_data",
+  type: {
+    name: "Composite",
+    className: "PostLazyRegisterOKResponseData",
+    modelProperties: {
+      token: {
+        serializedName: "token",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  }
+};
+
+export const PostLazyRegisterOKResponse: msRest.CompositeMapper = {
+  serializedName: "PostLazyRegisterOKResponse",
+  type: {
+    name: "Composite",
+    className: "PostLazyRegisterOKResponse",
+    modelProperties: {
+      data: {
+        serializedName: "data",
+        type: {
+          name: "Composite",
+          className: "PostLazyRegisterOKResponseData"
+        }
+      }
+    }
+  }
+};
+
 export const PostConfirmEmailOKResponseData: msRest.CompositeMapper = {
   serializedName: "PostConfirmEmailOKResponse_data",
   type: {

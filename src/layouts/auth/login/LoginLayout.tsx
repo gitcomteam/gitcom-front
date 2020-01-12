@@ -7,6 +7,7 @@ import { Redirect } from 'react-router';
 import ConnectButton from "../../../components/external/auth/connectButton/ConnectButton";
 import GoogleLoginButton from "../../../components/external/auth/googleButton/GoogleLoginButton";
 import {Link} from "react-router-dom";
+import {handleApiError} from "../../../classes/notification/errorHandler/errorHandler";
 
 const { Title } = Typography;
 
@@ -19,7 +20,9 @@ interface IState {
 
     isLoading: boolean,
     loggedIn: boolean,
-    redirectToHome: boolean
+    redirectToHome: boolean,
+    passwordRequired: boolean,
+    lazySignIn: boolean,
 }
 
 class LoginLayout extends React.Component<IProps, IState> {
@@ -31,7 +34,9 @@ class LoginLayout extends React.Component<IProps, IState> {
 
             isLoading: false,
             loggedIn: false,
-            redirectToHome: false
+            redirectToHome: false,
+            passwordRequired: false,
+            lazySignIn: true
         };
     }
 
@@ -46,6 +51,10 @@ class LoginLayout extends React.Component<IProps, IState> {
     }
 
     loggedInRedirect() {
+        this.setState({
+            loggedIn: true,
+            isLoading: true
+        });
         setTimeout(() => {
             this.setState({
                 redirectToHome: true
@@ -73,12 +82,31 @@ class LoginLayout extends React.Component<IProps, IState> {
             return;
         }
 
-        window.App.apiClient.getLogin({
-            email: this.state.email,
-            password: this.state.password
-        })
-            .then((result) => this.processLoginResponse(result._response))
-            .catch((error) => this.handleLoginError(error));
+        if (this.state.lazySignIn) {
+            window.App.apiClient.postLazyRegister(this.state.email)
+                .then((res) => {
+                    let body: GetLoginOKResponse = JSON.parse(res._response.bodyAsText);
+                    if (body.data!.token) {
+                        window.App.setApiToken(body.data!.token!);
+                        this.loggedInRedirect();
+                    }
+                })
+                .catch(() => {
+                    this.setState({lazySignIn: false, passwordRequired: true});
+                });
+        } else {
+            window.App.apiClient.getLogin({
+                email: this.state.email,
+                password: this.state.password
+            })
+                .then((res) => {
+                    let body: GetLoginOKResponse = JSON.parse(res._response.bodyAsText);
+                    window.App.setApiToken(body.data!.token!);
+                    this.loggedInRedirect();
+                })
+                .catch((error) => this.handleLoginError(error));
+
+        }
     }
     
     handleLoginError(data: any) {
@@ -92,19 +120,9 @@ class LoginLayout extends React.Component<IProps, IState> {
         });
     }
 
-    processLoginResponse(response: any) {
-        let body: GetLoginOKResponse = JSON.parse(response.bodyAsText);
-        window.App.setApiToken(body.data!.token!);
-        this.setState({
-            loggedIn: true,
-            isLoading: true
-        });
-        this.loggedInRedirect();
-    }
-
     render() {
         let formWithTitle = <div>
-            <Title level={3}>Log in</Title>
+            <Title level={3}>Sign in</Title>
             <Form action={"#"} onSubmit={this.handleSubmit.bind(this)}>
                 <Form.Item>
                     <Input
@@ -114,22 +132,24 @@ class LoginLayout extends React.Component<IProps, IState> {
                         onChange={this.handleFieldUpdate.bind(this)}
                     />
                 </Form.Item>
-                <Form.Item>
-                    <Input
-                        name={"password"}
-                        prefix={<Icon type="lock" style={{color: 'rgba(0,0,0,.25)'}}/>}
-                        type="password"
-                        placeholder="Password"
-                        onChange={this.handleFieldUpdate.bind(this)}
-                    />
-                </Form.Item>
+                {
+                    this.state.passwordRequired ? <Form.Item>
+                        <Input
+                            name={"password"}
+                            prefix={<Icon type="lock" style={{color: 'rgba(0,0,0,.25)'}}/>}
+                            type="password"
+                            placeholder="Password"
+                            onChange={this.handleFieldUpdate.bind(this)}
+                        />
+                    </Form.Item> : null
+                }
                 <Button
                     loading={this.state.isLoading}
                     onClick={this.handleSubmit.bind(this)}
                     type="primary"
                     htmlType="submit"
                     className="login-form-button"
-                >Log in</Button>
+                >Sign in</Button>
 
                 <Divider/>
                 <Link to={"/register"}>

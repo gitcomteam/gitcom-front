@@ -36,7 +36,7 @@ export class SupportHubApiContext extends msRest.ServiceClient {
 
     super(undefined, options);
 
-    this.baseUri = options.baseUri || this.baseUri || "http://api.gitcom.com/api/v1";
+    this.baseUri = options.baseUri || this.baseUri || "http://api.gitcom.org/api/v1";
     this.requestContentType = "application/json; charset=utf-8";
     this.entityType = entityType;
     if (options.currencyType !== null && options.currencyType !== undefined) {

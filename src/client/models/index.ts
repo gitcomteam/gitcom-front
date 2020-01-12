@@ -279,6 +279,20 @@ export interface PostRegisterOKResponse {
 }
 
 /**
+ * An interface representing PostLazyRegisterOKResponseData.
+ */
+export interface PostLazyRegisterOKResponseData {
+  token?: string;
+}
+
+/**
+ * An interface representing PostLazyRegisterOKResponse.
+ */
+export interface PostLazyRegisterOKResponse {
+  data?: PostLazyRegisterOKResponseData;
+}
+
+/**
  * An interface representing PostConfirmEmailOKResponseData.
  */
 export interface PostConfirmEmailOKResponseData {
@@ -1227,6 +1241,26 @@ export type PostRegisterResponse = PostRegisterOKResponse & {
        * The response body as parsed JSON or XML
        */
       parsedBody: PostRegisterOKResponse;
+    };
+};
+
+/**
+ * Contains response data for the postLazyRegister operation.
+ */
+export type PostLazyRegisterResponse = PostLazyRegisterOKResponse & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: PostLazyRegisterOKResponse;
     };
 };
 

@@ -65,7 +65,7 @@ class FastAuth extends React.Component<IProps, IState> {
 
                 <Divider/>
 
-                <p>Or sign in with these services:</p>
+                <p>Or sign in with one of these services:</p>
 
                 <Row>
                     <Link to={"/login?fast_signin=github"}>

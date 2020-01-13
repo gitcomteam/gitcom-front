@@ -41,7 +41,7 @@ class IndexLayout extends React.Component {
                         sm={12} xs={24}
                         style={{
                             minHeight: "50vh",
-                            padding: "50px"
+                            padding: "40px"
                         }}
                     >
                         <Card>

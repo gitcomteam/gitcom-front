@@ -135,6 +135,10 @@ p, b {
   border: 2px solid gray;
 }
 
+.text-white {
+  color: white !important;
+}
+
 @media only screen and (min-width: 767px) {
   .desktop-zero-height {
     height: 0;

@@ -130,7 +130,7 @@ class LoginLayout extends React.Component<IProps, IState> {
                 <Form.Item>
                     <Input
                         name={"email"}
-                        prefix={<Icon type="user" style={{color: 'rgba(0,0,0,.25)'}}/>}
+                        prefix={<Icon type="mail" style={{color: 'rgba(0,0,0,.25)'}}/>}
                         placeholder="Email"
                         onChange={this.handleFieldUpdate.bind(this)}
                     />

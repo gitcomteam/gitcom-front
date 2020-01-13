@@ -58,7 +58,7 @@ class GoogleLoginButton extends React.Component<IProps, IState> {
         if (fastSignIn === "google") {
             setTimeout(() => {
                 this.state.forceClickEvent();
-            }, 250);
+            }, 100);
         }
     }
 

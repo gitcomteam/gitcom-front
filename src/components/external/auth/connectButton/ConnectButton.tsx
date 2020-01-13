@@ -61,10 +61,10 @@ class ConnectButton extends React.Component<IProps, IState> {
 
         setTimeout(() => {
             const fastSignIn = new URL(window.location.href).searchParams.get('fast_signin');
-            if (['github', 'gitlab'].includes(fastSignIn!)) {
+            if (fastSignIn === this.props.service) {
                 window.location.replace(data.login_link);
             }
-        }, 250);
+        }, 100);
     }
 
     render() {

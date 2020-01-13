@@ -80,6 +80,33 @@ class SupportHubApi extends SupportHubApiContext {
   }
 
   /**
+   * @param email
+   * @param [options] The optional parameters
+   * @returns Promise<Models.PostLazyRegisterResponse>
+   */
+  postLazyRegister(email: string, options?: msRest.RequestOptionsBase): Promise<Models.PostLazyRegisterResponse>;
+  /**
+   * @param email
+   * @param callback The callback
+   */
+  postLazyRegister(email: string, callback: msRest.ServiceCallback<Models.PostLazyRegisterOKResponse>): void;
+  /**
+   * @param email
+   * @param options The optional parameters
+   * @param callback The callback
+   */
+  postLazyRegister(email: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.PostLazyRegisterOKResponse>): void;
+  postLazyRegister(email: string, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.PostLazyRegisterOKResponse>, callback?: msRest.ServiceCallback<Models.PostLazyRegisterOKResponse>): Promise<Models.PostLazyRegisterResponse> {
+    return this.sendOperationRequest(
+      {
+        email,
+        options
+      },
+      postLazyRegisterOperationSpec,
+      callback) as Promise<Models.PostLazyRegisterResponse>;
+  }
+
+  /**
    * @param confirmationKey
    * @param [options] The optional parameters
    * @returns Promise<Models.PostConfirmEmailResponse>
@@ -1493,6 +1520,21 @@ const postRegisterOperationSpec: msRest.OperationSpec = {
   responses: {
     200: {
       bodyMapper: Mappers.PostRegisterOKResponse
+    },
+    default: {}
+  },
+  serializer
+};
+
+const postLazyRegisterOperationSpec: msRest.OperationSpec = {
+  httpMethod: "POST",
+  path: "api/v1/lazy_register",
+  queryParameters: [
+    Parameters.email1
+  ],
+  responses: {
+    200: {
+      bodyMapper: Mappers.PostLazyRegisterOKResponse
     },
     default: {}
   },

@@ -1,9 +1,9 @@
 {
   "swagger": "2.0",
   "info": {
-    "version": "0.13.0",
+    "version": "0.17.0",
     "title": "GitCom",
-    "description": "SupportHub API (WIP)",
+    "description": "GitCom API",
     "termsOfService": "http://swagger.io/terms/",
     "contact": {
       "name": "Swagger API Team"
@@ -12,7 +12,7 @@
       "name": "Unknown license"
     }
   },
-  "host": "api.gitcom.com",
+  "host": "api.gitcom.org",
   "basePath": "/api/v1",
   "schemes": [
     "http",
@@ -221,6 +221,44 @@
                     "response": {
                       "type": "string",
                       "example": "Please confirm your email"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/lazy_register": {
+      "post": {
+        "tags": [
+          "auth"
+        ],
+        "operationId": "postLazyRegister",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "email",
+            "in": "query",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns JWT token",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "token": {
+                      "type": "string"
                     }
                   }
                 }

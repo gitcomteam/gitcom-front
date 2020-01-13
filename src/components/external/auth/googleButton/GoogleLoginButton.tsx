@@ -5,18 +5,22 @@ import { Redirect } from 'react-router';
 import {handleApiError} from "../../../../classes/notification/errorHandler/errorHandler";
 
 interface IProps {
-    classNames: string
+    classNames: string,
+    triggerOnRender: boolean,
 }
 
 interface IState {
     loggedIn: boolean,
     isLoading: boolean,
-    redirect: boolean
+    redirect: boolean,
+    forceClickEvent: any,
+    googleButton: any
 }
 
 class GoogleLoginButton extends React.Component<IProps, IState> {
     public static defaultProps = {
-        classNames: ""
+        classNames: "",
+        triggerOnRender: false
     };
 
     constructor(props: IProps) {
@@ -24,8 +28,39 @@ class GoogleLoginButton extends React.Component<IProps, IState> {
         this.state = {
             loggedIn: false,
             isLoading: false,
-            redirect: false
+            redirect: false,
+            forceClickEvent: null,
+            googleButton: null
         };
+    }
+
+    componentDidMount(): void {
+        this.setState({
+            googleButton: <GoogleLogin
+                clientId={window.AppConfig.auth.external.google.client_id}
+                render={renderProps => {
+                    this.setState({forceClickEvent: renderProps.onClick});
+                    return <Button
+                        icon={"google"}
+                        loading={this.state.isLoading}
+                        onClick={renderProps.onClick}
+                        disabled={renderProps.disabled}
+                    >via Google</Button>
+                }}
+                buttonText="Login"
+                onSuccess={this.googleProcessOk.bind(this)}
+                onFailure={err => console.error(err)}
+                cookiePolicy={'single_host_origin'}
+            />
+        });
+
+        let fastSignIn = new URL(window.location.href).searchParams.get('fast_signin');
+
+        if (fastSignIn === "google") {
+            setTimeout(() => {
+                this.state.forceClickEvent();
+            }, 250);
+        }
     }
 
     googleProcessOk(data: any) {
@@ -37,10 +72,6 @@ class GoogleLoginButton extends React.Component<IProps, IState> {
         this.setState({
             isLoading: true
         });
-    }
-
-    googleProcessFail(data: any) {
-        console.error(data);
     }
 
     processGetMyToken(response: any) {
@@ -57,21 +88,7 @@ class GoogleLoginButton extends React.Component<IProps, IState> {
         }
 
         return <div className={this.props.classNames}>
-            <GoogleLogin
-                clientId={window.AppConfig.auth.external.google.client_id}
-                render={renderProps => (
-                    <Button
-                        icon={"google"}
-                        loading={this.state.isLoading}
-                        onClick={renderProps.onClick}
-                        disabled={renderProps.disabled}
-                    >via Google</Button>
-                )}
-                buttonText="Login"
-                onSuccess={this.googleProcessOk.bind(this)}
-                onFailure={this.googleProcessFail.bind(this)}
-                cookiePolicy={'single_host_origin'}
-            />
+            {this.state.googleButton}
         </div>;
     }
 }

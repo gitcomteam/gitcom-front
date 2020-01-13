@@ -7,7 +7,6 @@ import { Redirect } from 'react-router';
 import ConnectButton from "../../../components/external/auth/connectButton/ConnectButton";
 import GoogleLoginButton from "../../../components/external/auth/googleButton/GoogleLoginButton";
 import {Link} from "react-router-dom";
-import {handleApiError} from "../../../classes/notification/errorHandler/errorHandler";
 
 const { Title } = Typography;
 
@@ -41,6 +40,9 @@ class LoginLayout extends React.Component<IProps, IState> {
     }
 
     componentDidMount(): void {
+        let email = new URL(window.location.href).searchParams.get('email');
+        if (email) this.lazySignIn(email);
+
         if (window.App.apiToken) {
             this.setState({
                 loggedIn: true,
@@ -75,38 +77,39 @@ class LoginLayout extends React.Component<IProps, IState> {
         }
     }
 
+    lazySignIn(email: string) {
+        window.App.apiClient.postLazyRegister(email)
+            .then((res) => {
+                let body: GetLoginOKResponse = JSON.parse(res._response.bodyAsText);
+                if (body.data!.token) {
+                    window.App.setApiToken(body.data!.token!);
+                    this.loggedInRedirect();
+                }
+            })
+            .catch(() => {
+                this.setState({lazySignIn: false, passwordRequired: true});
+            });
+    }
+
     handleSubmit(event: any) {
         event.preventDefault();
 
-        if (this.state.isLoading) {
-            return;
-        }
+        if (this.state.isLoading) return;
 
-        if (this.state.lazySignIn) {
-            window.App.apiClient.postLazyRegister(this.state.email)
-                .then((res) => {
-                    let body: GetLoginOKResponse = JSON.parse(res._response.bodyAsText);
-                    if (body.data!.token) {
-                        window.App.setApiToken(body.data!.token!);
-                        this.loggedInRedirect();
-                    }
-                })
-                .catch(() => {
-                    this.setState({lazySignIn: false, passwordRequired: true});
-                });
-        } else {
-            window.App.apiClient.getLogin({
-                email: this.state.email,
-                password: this.state.password
+        window.App.apiClient.getLogin({
+            email: this.state.email,
+            password: this.state.password
+        })
+            .then((res) => {
+                let body: GetLoginOKResponse = JSON.parse(res._response.bodyAsText);
+                window.App.setApiToken(body.data!.token!);
+                this.loggedInRedirect();
             })
-                .then((res) => {
-                    let body: GetLoginOKResponse = JSON.parse(res._response.bodyAsText);
-                    window.App.setApiToken(body.data!.token!);
-                    this.loggedInRedirect();
-                })
-                .catch((error) => this.handleLoginError(error));
+            .catch((error) => this.handleLoginError(error));
 
-        }
+        if (!this.state.lazySignIn) return;
+
+        this.lazySignIn(this.state.email);
     }
     
     handleLoginError(data: any) {

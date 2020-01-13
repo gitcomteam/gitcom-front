@@ -54,8 +54,7 @@ class GoogleLoginButton extends React.Component<IProps, IState> {
             />
         });
 
-        let fastSignIn = new URL(window.location.href).searchParams.get('fast_signin');
-
+        const fastSignIn = new URL(window.location.href).searchParams.get('fast_signin');
         if (fastSignIn === "google") {
             setTimeout(() => {
                 this.state.forceClickEvent();

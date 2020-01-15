@@ -1,6 +1,8 @@
 # GitCom Frontend
 
-![CircleCI](https://img.shields.io/circleci/build/github/gitcomteam/gitcom-front/master)
+<a href="https://circleci.com/gh/gitcomteam/gitcom-front">
+  <img src="https://img.shields.io/circleci/build/github/gitcomteam/gitcom-front/master" alt="chat on Discord">
+</a>
 <a href="https://discord.gg/gRxPXPn">
   <img src="https://img.shields.io/discord/658128774679756820?logo=discord" alt="chat on Discord">
 </a>

@@ -18,6 +18,11 @@ More details on [GitCom landing page](https://start.gitcom.org)
 ### Tech stack: :hammer_and_wrench:
 Project is built using [Create react app](https://github.com/facebook/create-react-app) & Typescript
 
+### Set up
+1. Run `yarn` to install dependencies
+2. Copy config from `src/config/config.example.js` to `src/config/config.js`
+3. Make sure you specified correct API url
+
 ### Contribution:
 Thank you for considering contributing to this repo, feel free to open a PR with any improvement, feature or bugfix.  
 All **bugfixes** should go into [release/patch](https://github.com/gitcomteam/gitcom-front/tree/release/patch) branch  

@@ -22,6 +22,8 @@ class HomeSidebar extends React.Component {
             case "/home/integrations":
                 return ["integrations"];
 
+            case "/home":
+                return ["home"];
             case "/account/library":
                 return ["library"];
         }
@@ -39,6 +41,9 @@ class HomeSidebar extends React.Component {
                 >
                     <Menu.Item key="library" className={"text-left"}>
                         <Link to={"/account/library"}><Icon type={"appstore"}/>My library</Link>
+                    </Menu.Item>
+                    <Menu.Item key="home" className={"text-left"}>
+                        <Link to={"/home"}><Icon type={"home"}/>Home</Link>
                     </Menu.Item>
                     <SubMenu
                         key="account_sub"

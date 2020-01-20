@@ -11,14 +11,13 @@ interface IState {
 class HomeMainLayout extends React.Component<IProps, IState> {
     constructor(props: IProps) {
         super(props);
-        this.state = {}
     }
 
     render() {
         return <FullPageWithSideBar sidebarType={"home"}>
             <div>
                 <h2 className={"ant-typography"}>Home layout</h2>
-                <b>Welcome to the GitCom platform!</b>
+                <b>Welcome to the GitCom platform</b>
                 <div className="text-left">
                     <b>If you're a user:</b>
                     <p>

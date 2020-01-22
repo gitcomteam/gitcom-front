@@ -874,6 +874,39 @@ export const PostRegisterOKResponse: msRest.CompositeMapper = {
   }
 };
 
+export const PostLazyRegisterOKResponseData: msRest.CompositeMapper = {
+  serializedName: "PostLazyRegisterOKResponse_data",
+  type: {
+    name: "Composite",
+    className: "PostLazyRegisterOKResponseData",
+    modelProperties: {
+      token: {
+        serializedName: "token",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  }
+};
+
+export const PostLazyRegisterOKResponse: msRest.CompositeMapper = {
+  serializedName: "PostLazyRegisterOKResponse",
+  type: {
+    name: "Composite",
+    className: "PostLazyRegisterOKResponse",
+    modelProperties: {
+      data: {
+        serializedName: "data",
+        type: {
+          name: "Composite",
+          className: "PostLazyRegisterOKResponseData"
+        }
+      }
+    }
+  }
+};
+
 export const PostConfirmEmailOKResponseData: msRest.CompositeMapper = {
   serializedName: "PostConfirmEmailOKResponse_data",
   type: {
@@ -2680,6 +2713,39 @@ export const PostWithdrawalRequestCreatedResponse: msRest.CompositeMapper = {
         type: {
           name: "Composite",
           className: "PostWithdrawalRequestCreatedResponseData"
+        }
+      }
+    }
+  }
+};
+
+export const PostSubscribeToMailingListOKResponseData: msRest.CompositeMapper = {
+  serializedName: "PostSubscribeToMailingListOKResponse_data",
+  type: {
+    name: "Composite",
+    className: "PostSubscribeToMailingListOKResponseData",
+    modelProperties: {
+      status: {
+        serializedName: "status",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  }
+};
+
+export const PostSubscribeToMailingListOKResponse: msRest.CompositeMapper = {
+  serializedName: "PostSubscribeToMailingListOKResponse",
+  type: {
+    name: "Composite",
+    className: "PostSubscribeToMailingListOKResponse",
+    modelProperties: {
+      data: {
+        serializedName: "data",
+        type: {
+          name: "Composite",
+          className: "PostSubscribeToMailingListOKResponseData"
         }
       }
     }

@@ -279,6 +279,20 @@ export interface PostRegisterOKResponse {
 }
 
 /**
+ * An interface representing PostLazyRegisterOKResponseData.
+ */
+export interface PostLazyRegisterOKResponseData {
+  token?: string;
+}
+
+/**
+ * An interface representing PostLazyRegisterOKResponse.
+ */
+export interface PostLazyRegisterOKResponse {
+  data?: PostLazyRegisterOKResponseData;
+}
+
+/**
  * An interface representing PostConfirmEmailOKResponseData.
  */
 export interface PostConfirmEmailOKResponseData {
@@ -985,6 +999,20 @@ export interface PostWithdrawalRequestCreatedResponse {
 }
 
 /**
+ * An interface representing PostSubscribeToMailingListOKResponseData.
+ */
+export interface PostSubscribeToMailingListOKResponseData {
+  status?: string;
+}
+
+/**
+ * An interface representing PostSubscribeToMailingListOKResponse.
+ */
+export interface PostSubscribeToMailingListOKResponse {
+  data?: PostSubscribeToMailingListOKResponseData;
+}
+
+/**
  * An interface representing SupportHubApiOptions.
  */
 export interface SupportHubApiOptions extends ServiceClientOptions {
@@ -1227,6 +1255,26 @@ export type PostRegisterResponse = PostRegisterOKResponse & {
        * The response body as parsed JSON or XML
        */
       parsedBody: PostRegisterOKResponse;
+    };
+};
+
+/**
+ * Contains response data for the postLazyRegister operation.
+ */
+export type PostLazyRegisterResponse = PostLazyRegisterOKResponse & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: PostLazyRegisterOKResponse;
     };
 };
 
@@ -2167,5 +2215,25 @@ export type PostWithdrawalRequestResponse = PostWithdrawalRequestCreatedResponse
        * The response body as parsed JSON or XML
        */
       parsedBody: PostWithdrawalRequestCreatedResponse;
+    };
+};
+
+/**
+ * Contains response data for the postSubscribeToMailingList operation.
+ */
+export type PostSubscribeToMailingListResponse = PostSubscribeToMailingListOKResponse & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: PostSubscribeToMailingListOKResponse;
     };
 };

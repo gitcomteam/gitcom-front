@@ -1488,6 +1488,33 @@ class SupportHubApi extends SupportHubApiContext {
       postWithdrawalRequestOperationSpec,
       callback) as Promise<Models.PostWithdrawalRequestResponse>;
   }
+
+  /**
+   * @param email
+   * @param [options] The optional parameters
+   * @returns Promise<Models.PostSubscribeToMailingListResponse>
+   */
+  postSubscribeToMailingList(email: string, options?: msRest.RequestOptionsBase): Promise<Models.PostSubscribeToMailingListResponse>;
+  /**
+   * @param email
+   * @param callback The callback
+   */
+  postSubscribeToMailingList(email: string, callback: msRest.ServiceCallback<Models.PostSubscribeToMailingListOKResponse>): void;
+  /**
+   * @param email
+   * @param options The optional parameters
+   * @param callback The callback
+   */
+  postSubscribeToMailingList(email: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.PostSubscribeToMailingListOKResponse>): void;
+  postSubscribeToMailingList(email: string, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.PostSubscribeToMailingListOKResponse>, callback?: msRest.ServiceCallback<Models.PostSubscribeToMailingListOKResponse>): Promise<Models.PostSubscribeToMailingListResponse> {
+    return this.sendOperationRequest(
+      {
+        email,
+        options
+      },
+      postSubscribeToMailingListOperationSpec,
+      callback) as Promise<Models.PostSubscribeToMailingListResponse>;
+  }
 }
 
 // Operation Specifications
@@ -2269,6 +2296,21 @@ const postWithdrawalRequestOperationSpec: msRest.OperationSpec = {
   responses: {
     201: {
       bodyMapper: Mappers.PostWithdrawalRequestCreatedResponse
+    },
+    default: {}
+  },
+  serializer
+};
+
+const postSubscribeToMailingListOperationSpec: msRest.OperationSpec = {
+  httpMethod: "POST",
+  path: "api/v1/mailing_list/subscribe",
+  queryParameters: [
+    Parameters.email1
+  ],
+  responses: {
+    200: {
+      bodyMapper: Mappers.PostSubscribeToMailingListOKResponse
     },
     default: {}
   },

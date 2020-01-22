@@ -999,6 +999,20 @@ export interface PostWithdrawalRequestCreatedResponse {
 }
 
 /**
+ * An interface representing PostSubscribeToMailingListOKResponseData.
+ */
+export interface PostSubscribeToMailingListOKResponseData {
+  status?: string;
+}
+
+/**
+ * An interface representing PostSubscribeToMailingListOKResponse.
+ */
+export interface PostSubscribeToMailingListOKResponse {
+  data?: PostSubscribeToMailingListOKResponseData;
+}
+
+/**
  * An interface representing SupportHubApiOptions.
  */
 export interface SupportHubApiOptions extends ServiceClientOptions {
@@ -2201,5 +2215,25 @@ export type PostWithdrawalRequestResponse = PostWithdrawalRequestCreatedResponse
        * The response body as parsed JSON or XML
        */
       parsedBody: PostWithdrawalRequestCreatedResponse;
+    };
+};
+
+/**
+ * Contains response data for the postSubscribeToMailingList operation.
+ */
+export type PostSubscribeToMailingListResponse = PostSubscribeToMailingListOKResponse & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: PostSubscribeToMailingListOKResponse;
     };
 };

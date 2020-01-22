@@ -2482,6 +2482,43 @@
           }
         }
       }
+    },
+    "/mailing_list/subscribe": {
+      "post": {
+        "tags": [ "product" ],
+        "operationId": "postSubscribeToMailingList",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "email",
+            "in": "query",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "subscribed"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "parameters": {

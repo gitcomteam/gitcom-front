@@ -2718,3 +2718,36 @@ export const PostWithdrawalRequestCreatedResponse: msRest.CompositeMapper = {
     }
   }
 };
+
+export const PostSubscribeToMailingListOKResponseData: msRest.CompositeMapper = {
+  serializedName: "PostSubscribeToMailingListOKResponse_data",
+  type: {
+    name: "Composite",
+    className: "PostSubscribeToMailingListOKResponseData",
+    modelProperties: {
+      status: {
+        serializedName: "status",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  }
+};
+
+export const PostSubscribeToMailingListOKResponse: msRest.CompositeMapper = {
+  serializedName: "PostSubscribeToMailingListOKResponse",
+  type: {
+    name: "Composite",
+    className: "PostSubscribeToMailingListOKResponse",
+    modelProperties: {
+      data: {
+        serializedName: "data",
+        type: {
+          name: "Composite",
+          className: "PostSubscribeToMailingListOKResponseData"
+        }
+      }
+    }
+  }
+};

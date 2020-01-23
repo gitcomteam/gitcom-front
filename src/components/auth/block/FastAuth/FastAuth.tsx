@@ -1,5 +1,5 @@
 import React from "react";
-import {Button, Divider, Form, Icon, Input, notification, Row} from "antd";
+import {Button, Divider, Icon, Input, notification, Row} from "antd";
 import {Link} from "react-router-dom";
 
 interface IProps {

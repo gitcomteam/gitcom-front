@@ -1,5 +1,5 @@
 import React from "react";
-import {Input, Row, Button, notification, Icon} from "antd";
+import {Input, Row, Button, notification, Icon, Col} from "antd";
 
 interface IProps {
 }
@@ -43,16 +43,19 @@ class SubscribeToMailingList extends React.Component<IProps, IState> {
     render() {
         return <div>
             <Row>
-                <Input
-                    prefix={<Icon type="mail" style={{color: 'rgba(0,0,0,.25)'}}/>}
-                    onChange={(e) => {this.updateEmail(e.target.value)}}
-                    placeholder={'Your email'}
-                />
-                <Button
-                    className={"margin-sm-top"}
-                    type={"primary"}
-                    onClick={() => this.submitForm()}
-                >Subscribe</Button>
+                <Col xs={16}>
+                    <Input
+                        prefix={<Icon type="mail" style={{color: 'rgba(0,0,0,.25)'}}/>}
+                        onChange={(e) => {this.updateEmail(e.target.value)}}
+                        placeholder={'Your email'}
+                    />
+                </Col>
+                <Col xs={8}>
+                    <Button
+                        type={"primary"}
+                        onClick={() => this.submitForm()}
+                    >Subscribe</Button>
+                </Col>
             </Row>
         </div>
     }

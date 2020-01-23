@@ -22,12 +22,35 @@ class PageFooter extends React.Component<IProps, IState> {
                 </Col>
             </Row>
 
-            <Row className={"margin-sm-top"}>
-                <a href={"https://www.indiehackers.com/product/gitcom"} target="_blank" rel="noopener noreferrer">
+            <Row className={"margin-md-top"}>
+                <a
+                    className={"margin-sm-sides"}
+                    href={"https://www.indiehackers.com/product/gitcom"} target="_blank" rel="noopener noreferrer">
                     <img
                         style={{width: "40px"}}
                         src={"https://www.indiehackers.com/images/logos/indie-hackers-logo__glyph--light.svg"}
                         alt={"IndieHackers logo"}
+                    />
+                </a>
+                <a
+                    className={"margin-sm-sides vertical-center text-white"}
+                    href={"https://www.github.com/gitcomteam"} target="_blank" rel="noopener noreferrer">
+                    <Icon
+                        type={"github"} style={{fontSize: "2.5em"}}
+                    />
+                </a>
+                <a
+                    className={"margin-sm-sides vertical-center text-white"}
+                    href={"https://www.facebook.com/gitcomteam"} target="_blank" rel="noopener noreferrer">
+                    <Icon
+                        type={"facebook"} style={{fontSize: "2.5em"}}
+                    />
+                </a>
+                <a
+                    className={"margin-sm-sides vertical-center text-white"}
+                    href={"https://www.twitter.com/gitcomteam"} target="_blank" rel="noopener noreferrer">
+                    <Icon
+                        type={"twitter"} style={{fontSize: "2.5em"}}
                     />
                 </a>
                 <a

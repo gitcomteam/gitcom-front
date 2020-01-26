@@ -1,10 +1,13 @@
 # GitCom Frontend
 
 <a href="https://circleci.com/gh/gitcomteam/gitcom-front">
-  <img src="https://img.shields.io/circleci/build/github/gitcomteam/gitcom-front/master" alt="chat on Discord">
+  <img src="https://img.shields.io/circleci/build/github/gitcomteam/gitcom-front/master" alt="CircleCI status">
 </a>
 <a href="https://discord.gg/gRxPXPn">
   <img src="https://img.shields.io/discord/658128774679756820?logo=discord" alt="chat on Discord">
+</a>
+<a href="https://gitcom.org/gitcom/gitcom-app">
+  <img src="https://img.shields.io/badge/GitCom-go%20to%20project-f" alt="GitCom link">
 </a>
 
 This is the main frontend application hosted at [gitcom.org](https://gitcom.org)

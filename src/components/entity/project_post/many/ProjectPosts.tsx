@@ -1,11 +1,10 @@
 import React from "react";
 import {ProjectPost} from "../../../../client/bindings";
-import {Card, Divider, Icon, Row} from "antd";
-import moment from "moment";
-import ReactMarkdown from "react-markdown";
+import {Icon, Row} from "antd";
+import Post from "../single/Post";
 
 interface IProps {
-    projectGuid: string
+    projectGuid: string|null
 }
 
 interface IState {
@@ -14,6 +13,10 @@ interface IState {
 }
 
 class ProjectPosts extends React.Component<IProps, IState> {
+    public static defaultProps = {
+        projectGuid: null
+    };
+
     constructor(props: IProps) {
         super(props);
         this.state = {
@@ -23,35 +26,37 @@ class ProjectPosts extends React.Component<IProps, IState> {
     }
 
     componentDidMount() {
-        window.App.apiClient.getProjectPosts(this.props.projectGuid).then(res => {
-            let posts = JSON.parse(res._response.bodyAsText).data.posts.sort((a: ProjectPost, b: ProjectPost) => {
-                return new Date(b.created_at!).getTime() - new Date(a.created_at!).getTime();
+        if (this.props.projectGuid) {
+            window.App.apiClient.getProjectPosts(this.props.projectGuid).then(res => {
+                let posts = JSON.parse(res._response.bodyAsText).data.posts.sort((a: ProjectPost, b: ProjectPost) => {
+                    return new Date(b.created_at!).getTime() - new Date(a.created_at!).getTime();
+                });
+                this.setState({
+                    isLoading: false,
+                    posts
+                });
             });
-            this.setState({
-                isLoading: false,
-                posts
+        } else {
+            window.App.apiClient.getLatestProjectsPosts().then(res => {
+                let posts = JSON.parse(res._response.bodyAsText).data.posts.sort((a: ProjectPost, b: ProjectPost) => {
+                    return new Date(b.created_at!).getTime() - new Date(a.created_at!).getTime();
+                });
+                this.setState({
+                    isLoading: false,
+                    posts
+                });
             });
-        });
+        }
     }
 
     render() {
-        if (this.state.isLoading) return <Icon type="loading" style={{fontSize: "2em"}}/>
+        if (this.state.isLoading) return <Icon type="loading" style={{fontSize: "2em"}}/>;
 
         return <div>
             {
-                this.state.posts!.map((post: ProjectPost) => {
-                    return <Row key={post.guid} className={"margin-sm-top"}>
-                        <Card
-                            title={post.title}
-                            style={{textAlign: "left", whiteSpace: "pre-wrap"}}
-                        >
-                            <ReactMarkdown
-                                source={post.content}
-                            />
-                            <br/>
-                            <Divider/>
-                            <i>Posted: {moment(post.created_at).format('MMMM Do YYYY')}</i>
-                        </Card>
+                this.state.posts!.map((currentPost: ProjectPost) => {
+                    return <Row key={currentPost.guid} className={"margin-sm-top"}>
+                        <Post post={currentPost}/>
                     </Row>
                 })
             }

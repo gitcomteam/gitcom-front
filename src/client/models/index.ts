@@ -513,10 +513,24 @@ export interface GetProjectBoardsOKResponse {
 }
 
 /**
+ * An interface representing GetLatestProjectsPostsOKResponseData.
+ */
+export interface GetLatestProjectsPostsOKResponseData {
+  posts?: ProjectPost;
+}
+
+/**
+ * An interface representing GetLatestProjectsPostsOKResponse.
+ */
+export interface GetLatestProjectsPostsOKResponse {
+  data?: GetLatestProjectsPostsOKResponseData;
+}
+
+/**
  * An interface representing GetProjectPostsOKResponseData.
  */
 export interface GetProjectPostsOKResponseData {
-  project?: ProjectPost;
+  posts?: ProjectPost;
 }
 
 /**
@@ -1540,6 +1554,26 @@ export type GetProjectBoardsResponse = GetProjectBoardsOKResponse & {
        * The response body as parsed JSON or XML
        */
       parsedBody: GetProjectBoardsOKResponse;
+    };
+};
+
+/**
+ * Contains response data for the getLatestProjectsPosts operation.
+ */
+export type GetLatestProjectsPostsResponse = GetLatestProjectsPostsOKResponse & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: GetLatestProjectsPostsOKResponse;
     };
 };
 

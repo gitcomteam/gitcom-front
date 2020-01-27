@@ -821,6 +821,37 @@
         }
       }
     },
+    "/all_projects/posts/latest/get": {
+      "get": {
+        "tags": [
+          "project", "post"
+        ],
+        "operationId": "getLatestProjectsPosts",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "posts": {
+                      "$ref": "#/definitions/ProjectPost"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/project/posts/get": {
       "get": {
         "tags": [
@@ -848,7 +879,7 @@
                 "data": {
                   "type": "object",
                   "properties": {
-                    "project": {
+                    "posts": {
                       "$ref": "#/definitions/ProjectPost"
                     }
                   }

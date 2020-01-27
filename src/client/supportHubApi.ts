@@ -431,6 +431,29 @@ class SupportHubApi extends SupportHubApiContext {
   }
 
   /**
+   * @param [options] The optional parameters
+   * @returns Promise<Models.GetLatestProjectsPostsResponse>
+   */
+  getLatestProjectsPosts(options?: msRest.RequestOptionsBase): Promise<Models.GetLatestProjectsPostsResponse>;
+  /**
+   * @param callback The callback
+   */
+  getLatestProjectsPosts(callback: msRest.ServiceCallback<Models.GetLatestProjectsPostsOKResponse>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
+  getLatestProjectsPosts(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.GetLatestProjectsPostsOKResponse>): void;
+  getLatestProjectsPosts(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.GetLatestProjectsPostsOKResponse>, callback?: msRest.ServiceCallback<Models.GetLatestProjectsPostsOKResponse>): Promise<Models.GetLatestProjectsPostsResponse> {
+    return this.sendOperationRequest(
+      {
+        options
+      },
+      getLatestProjectsPostsOperationSpec,
+      callback) as Promise<Models.GetLatestProjectsPostsResponse>;
+  }
+
+  /**
    * @param projectGuid
    * @param [options] The optional parameters
    * @returns Promise<Models.GetProjectPostsResponse>
@@ -1767,6 +1790,18 @@ const getProjectBoardsOperationSpec: msRest.OperationSpec = {
   responses: {
     200: {
       bodyMapper: Mappers.GetProjectBoardsOKResponse
+    },
+    default: {}
+  },
+  serializer
+};
+
+const getLatestProjectsPostsOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "api/v1/all_projects/posts/latest/get",
+  responses: {
+    200: {
+      bodyMapper: Mappers.GetLatestProjectsPostsOKResponse
     },
     default: {}
   },

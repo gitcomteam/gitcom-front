@@ -1481,14 +1481,48 @@ export const GetProjectBoardsOKResponse: msRest.CompositeMapper = {
   }
 };
 
+export const GetLatestProjectsPostsOKResponseData: msRest.CompositeMapper = {
+  serializedName: "GetLatestProjectsPostsOKResponse_data",
+  type: {
+    name: "Composite",
+    className: "GetLatestProjectsPostsOKResponseData",
+    modelProperties: {
+      posts: {
+        serializedName: "posts",
+        type: {
+          name: "Composite",
+          className: "ProjectPost"
+        }
+      }
+    }
+  }
+};
+
+export const GetLatestProjectsPostsOKResponse: msRest.CompositeMapper = {
+  serializedName: "GetLatestProjectsPostsOKResponse",
+  type: {
+    name: "Composite",
+    className: "GetLatestProjectsPostsOKResponse",
+    modelProperties: {
+      data: {
+        serializedName: "data",
+        type: {
+          name: "Composite",
+          className: "GetLatestProjectsPostsOKResponseData"
+        }
+      }
+    }
+  }
+};
+
 export const GetProjectPostsOKResponseData: msRest.CompositeMapper = {
   serializedName: "GetProjectPostsOKResponse_data",
   type: {
     name: "Composite",
     className: "GetProjectPostsOKResponseData",
     modelProperties: {
-      project: {
-        serializedName: "project",
+      posts: {
+        serializedName: "posts",
         type: {
           name: "Composite",
           className: "ProjectPost"

@@ -80,6 +80,33 @@ class SupportHubApi extends SupportHubApiContext {
   }
 
   /**
+   * @param email
+   * @param [options] The optional parameters
+   * @returns Promise<Models.PostLazyRegisterResponse>
+   */
+  postLazyRegister(email: string, options?: msRest.RequestOptionsBase): Promise<Models.PostLazyRegisterResponse>;
+  /**
+   * @param email
+   * @param callback The callback
+   */
+  postLazyRegister(email: string, callback: msRest.ServiceCallback<Models.PostLazyRegisterOKResponse>): void;
+  /**
+   * @param email
+   * @param options The optional parameters
+   * @param callback The callback
+   */
+  postLazyRegister(email: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.PostLazyRegisterOKResponse>): void;
+  postLazyRegister(email: string, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.PostLazyRegisterOKResponse>, callback?: msRest.ServiceCallback<Models.PostLazyRegisterOKResponse>): Promise<Models.PostLazyRegisterResponse> {
+    return this.sendOperationRequest(
+      {
+        email,
+        options
+      },
+      postLazyRegisterOperationSpec,
+      callback) as Promise<Models.PostLazyRegisterResponse>;
+  }
+
+  /**
    * @param confirmationKey
    * @param [options] The optional parameters
    * @returns Promise<Models.PostConfirmEmailResponse>
@@ -401,6 +428,56 @@ class SupportHubApi extends SupportHubApiContext {
       },
       getProjectBoardsOperationSpec,
       callback) as Promise<Models.GetProjectBoardsResponse>;
+  }
+
+  /**
+   * @param [options] The optional parameters
+   * @returns Promise<Models.GetLatestProjectsPostsResponse>
+   */
+  getLatestProjectsPosts(options?: msRest.RequestOptionsBase): Promise<Models.GetLatestProjectsPostsResponse>;
+  /**
+   * @param callback The callback
+   */
+  getLatestProjectsPosts(callback: msRest.ServiceCallback<Models.GetLatestProjectsPostsOKResponse>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
+  getLatestProjectsPosts(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.GetLatestProjectsPostsOKResponse>): void;
+  getLatestProjectsPosts(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.GetLatestProjectsPostsOKResponse>, callback?: msRest.ServiceCallback<Models.GetLatestProjectsPostsOKResponse>): Promise<Models.GetLatestProjectsPostsResponse> {
+    return this.sendOperationRequest(
+      {
+        options
+      },
+      getLatestProjectsPostsOperationSpec,
+      callback) as Promise<Models.GetLatestProjectsPostsResponse>;
+  }
+
+  /**
+   * @param projectGuid
+   * @param [options] The optional parameters
+   * @returns Promise<Models.GetProjectPostsResponse>
+   */
+  getProjectPosts(projectGuid: string, options?: msRest.RequestOptionsBase): Promise<Models.GetProjectPostsResponse>;
+  /**
+   * @param projectGuid
+   * @param callback The callback
+   */
+  getProjectPosts(projectGuid: string, callback: msRest.ServiceCallback<Models.GetProjectPostsOKResponse>): void;
+  /**
+   * @param projectGuid
+   * @param options The optional parameters
+   * @param callback The callback
+   */
+  getProjectPosts(projectGuid: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.GetProjectPostsOKResponse>): void;
+  getProjectPosts(projectGuid: string, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.GetProjectPostsOKResponse>, callback?: msRest.ServiceCallback<Models.GetProjectPostsOKResponse>): Promise<Models.GetProjectPostsResponse> {
+    return this.sendOperationRequest(
+      {
+        projectGuid,
+        options
+      },
+      getProjectPostsOperationSpec,
+      callback) as Promise<Models.GetProjectPostsResponse>;
   }
 
   /**
@@ -1461,6 +1538,33 @@ class SupportHubApi extends SupportHubApiContext {
       postWithdrawalRequestOperationSpec,
       callback) as Promise<Models.PostWithdrawalRequestResponse>;
   }
+
+  /**
+   * @param email
+   * @param [options] The optional parameters
+   * @returns Promise<Models.PostSubscribeToMailingListResponse>
+   */
+  postSubscribeToMailingList(email: string, options?: msRest.RequestOptionsBase): Promise<Models.PostSubscribeToMailingListResponse>;
+  /**
+   * @param email
+   * @param callback The callback
+   */
+  postSubscribeToMailingList(email: string, callback: msRest.ServiceCallback<Models.PostSubscribeToMailingListOKResponse>): void;
+  /**
+   * @param email
+   * @param options The optional parameters
+   * @param callback The callback
+   */
+  postSubscribeToMailingList(email: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.PostSubscribeToMailingListOKResponse>): void;
+  postSubscribeToMailingList(email: string, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.PostSubscribeToMailingListOKResponse>, callback?: msRest.ServiceCallback<Models.PostSubscribeToMailingListOKResponse>): Promise<Models.PostSubscribeToMailingListResponse> {
+    return this.sendOperationRequest(
+      {
+        email,
+        options
+      },
+      postSubscribeToMailingListOperationSpec,
+      callback) as Promise<Models.PostSubscribeToMailingListResponse>;
+  }
 }
 
 // Operation Specifications
@@ -1493,6 +1597,21 @@ const postRegisterOperationSpec: msRest.OperationSpec = {
   responses: {
     200: {
       bodyMapper: Mappers.PostRegisterOKResponse
+    },
+    default: {}
+  },
+  serializer
+};
+
+const postLazyRegisterOperationSpec: msRest.OperationSpec = {
+  httpMethod: "POST",
+  path: "api/v1/lazy_register",
+  queryParameters: [
+    Parameters.email1
+  ],
+  responses: {
+    200: {
+      bodyMapper: Mappers.PostLazyRegisterOKResponse
     },
     default: {}
   },
@@ -1671,6 +1790,33 @@ const getProjectBoardsOperationSpec: msRest.OperationSpec = {
   responses: {
     200: {
       bodyMapper: Mappers.GetProjectBoardsOKResponse
+    },
+    default: {}
+  },
+  serializer
+};
+
+const getLatestProjectsPostsOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "api/v1/all_projects/posts/latest/get",
+  responses: {
+    200: {
+      bodyMapper: Mappers.GetLatestProjectsPostsOKResponse
+    },
+    default: {}
+  },
+  serializer
+};
+
+const getProjectPostsOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "api/v1/project/posts/get",
+  queryParameters: [
+    Parameters.projectGuid
+  ],
+  responses: {
+    200: {
+      bodyMapper: Mappers.GetProjectPostsOKResponse
     },
     default: {}
   },
@@ -2227,6 +2373,21 @@ const postWithdrawalRequestOperationSpec: msRest.OperationSpec = {
   responses: {
     201: {
       bodyMapper: Mappers.PostWithdrawalRequestCreatedResponse
+    },
+    default: {}
+  },
+  serializer
+};
+
+const postSubscribeToMailingListOperationSpec: msRest.OperationSpec = {
+  httpMethod: "POST",
+  path: "api/v1/mailing_list/subscribe",
+  queryParameters: [
+    Parameters.email1
+  ],
+  responses: {
+    200: {
+      bodyMapper: Mappers.PostSubscribeToMailingListOKResponse
     },
     default: {}
   },

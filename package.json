@@ -1,6 +1,6 @@
 {
   "name": "gitcom-front",
-  "version": "0.11.0",
+  "version": "0.12.0",
   "private": true,
   "dependencies": {
     "@azure/ms-rest-js": "^2.0.5",
@@ -19,6 +19,7 @@
     "react-dom": "^16.12.0",
     "react-facebook-login": "^4.1.1",
     "react-google-login": "^5.0.7",
+    "react-markdown": "^4.3.1",
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.0.1",
     "sentry": "^0.1.2",

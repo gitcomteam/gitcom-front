@@ -236,6 +236,17 @@ export interface ProjectProduct {
 }
 
 /**
+ * An interface representing ProjectPost.
+ */
+export interface ProjectPost {
+  guid?: string;
+  title?: string;
+  content?: string;
+  createdAt?: string;
+  updatedAt?: string;
+}
+
+/**
  * An interface representing WithdrawalRequest.
  */
 export interface WithdrawalRequest {
@@ -276,6 +287,20 @@ export interface PostRegisterOKResponseData {
  */
 export interface PostRegisterOKResponse {
   data?: PostRegisterOKResponseData;
+}
+
+/**
+ * An interface representing PostLazyRegisterOKResponseData.
+ */
+export interface PostLazyRegisterOKResponseData {
+  token?: string;
+}
+
+/**
+ * An interface representing PostLazyRegisterOKResponse.
+ */
+export interface PostLazyRegisterOKResponse {
+  data?: PostLazyRegisterOKResponseData;
 }
 
 /**
@@ -485,6 +510,34 @@ export interface GetProjectBoardsOKResponseData {
  */
 export interface GetProjectBoardsOKResponse {
   data?: GetProjectBoardsOKResponseData;
+}
+
+/**
+ * An interface representing GetLatestProjectsPostsOKResponseData.
+ */
+export interface GetLatestProjectsPostsOKResponseData {
+  posts?: ProjectPost;
+}
+
+/**
+ * An interface representing GetLatestProjectsPostsOKResponse.
+ */
+export interface GetLatestProjectsPostsOKResponse {
+  data?: GetLatestProjectsPostsOKResponseData;
+}
+
+/**
+ * An interface representing GetProjectPostsOKResponseData.
+ */
+export interface GetProjectPostsOKResponseData {
+  posts?: ProjectPost;
+}
+
+/**
+ * An interface representing GetProjectPostsOKResponse.
+ */
+export interface GetProjectPostsOKResponse {
+  data?: GetProjectPostsOKResponseData;
 }
 
 /**
@@ -985,6 +1038,20 @@ export interface PostWithdrawalRequestCreatedResponse {
 }
 
 /**
+ * An interface representing PostSubscribeToMailingListOKResponseData.
+ */
+export interface PostSubscribeToMailingListOKResponseData {
+  status?: string;
+}
+
+/**
+ * An interface representing PostSubscribeToMailingListOKResponse.
+ */
+export interface PostSubscribeToMailingListOKResponse {
+  data?: PostSubscribeToMailingListOKResponseData;
+}
+
+/**
  * An interface representing SupportHubApiOptions.
  */
 export interface SupportHubApiOptions extends ServiceClientOptions {
@@ -1231,6 +1298,26 @@ export type PostRegisterResponse = PostRegisterOKResponse & {
 };
 
 /**
+ * Contains response data for the postLazyRegister operation.
+ */
+export type PostLazyRegisterResponse = PostLazyRegisterOKResponse & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: PostLazyRegisterOKResponse;
+    };
+};
+
+/**
  * Contains response data for the postConfirmEmail operation.
  */
 export type PostConfirmEmailResponse = PostConfirmEmailOKResponse & {
@@ -1467,6 +1554,46 @@ export type GetProjectBoardsResponse = GetProjectBoardsOKResponse & {
        * The response body as parsed JSON or XML
        */
       parsedBody: GetProjectBoardsOKResponse;
+    };
+};
+
+/**
+ * Contains response data for the getLatestProjectsPosts operation.
+ */
+export type GetLatestProjectsPostsResponse = GetLatestProjectsPostsOKResponse & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: GetLatestProjectsPostsOKResponse;
+    };
+};
+
+/**
+ * Contains response data for the getProjectPosts operation.
+ */
+export type GetProjectPostsResponse = GetProjectPostsOKResponse & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: GetProjectPostsOKResponse;
     };
 };
 
@@ -2167,5 +2294,25 @@ export type PostWithdrawalRequestResponse = PostWithdrawalRequestCreatedResponse
        * The response body as parsed JSON or XML
        */
       parsedBody: PostWithdrawalRequestCreatedResponse;
+    };
+};
+
+/**
+ * Contains response data for the postSubscribeToMailingList operation.
+ */
+export type PostSubscribeToMailingListResponse = PostSubscribeToMailingListOKResponse & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: PostSubscribeToMailingListOKResponse;
     };
 };

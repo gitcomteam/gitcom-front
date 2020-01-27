@@ -63,7 +63,7 @@ class ProjectCardList extends React.Component<IProps, IState> {
             { this.state.isLoaded ?
                 <Row type={"flex"}>
                     {projectsList && projectsList.map((project: ProjectModel, i: number) => {
-                        return <Col className="padding-sm" md={8} sm={12} xs={24} key={i}>
+                        return <Col className="padding-sm" sm={12} xs={24} key={i}>
                             <ProjectCard project={project}/>
                         </Col>;
                     })}

@@ -25,7 +25,6 @@ class RepoCard extends React.Component<IProps, IState> {
         window.App.apiClient.getRepo(this.props.project.repository_guid!)
             .then((res) => {
                 let json = JSON.parse(res._response.bodyAsText);
-                console.log(json.data.repository);
                 this.setState({
                     isLoaded: true,
                     repository_url: json.data.repository.repo_url

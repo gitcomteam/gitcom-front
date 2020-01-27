@@ -2,6 +2,7 @@ import React from "react";
 import {ProjectPost} from "../../../../client/bindings";
 import {Card, Divider, Icon, Row} from "antd";
 import moment from "moment";
+import ReactMarkdown from "react-markdown";
 
 interface IProps {
     projectGuid: string
@@ -44,7 +45,9 @@ class ProjectPosts extends React.Component<IProps, IState> {
                             title={post.title}
                             style={{textAlign: "left", whiteSpace: "pre-wrap"}}
                         >
-                            {post.content}
+                            <ReactMarkdown
+                                source={post.content}
+                            />
                             <br/>
                             <Divider/>
                             <i>Posted: {moment(post.created_at).format('MMMM Do YYYY')}</i>

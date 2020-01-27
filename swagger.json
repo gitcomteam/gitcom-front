@@ -128,6 +128,10 @@
     {
       "name": "withdrawal",
       "description": "Withdrawal related operations"
+    },
+    {
+      "name": "post",
+      "description": "Posts related endpoints"
     }
   ],
   "paths": {
@@ -808,6 +812,75 @@
                       "items": {
                         "$ref": "#/definitions/Board"
                       }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/all_projects/posts/latest/get": {
+      "get": {
+        "tags": [
+          "project", "post"
+        ],
+        "operationId": "getLatestProjectsPosts",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "posts": {
+                      "$ref": "#/definitions/ProjectPost"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/project/posts/get": {
+      "get": {
+        "tags": [
+          "project", "post"
+        ],
+        "operationId": "getProjectPosts",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "project_guid",
+            "in": "query",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "posts": {
+                      "$ref": "#/definitions/ProjectPost"
                     }
                   }
                 }
@@ -3008,6 +3081,31 @@
         "duration_hours": {
           "type": "integer",
           "example": "5"
+        },
+        "created_at": {
+          "type": "string",
+          "example": "2019-10-06T17:14:54.844933"
+        },
+        "updated_at": {
+          "type": "string",
+          "example": "2019-10-06T17:14:54.844933"
+        }
+      }
+    },
+    "ProjectPost": {
+      "type": "object",
+      "properties": {
+        "guid": {
+          "type": "string",
+          "example": "46e647fc-9ebc-4d40-bcff-f81af991ee88"
+        },
+        "title": {
+          "type": "string",
+          "example": "Released v0.17.0"
+        },
+        "content": {
+          "type": "string",
+          "example": "Post content here, with markdown"
         },
         "created_at": {
           "type": "string",

@@ -165,3 +165,12 @@ export interface Repository {
     origin_id?: string;
     created_at?: string;
 }
+
+export class ProjectPost {
+    guid?: string;
+    title?: string;
+    content?: string;
+    project_guid?: string;
+    created_at?: string;
+    updated_at?: string;
+}

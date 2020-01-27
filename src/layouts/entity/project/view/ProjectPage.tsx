@@ -10,6 +10,7 @@ import AddToLibrary from "../../../../components/entity/my_library/single/action
 import RepoCard from "../../../../components/external/repo/card/RepoCard";
 import {Link} from "react-router-dom";
 import NewInvoice from "../../../../components/entity/invoice/single/create/NewInvoice";
+import ProjectPosts from "../../../../components/entity/project_post/many/ProjectPosts";
 
 interface IProps {
     match: {
@@ -140,19 +141,24 @@ class ProjectPage extends React.Component<IProps, IState> {
 
             <Divider/>
 
-            <h3 className={"ant-typography"}><Icon type="bug"/> Boards</h3>
-
             <Row>
-                {this.state.boards === null ? <Icon type="loading" style={{fontSize: "2em"}}/> : null}
-                {this.state.boards != null && this.state.boards.length === 0 ? <div>
-                    <b>No boards for this project</b>
-                    {/* TODO: add board button */}
-                </div> : null}
-                {this.state.boards != null && this.state.boards.map((board: BoardModel, i: number) => {
-                    return <Col key={i} md={12} xs={24} className="padding-sm">
-                        <BoardCard fullProjectName={this.getProjectFullName()} board={board}/>
-                    </Col>;
-                })}
+                <Col sm={12} xs={24}>
+                    <h3 className={"ant-typography"}><Icon type="bug"/> Boards</h3>
+                    {this.state.boards === null ? <Icon type="loading" style={{fontSize: "2em"}}/> : null}
+                    {this.state.boards != null && this.state.boards.length === 0 ? <div>
+                        <b>No boards for this project</b>
+                        {/* TODO: add board button */}
+                    </div> : null}
+                    {this.state.boards != null && this.state.boards.map((board: BoardModel, i: number) => {
+                        return <Col key={i} md={12} xs={24} className="padding-sm">
+                            <BoardCard fullProjectName={this.getProjectFullName()} board={board}/>
+                        </Col>;
+                    })}
+                </Col>
+                <Col sm={12} xs={24} className="margin-sm-top">
+                    <h3 className={"ant-typography"}><Icon type={"info-circle"}/> Latest updates</h3>
+                    <ProjectPosts projectGuid={project.guid!}/>
+                </Col>
             </Row>
         </FullPageWithSideBar>;
     }

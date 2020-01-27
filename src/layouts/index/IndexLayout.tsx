@@ -4,6 +4,7 @@ import ProjectCardList from "../../components/entity/project/many/cards_list/Pro
 import {Button, Card, Col, Divider, Row, Typography} from "antd";
 import FastAuth from "../../components/auth/block/FastAuth/FastAuth";
 import {Link} from "react-router-dom";
+import ProjectPosts from "../../components/entity/project_post/many/ProjectPosts";
 
 const { Title } = Typography;
 
@@ -101,10 +102,17 @@ class IndexLayout extends React.Component {
                 </Row>
 
                 <Row className={"margin-lg-top"}/>
-
-                <ProjectCardList label={"Newest projects"} type={"newest"}/>
-                <Row className="margin-lg-top"/>
-                <ProjectCardList label={"Random projects"} type={"random"}/>
+                <Row>
+                    <Col sm={16} xs={24}>
+                        <ProjectCardList label={"Newest projects"} type={"newest"}/>
+                        <Row className="margin-lg-top"/>
+                        <ProjectCardList label={"Random projects"} type={"random"}/>
+                    </Col>
+                    <Col sm={8} xs={24}>
+                        <h4 className={"ant-typography"}>Latest updates</h4>
+                        <ProjectPosts/>
+                    </Col>
+                </Row>
             </FullContainerPage>
         );
     }

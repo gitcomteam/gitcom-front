@@ -2,8 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './styles.module.css';
 import {Button, Icon, Layout, Menu, notification} from 'antd';
+import PageFooter from "../../components/page/footer/PageFooter";
 
-const { Header, Footer } = Layout;
+const { Header } = Layout;
 
 class AppLayout extends React.Component {
     logout() {
@@ -22,7 +23,7 @@ class AppLayout extends React.Component {
         </Menu.Item>;
 
         if (window.App.isAuthorized()) {
-            loginOrHomeLink = <Menu.Item key="3"><Link to={"/account/library"}><Icon type={"home"}/>Home</Link></Menu.Item>
+            loginOrHomeLink = <Menu.Item key="3"><Link to={"/home"}><Icon type={"home"}/>Home</Link></Menu.Item>
         }
 
         return (
@@ -50,9 +51,7 @@ class AppLayout extends React.Component {
                     <div className={styles.content}>
                         {this.props.children}
                     </div>
-                    <Footer style={{textAlign: 'center'}}>
-                        GitCom <Icon type={"copyright"}/> 2019-2020
-                    </Footer>
+                    <PageFooter/>
                 </Layout>
             </div>
         );

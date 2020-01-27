@@ -42,6 +42,10 @@ p, b {
   justify-content: center !important;
 }
 
+.vertical-center {
+  vertical-align: middle !important;
+}
+
 .text-left {
   text-align: left !important;
 }

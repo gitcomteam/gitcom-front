@@ -762,6 +762,46 @@ export const ProjectProduct: msRest.CompositeMapper = {
   }
 };
 
+export const ProjectPost: msRest.CompositeMapper = {
+  serializedName: "ProjectPost",
+  type: {
+    name: "Composite",
+    className: "ProjectPost",
+    modelProperties: {
+      guid: {
+        serializedName: "guid",
+        type: {
+          name: "String"
+        }
+      },
+      title: {
+        serializedName: "title",
+        type: {
+          name: "String"
+        }
+      },
+      content: {
+        serializedName: "content",
+        type: {
+          name: "String"
+        }
+      },
+      createdAt: {
+        serializedName: "created_at",
+        type: {
+          name: "String"
+        }
+      },
+      updatedAt: {
+        serializedName: "updated_at",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  }
+};
+
 export const WithdrawalRequest: msRest.CompositeMapper = {
   serializedName: "WithdrawalRequest",
   type: {
@@ -1435,6 +1475,74 @@ export const GetProjectBoardsOKResponse: msRest.CompositeMapper = {
         type: {
           name: "Composite",
           className: "GetProjectBoardsOKResponseData"
+        }
+      }
+    }
+  }
+};
+
+export const GetLatestProjectsPostsOKResponseData: msRest.CompositeMapper = {
+  serializedName: "GetLatestProjectsPostsOKResponse_data",
+  type: {
+    name: "Composite",
+    className: "GetLatestProjectsPostsOKResponseData",
+    modelProperties: {
+      posts: {
+        serializedName: "posts",
+        type: {
+          name: "Composite",
+          className: "ProjectPost"
+        }
+      }
+    }
+  }
+};
+
+export const GetLatestProjectsPostsOKResponse: msRest.CompositeMapper = {
+  serializedName: "GetLatestProjectsPostsOKResponse",
+  type: {
+    name: "Composite",
+    className: "GetLatestProjectsPostsOKResponse",
+    modelProperties: {
+      data: {
+        serializedName: "data",
+        type: {
+          name: "Composite",
+          className: "GetLatestProjectsPostsOKResponseData"
+        }
+      }
+    }
+  }
+};
+
+export const GetProjectPostsOKResponseData: msRest.CompositeMapper = {
+  serializedName: "GetProjectPostsOKResponse_data",
+  type: {
+    name: "Composite",
+    className: "GetProjectPostsOKResponseData",
+    modelProperties: {
+      posts: {
+        serializedName: "posts",
+        type: {
+          name: "Composite",
+          className: "ProjectPost"
+        }
+      }
+    }
+  }
+};
+
+export const GetProjectPostsOKResponse: msRest.CompositeMapper = {
+  serializedName: "GetProjectPostsOKResponse",
+  type: {
+    name: "Composite",
+    className: "GetProjectPostsOKResponse",
+    modelProperties: {
+      data: {
+        serializedName: "data",
+        type: {
+          name: "Composite",
+          className: "GetProjectPostsOKResponseData"
         }
       }
     }
@@ -2713,6 +2821,39 @@ export const PostWithdrawalRequestCreatedResponse: msRest.CompositeMapper = {
         type: {
           name: "Composite",
           className: "PostWithdrawalRequestCreatedResponseData"
+        }
+      }
+    }
+  }
+};
+
+export const PostSubscribeToMailingListOKResponseData: msRest.CompositeMapper = {
+  serializedName: "PostSubscribeToMailingListOKResponse_data",
+  type: {
+    name: "Composite",
+    className: "PostSubscribeToMailingListOKResponseData",
+    modelProperties: {
+      status: {
+        serializedName: "status",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  }
+};
+
+export const PostSubscribeToMailingListOKResponse: msRest.CompositeMapper = {
+  serializedName: "PostSubscribeToMailingListOKResponse",
+  type: {
+    name: "Composite",
+    className: "PostSubscribeToMailingListOKResponse",
+    modelProperties: {
+      data: {
+        serializedName: "data",
+        type: {
+          name: "Composite",
+          className: "PostSubscribeToMailingListOKResponseData"
         }
       }
     }

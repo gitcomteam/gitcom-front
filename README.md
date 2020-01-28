@@ -9,7 +9,7 @@
 <a href="https://gitcom.org/gitcom/gitcom-app">
   <img src="https://img.shields.io/badge/GitCom-go%20to%20project-f" alt="GitCom link">
 </a>
-<a href="https://gitpod.io/#https://gitcom.org/gitcom/gitcom-app">
+<a href="https://gitpod.io/#https://gitcom.org/gitcom/gitcom-front">
   <img src="https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod" alt="GitCom link">
 </a>
 
@@ -39,6 +39,6 @@ All **breaking changes** should be in [release/major](https://github.com/gitcomt
 For each merged PR you will be rewarded with `contributor` badge and 2500 (or more) GitCom tokens which are tradeable on [Waves Decentralized exchange](https://waves.exchange/dex-demo?assetId2=BkuYDLDunSy7dvep7NgQcmiY4iyqTq3diHwdGPrFUCMC&assetId1=WAVES) (You will need to have a Waves wallet to be able to receive tokens)
 
 **Would you like to jump right into action?** Go to GitPod and open up a PR right from your browser:   
-<a href="https://gitpod.io/#https://gitcom.org/gitcom/gitcom-app">
+<a href="https://gitpod.io/#https://gitcom.org/gitcom/gitcom-front">
   <img src="https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod" alt="GitCom link">
 </a>

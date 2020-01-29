@@ -10,7 +10,6 @@ import HomeIntegrationsLayout from "./layouts/home/integrations/HomeIntegrations
 import LoginWithGitLabLayout from "./layouts/auth/external/gitlab/logInWith/LoginWithGitLabLayout";
 import LoginWithGitHubLayout from "./layouts/auth/external/github/loginWith/LoginWithGitHubLayout";
 import ExternalRepoLayout from "./layouts/repos/external/default/ExternalRepoLayout";
-import ProjectImportLayout from "./layouts/import/project/ProjectImportLayout";
 import ProjectPage from "./layouts/entity/project/view/ProjectPage";
 import BoardPage from "./layouts/entity/board/page/BoardPage";
 import SubscriptionLayout from "./layouts/account/subscription/SubscriptionLayout";
@@ -61,10 +60,6 @@ class Routes extends React.Component {
 
                     <Route path="/auth/external/github/login" exact component={LoginWithGitHubLayout}/>
                     <Route path="/auth/external/gitlab/login" exact component={LoginWithGitLabLayout}/>
-
-                    {/* External import routes */}
-
-                    <Route path="/user/repository/import" exact component={ProjectImportLayout}/>
 
                     {/* Project */}
 

@@ -57,7 +57,7 @@ class LoginWithGitHubLayout extends React.Component<IProps, IState> {
         });
         setTimeout(() => {
             this.setState({
-                redirectBlock: <Redirect to={"/home/integrations"}/>
+                redirectBlock: <Redirect to={"/home"}/>
             });
         }, 1000);
     }

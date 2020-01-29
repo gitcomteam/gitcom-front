@@ -2,7 +2,8 @@ import React from 'react';
 import FullPageWithSideBar from "../../../components/layout/simple/fullpagewithsidebar/FullPageWithSidebar";
 import UserCard from "../../../components/entity/user/single/card/UserCard";
 import ProjectCardList from "../../../components/entity/project/many/cards_list/ProjectCardList";
-import {Row} from "antd";
+import {Button, Row} from "antd";
+import {Link} from "react-router-dom";
 
 interface IProps {}
 
@@ -20,7 +21,12 @@ class AccountLayout extends React.Component<IProps, IState> {
             <Row className={"margin-md-top"}/>
             {
                 window.App.authorizedUser ?
-                    <ProjectCardList label={"My projects"} type={"user"} userGuid={window.App.authorizedUser!.guid!}/>
+                    <div>
+                        <ProjectCardList label={"My projects"} type={"user"} userGuid={window.App.authorizedUser!.guid!}/>
+                        <Link to={"/home/integrations"}>
+                            <Button icon={"plus"} type={"primary"}>Import projects</Button>
+                        </Link>
+                    </div>
                     : null
             }
         </FullPageWithSideBar>;

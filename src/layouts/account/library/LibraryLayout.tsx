@@ -18,6 +18,7 @@ class LibraryLayout extends React.Component<IProps, IState> {
         return <FullPageWithSideBar sidebarType={"home"}>
             <div>
                 <h3 className={"ant-typography"}>My library</h3>
+                <p>Your monthly subscription will be distributed across those projects</p>
 
                 <Row className="margin-md-vertical"/>
 

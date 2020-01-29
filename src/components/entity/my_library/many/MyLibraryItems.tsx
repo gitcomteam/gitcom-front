@@ -46,7 +46,7 @@ class MyLibraryItems extends React.Component<IProps, IState> {
             return <Icon type="loading" style={{fontSize: "2em"}}/>;
         }
         return <div>
-            <Row>
+            <Row type={"flex"}>
             {this.state.items.length === 0 ? <p>Your library is empty</p> : null}
             {this.state.items.map((item: LibraryItem, i: number) => {
                 return <Col className={"padding-sm"} sm={12} xs={24} key={i}>

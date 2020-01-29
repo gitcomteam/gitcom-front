@@ -1,3 +1,4 @@
 #!/bin/bash
-rm -rf /usr/local/gitcom/frontend/app/build/*
-cp -avr /usr/local/gitcom/frontend/app/tmp/build /usr/local/gitcom/frontend/app/
+python3 scripts/deploy/prod/stages/cdn_upload.py
+./scripts/deploy/prod/stages/copy_build.sh $1
+ssh $1 "bash -s" < ./scripts/deploy/prod/stages/deploy.sh

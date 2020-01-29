@@ -13,8 +13,9 @@ interface IState {
 
 class ProjectCard extends React.Component<IProps, IState> {
     render() {
+        const project = this.props.project;
         return <Link to={"/" + this.props.project.base_uri}>
-            <Card className="hover-pointer material-shadow-hover-1">
+            <Card className="hover-pointer material-shadow-hover-1" title={project.name}>
                 <ProjectInfo project={this.props.project}/>
             </Card>
         </Link>;

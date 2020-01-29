@@ -426,6 +426,16 @@ export const usdPrice: msRest.OperationQueryParameter = {
     }
   }
 };
+export const userGuid: msRest.OperationQueryParameter = {
+  parameterPath: "userGuid",
+  mapper: {
+    required: true,
+    serializedName: "user_guid",
+    type: {
+      name: "String"
+    }
+  }
+};
 export const useUrl: msRest.OperationQueryParameter = {
   parameterPath: "useUrl",
   mapper: {

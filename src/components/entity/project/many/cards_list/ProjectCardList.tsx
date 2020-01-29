@@ -7,7 +7,8 @@ import {retryRequest} from "../../../../../classes/utils/http/retryRequest";
 
 interface IProps {
     label: string,
-    type: string
+    type: string,
+    userGuid: string|null
 }
 
 interface IState {
@@ -16,6 +17,10 @@ interface IState {
 }
 
 class ProjectCardList extends React.Component<IProps, IState> {
+    public static defaultProps = {
+        userGuid: null
+    };
+
     constructor(props: IProps) {
         super(props);
         this.state = {
@@ -40,6 +45,12 @@ class ProjectCardList extends React.Component<IProps, IState> {
                 break;
             case "random":
                 window.App.apiClient.getRandomProjects()
+                    .then((result) =>
+                        this.processGetProjects(result._response))
+                    .catch((error) => handleApiError(error.response));
+                break;
+            case "user":
+                window.App.apiClient.getUserProjects(this.props.userGuid!)
                     .then((result) =>
                         this.processGetProjects(result._response))
                     .catch((error) => handleApiError(error.response));

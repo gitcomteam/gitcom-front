@@ -67,7 +67,7 @@ class ItemCard extends React.Component<IProps, IState> {
         let project = this.state.project;
 
         return <HoverableCard>
-            <ProjectInfo guid={this.props.item.project_guid!}/>
+            <ProjectInfo guid={this.props.item.project_guid!} displayName={true}/>
             <Row>
                 <b>Added: </b><p className="inline">{this.props.item.created_at}</p>
             </Row>

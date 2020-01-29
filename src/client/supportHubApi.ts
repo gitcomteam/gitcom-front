@@ -1362,6 +1362,33 @@ class SupportHubApi extends SupportHubApiContext {
   }
 
   /**
+   * @param userGuid
+   * @param [options] The optional parameters
+   * @returns Promise<Models.GetUserProjectsResponse>
+   */
+  getUserProjects(userGuid: string, options?: msRest.RequestOptionsBase): Promise<Models.GetUserProjectsResponse>;
+  /**
+   * @param userGuid
+   * @param callback The callback
+   */
+  getUserProjects(userGuid: string, callback: msRest.ServiceCallback<Models.GetUserProjectsOKResponse>): void;
+  /**
+   * @param userGuid
+   * @param options The optional parameters
+   * @param callback The callback
+   */
+  getUserProjects(userGuid: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.GetUserProjectsOKResponse>): void;
+  getUserProjects(userGuid: string, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.GetUserProjectsOKResponse>, callback?: msRest.ServiceCallback<Models.GetUserProjectsOKResponse>): Promise<Models.GetUserProjectsResponse> {
+    return this.sendOperationRequest(
+      {
+        userGuid,
+        options
+      },
+      getUserProjectsOperationSpec,
+      callback) as Promise<Models.GetUserProjectsResponse>;
+  }
+
+  /**
    * @param projectGuid
    * @param [options] The optional parameters
    * @returns Promise<Models.GetProjectProductsResponse>
@@ -2287,6 +2314,21 @@ const getRandomProjectsOperationSpec: msRest.OperationSpec = {
   responses: {
     200: {
       bodyMapper: Mappers.GetRandomProjectsOKResponse
+    },
+    default: {}
+  },
+  serializer
+};
+
+const getUserProjectsOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "api/v1/user/projects/get",
+  queryParameters: [
+    Parameters.userGuid
+  ],
+  responses: {
+    200: {
+      bodyMapper: Mappers.GetUserProjectsOKResponse
     },
     default: {}
   },

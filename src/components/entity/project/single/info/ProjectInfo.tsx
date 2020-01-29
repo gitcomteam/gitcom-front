@@ -6,6 +6,7 @@ import moment from "moment";
 import {retryRequest} from "../../../../../classes/utils/http/retryRequest";
 
 interface IProps {
+    displayName: boolean,
     guid: string|null,
     project: ProjectModel|null
 }
@@ -18,6 +19,7 @@ interface IState {
 
 class ProjectInfo extends React.Component<IProps, IState> {
     public static defaultProps = {
+        displayName: false,
         guid: null,
         project: null
     };
@@ -58,8 +60,6 @@ class ProjectInfo extends React.Component<IProps, IState> {
             isLoaded: true,
             project: json.data.project
         });
-
-        console.log('state UPDATD!');
     }
 
     render() {
@@ -70,8 +70,7 @@ class ProjectInfo extends React.Component<IProps, IState> {
         let project : ProjectModel = this.state.project!;
 
         return <div>
-            <b>{project.name!}</b>
-            <br/><br/>
+            { this.props.displayName ? <div><b>{project.name!}</b><br/><br/></div> : null }
             <div className="text-left">
                 {project.description!}<br/>
                 <Row className="margin-xs"/>

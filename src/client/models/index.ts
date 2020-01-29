@@ -968,6 +968,20 @@ export interface GetRandomProjectsOKResponse {
 }
 
 /**
+ * An interface representing GetUserProjectsOKResponseData.
+ */
+export interface GetUserProjectsOKResponseData {
+  projects?: Project[];
+}
+
+/**
+ * An interface representing GetUserProjectsOKResponse.
+ */
+export interface GetUserProjectsOKResponse {
+  data?: GetUserProjectsOKResponseData;
+}
+
+/**
  * An interface representing GetProjectProductsOKResponseData.
  */
 export interface GetProjectProductsOKResponseData {
@@ -2194,6 +2208,26 @@ export type GetRandomProjectsResponse = GetRandomProjectsOKResponse & {
        * The response body as parsed JSON or XML
        */
       parsedBody: GetRandomProjectsOKResponse;
+    };
+};
+
+/**
+ * Contains response data for the getUserProjects operation.
+ */
+export type GetUserProjectsResponse = GetUserProjectsOKResponse & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: GetUserProjectsOKResponse;
     };
 };
 

@@ -2647,6 +2647,45 @@ export const GetRandomProjectsOKResponse: msRest.CompositeMapper = {
   }
 };
 
+export const GetUserProjectsOKResponseData: msRest.CompositeMapper = {
+  serializedName: "GetUserProjectsOKResponse_data",
+  type: {
+    name: "Composite",
+    className: "GetUserProjectsOKResponseData",
+    modelProperties: {
+      projects: {
+        serializedName: "projects",
+        type: {
+          name: "Sequence",
+          element: {
+            type: {
+              name: "Composite",
+              className: "Project"
+            }
+          }
+        }
+      }
+    }
+  }
+};
+
+export const GetUserProjectsOKResponse: msRest.CompositeMapper = {
+  serializedName: "GetUserProjectsOKResponse",
+  type: {
+    name: "Composite",
+    className: "GetUserProjectsOKResponse",
+    modelProperties: {
+      data: {
+        serializedName: "data",
+        type: {
+          name: "Composite",
+          className: "GetUserProjectsOKResponseData"
+        }
+      }
+    }
+  }
+};
+
 export const GetProjectProductsOKResponseData: msRest.CompositeMapper = {
   serializedName: "GetProjectProductsOKResponse_data",
   type: {

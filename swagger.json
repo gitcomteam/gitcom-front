@@ -2288,6 +2288,45 @@
         }
       }
     },
+    "/user/projects/get": {
+      "get": {
+        "tags": ["project"],
+        "operationId": "getUserProjects",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "user_guid",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "projects": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/definitions/Project"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/project/products/get": {
       "get": {
         "tags": [ "product" ],

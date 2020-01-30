@@ -73,8 +73,8 @@ class ProjectCardList extends React.Component<IProps, IState> {
             <h4 className={"ant-typography"}>{this.props.label}</h4>
             { this.state.isLoaded ?
                 <Row type={"flex"}>
-                    {projectsList && projectsList.map((project: ProjectModel, i: number) => {
-                        return <Col className="padding-sm" sm={12} xs={24} key={i}>
+                    {projectsList && projectsList.map((project: ProjectModel) => {
+                        return <Col className="padding-sm" sm={12} xs={24} key={`${this.props.type}_${project.guid}`}>
                             <ProjectCard project={project}/>
                         </Col>;
                     })}

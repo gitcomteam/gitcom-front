@@ -4,6 +4,7 @@ import UserBalanceCard from "../../../components/entity/user_balance/single/card
 import MyWithdrawalsList from "../../../components/entity/withdrawal/many/meList/MyWithdrawalsList";
 import {Row} from "antd";
 import NewWithdrawalButton from "../../../components/entity/withdrawal/action/new/NewWithdrawalButton";
+import AuthRedirect from "../../../components/auth/redirect/AuthRedirect";
 
 interface IProps {
 }
@@ -14,6 +15,7 @@ interface IState {
 class WithdrawalsLayout extends React.Component<IProps, IState> {
     render() {
         return <FullPageWithSideBar sidebarType={"home"}>
+            <AuthRedirect/>
             <h3 className={"ant-typography"}>Withdrawal requests</h3>
 
             <h4 className={"ant-typography"}>Account balance</h4>

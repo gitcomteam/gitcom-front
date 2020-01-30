@@ -1,5 +1,6 @@
 import React from 'react';
 import FullPageWithSideBar from "../../../components/layout/simple/fullpagewithsidebar/FullPageWithSidebar";
+import AuthRedirect from "../../../components/auth/redirect/AuthRedirect";
 
 interface IProps {
 }
@@ -14,6 +15,7 @@ class SettingsLayout extends React.Component<IProps, IState> {
     }
     render() {
         return <FullPageWithSideBar sidebarType={"home"}>
+            <AuthRedirect/>
             <div>
                 Settings layout
             </div>

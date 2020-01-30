@@ -1,7 +1,6 @@
 import React from "react";
 import {Layout, Menu, Icon} from "antd";
 import {Link} from "react-router-dom";
-import AuthRedirect from "../../auth/redirect/AuthRedirect";
 
 const { SubMenu } = Menu;
 const { Sider } = Layout;
@@ -33,7 +32,6 @@ class HomeSidebar extends React.Component {
     render() {
         return (
             <Sider>
-                <AuthRedirect/>
                 <Menu
                     mode="inline"
                     defaultSelectedKeys={HomeSidebar.getActiveMenuKeys()}

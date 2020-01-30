@@ -4,6 +4,7 @@ import UserBalanceCard from "../../../components/entity/user_balance/single/card
 import {Col, Row} from "antd";
 import UserSetting from "../../../components/entity/user_settings/single/UserSetting";
 import {Link} from "react-router-dom";
+import AuthRedirect from "../../../components/auth/redirect/AuthRedirect";
 
 interface IProps {
 }
@@ -20,6 +21,7 @@ class SubscriptionLayout extends React.Component<IProps, IState> {
     render() {
         return <FullPageWithSideBar sidebarType={"home"}>
             <div>
+                <AuthRedirect/>
                 <h3 className={"ant-typography"}>Subscription settings</h3>
 
                 <Row className="margin-md-vertical"/>

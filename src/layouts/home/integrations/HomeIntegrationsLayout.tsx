@@ -4,6 +4,7 @@ import {Button, Divider, Icon, Row} from "antd";
 import {Link} from "react-router-dom";
 import {handleApiError} from "../../../classes/notification/errorHandler/errorHandler";
 import ConnectButton from "../../../components/external/auth/connectButton/ConnectButton";
+import AuthRedirect from "../../../components/auth/redirect/AuthRedirect";
 
 interface IProps {
 }
@@ -101,6 +102,7 @@ class HomeIntegrationsLayout extends React.Component<IProps, IState> {
 
         return <FullPageWithSideBar sidebarType={"home"}>
             <div>
+                <AuthRedirect/>
                 <h2 className={"ant-typography"}>Integrations</h2>
 
                 <div className="text-left">

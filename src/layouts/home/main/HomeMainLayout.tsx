@@ -1,6 +1,7 @@
 import React from 'react';
 import FullPageWithSideBar from "../../../components/layout/simple/fullpagewithsidebar/FullPageWithSidebar";
 import {Link} from "react-router-dom";
+import AuthRedirect from "../../../components/auth/redirect/AuthRedirect";
 
 interface IProps {
 }
@@ -16,6 +17,7 @@ class HomeMainLayout extends React.Component<IProps, IState> {
     render() {
         return <FullPageWithSideBar sidebarType={"home"}>
             <div>
+                <AuthRedirect/>
                 <h2 className={"ant-typography"}>Home layout</h2>
                 <b>Welcome to the GitCom platform</b>
                 <div className="text-left">

@@ -6,11 +6,12 @@ import {Button, Row} from "antd";
 import {Link} from "react-router-dom";
 import AuthRedirect from "../../../components/auth/redirect/AuthRedirect";
 
-interface IProps {}
+class AccountLayout extends React.Component {
+    constructor(props: any) {
+        document.title = "My account | GitCom - Community-Driven open source marketplace";
+        super(props);
+    }
 
-interface IState {}
-
-class AccountLayout extends React.Component<IProps, IState> {
     componentDidMount(): void {
         setTimeout(() => {this.setState({})}, 1500);
     }

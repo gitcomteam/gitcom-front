@@ -6,14 +6,9 @@ import UserSetting from "../../../components/entity/user_settings/single/UserSet
 import {Link} from "react-router-dom";
 import AuthRedirect from "../../../components/auth/redirect/AuthRedirect";
 
-interface IProps {
-}
-
-interface IState {
-}
-
-class SubscriptionLayout extends React.Component<IProps, IState> {
-    constructor(props: IProps) {
+class SubscriptionLayout extends React.Component {
+    constructor(props: any) {
+        document.title = "Subscription | GitCom - Community-Driven open source marketplace";
         super(props);
         this.state = {}
     }

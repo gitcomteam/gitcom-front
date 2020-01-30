@@ -16,6 +16,7 @@ interface IState {
 
 class BillingLayout extends React.Component<IProps, IState> {
     constructor(props: IProps) {
+        document.title = "Billing | GitCom - Community-Driven open source marketplace";
         super(props);
         this.state = {
             isUserLoaded: false

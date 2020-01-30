@@ -21,6 +21,7 @@ interface IState {
 
 class RegisterLayout extends React.Component<IProps, IState> {
     constructor(props: any) {
+        document.title = "Register | GitCom - Community-Driven open source marketplace";
         super(props);
         this.state = {
             registrationComplete: false,

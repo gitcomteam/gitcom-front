@@ -6,13 +6,7 @@ import {Row} from "antd";
 import NewWithdrawalButton from "../../../components/entity/withdrawal/action/new/NewWithdrawalButton";
 import AuthRedirect from "../../../components/auth/redirect/AuthRedirect";
 
-interface IProps {
-}
-
-interface IState {
-}
-
-class WithdrawalsLayout extends React.Component<IProps, IState> {
+class WithdrawalsLayout extends React.Component {
     render() {
         return <FullPageWithSideBar sidebarType={"home"}>
             <AuthRedirect/>

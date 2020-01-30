@@ -12,6 +12,7 @@ interface IState {
 class HomeMainLayout extends React.Component<IProps, IState> {
     constructor(props: IProps) {
         super(props);
+        document.title = "Home | GitCom - Community-Driven open source marketplace";
     }
 
     render() {

@@ -63,7 +63,7 @@ class ProjectCardList extends React.Component<IProps, IState> {
         this.setState({
             isLoaded: true,
             projects: json.data.projects
-        })
+        });
     }
 
     render() {

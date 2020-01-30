@@ -65,6 +65,17 @@ class PageFooter extends React.Component<IProps, IState> {
                         style={{width: "200px", height: "54px"}}
                     />
                 </a>
+                <a
+                    href="https://discordapp.com/invite/gRxPXPn"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    <img
+                        src={"/img/icon/product/discord_full.svg"}
+                        alt="Discord logo"
+                        style={{width: "200px", height: "54px"}}
+                    />
+                </a>
             </Row>
 
             <Row className="margin-md-top">

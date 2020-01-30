@@ -4,6 +4,8 @@ import {handleApiError} from "../../../../../classes/notification/errorHandler/e
 import {Button, Icon, Row} from "antd";
 import moment from "moment";
 import {retryRequest} from "../../../../../classes/utils/http/retryRequest";
+import {Link} from "react-router-dom";
+import AddToLibraryButton from "../../../../action/library/AddToLibraryButton/AddToLibraryButton";
 
 interface IProps {
     displayName: boolean,
@@ -70,7 +72,12 @@ class ProjectInfo extends React.Component<IProps, IState> {
         let project : ProjectModel = this.state.project!;
 
         return <div>
-            { this.props.displayName ? <div><b>{project.name!}</b><br/><br/></div> : null }
+            { this.props.displayName ? <div>
+                <Link to={`/${project.base_uri}`}>
+                    <b>{project.name!}</b>
+                </Link>
+                <br/><br/>
+            </div> : null }
             <div className="text-left">
                 {project.description!}<br/>
                 <Row className="margin-xs"/>
@@ -78,7 +85,7 @@ class ProjectInfo extends React.Component<IProps, IState> {
             <Row className="text-left">
                 <i>Created:</i> {moment(project.created_at).format('MMMM Do YYYY')}
                 <br/><br/>
-                <Button icon={"star"}> {project.stars_count}</Button>
+                <AddToLibraryButton project={project}/>
             </Row>
         </div>;
     }

@@ -21,6 +21,9 @@ This platform can help:
 2. developers: help to earn from their open source projects via multiple monetization plans such as open-core, subscription, donations and so on.
 More details on [GitCom landing page](https://start.gitcom.org)
 
+## API Documentation
+Check out `swagger.json` file inside repo or view it here: [swagger preview](https://generator.swagger.io/?url=https://raw.githubusercontent.com/gitcomteam/gitcom-front/master/swagger.json)
+
 ### Tech stack: :hammer_and_wrench:
 Project is built using [Create react app](https://github.com/facebook/create-react-app) & Typescript
 

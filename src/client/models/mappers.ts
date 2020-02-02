@@ -848,6 +848,34 @@ export const WithdrawalRequest: msRest.CompositeMapper = {
   }
 };
 
+export const Image: msRest.CompositeMapper = {
+  serializedName: "Image",
+  type: {
+    name: "Composite",
+    className: "Image",
+    modelProperties: {
+      guid: {
+        serializedName: "guid",
+        type: {
+          name: "String"
+        }
+      },
+      url: {
+        serializedName: "url",
+        type: {
+          name: "String"
+        }
+      },
+      createdAt: {
+        serializedName: "created_at",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  }
+};
+
 export const GetLoginOKResponseData: msRest.CompositeMapper = {
   serializedName: "GetLoginOKResponse_data",
   type: {
@@ -1543,6 +1571,40 @@ export const GetProjectPostsOKResponse: msRest.CompositeMapper = {
         type: {
           name: "Composite",
           className: "GetProjectPostsOKResponseData"
+        }
+      }
+    }
+  }
+};
+
+export const GetProjectImagesOKResponseData: msRest.CompositeMapper = {
+  serializedName: "GetProjectImagesOKResponse_data",
+  type: {
+    name: "Composite",
+    className: "GetProjectImagesOKResponseData",
+    modelProperties: {
+      images: {
+        serializedName: "images",
+        type: {
+          name: "Composite",
+          className: "Image"
+        }
+      }
+    }
+  }
+};
+
+export const GetProjectImagesOKResponse: msRest.CompositeMapper = {
+  serializedName: "GetProjectImagesOKResponse",
+  type: {
+    name: "Composite",
+    className: "GetProjectImagesOKResponse",
+    modelProperties: {
+      data: {
+        serializedName: "data",
+        type: {
+          name: "Composite",
+          className: "GetProjectImagesOKResponseData"
         }
       }
     }

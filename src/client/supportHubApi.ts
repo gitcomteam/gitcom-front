@@ -481,6 +481,33 @@ class SupportHubApi extends SupportHubApiContext {
   }
 
   /**
+   * @param projectGuid
+   * @param [options] The optional parameters
+   * @returns Promise<Models.GetProjectImagesResponse>
+   */
+  getProjectImages(projectGuid: string, options?: msRest.RequestOptionsBase): Promise<Models.GetProjectImagesResponse>;
+  /**
+   * @param projectGuid
+   * @param callback The callback
+   */
+  getProjectImages(projectGuid: string, callback: msRest.ServiceCallback<Models.GetProjectImagesOKResponse>): void;
+  /**
+   * @param projectGuid
+   * @param options The optional parameters
+   * @param callback The callback
+   */
+  getProjectImages(projectGuid: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.GetProjectImagesOKResponse>): void;
+  getProjectImages(projectGuid: string, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.GetProjectImagesOKResponse>, callback?: msRest.ServiceCallback<Models.GetProjectImagesOKResponse>): Promise<Models.GetProjectImagesResponse> {
+    return this.sendOperationRequest(
+      {
+        projectGuid,
+        options
+      },
+      getProjectImagesOperationSpec,
+      callback) as Promise<Models.GetProjectImagesResponse>;
+  }
+
+  /**
    * @param boardGuid Board Guid
    * @param [options] The optional parameters
    * @returns Promise<Models.GetBoardResponse>
@@ -1844,6 +1871,21 @@ const getProjectPostsOperationSpec: msRest.OperationSpec = {
   responses: {
     200: {
       bodyMapper: Mappers.GetProjectPostsOKResponse
+    },
+    default: {}
+  },
+  serializer
+};
+
+const getProjectImagesOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "api/v1/project/images/get",
+  queryParameters: [
+    Parameters.projectGuid
+  ],
+  responses: {
+    200: {
+      bodyMapper: Mappers.GetProjectImagesOKResponse
     },
     default: {}
   },

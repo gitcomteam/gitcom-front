@@ -262,6 +262,15 @@ export interface WithdrawalRequest {
 }
 
 /**
+ * An interface representing Image.
+ */
+export interface Image {
+  guid?: string;
+  url?: string;
+  createdAt?: string;
+}
+
+/**
  * An interface representing GetLoginOKResponseData.
  */
 export interface GetLoginOKResponseData {
@@ -538,6 +547,20 @@ export interface GetProjectPostsOKResponseData {
  */
 export interface GetProjectPostsOKResponse {
   data?: GetProjectPostsOKResponseData;
+}
+
+/**
+ * An interface representing GetProjectImagesOKResponseData.
+ */
+export interface GetProjectImagesOKResponseData {
+  images?: Image;
+}
+
+/**
+ * An interface representing GetProjectImagesOKResponse.
+ */
+export interface GetProjectImagesOKResponse {
+  data?: GetProjectImagesOKResponseData;
 }
 
 /**
@@ -1608,6 +1631,26 @@ export type GetProjectPostsResponse = GetProjectPostsOKResponse & {
        * The response body as parsed JSON or XML
        */
       parsedBody: GetProjectPostsOKResponse;
+    };
+};
+
+/**
+ * Contains response data for the getProjectImages operation.
+ */
+export type GetProjectImagesResponse = GetProjectImagesOKResponse & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: GetProjectImagesOKResponse;
     };
 };
 

@@ -132,6 +132,10 @@
     {
       "name": "post",
       "description": "Posts related endpoints"
+    },
+    {
+      "name": "image",
+      "description": "Operations related to images"
     }
   ],
   "paths": {
@@ -881,6 +885,44 @@
                   "properties": {
                     "posts": {
                       "$ref": "#/definitions/ProjectPost"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/project/images/get": {
+      "get": {
+        "tags": [
+          "image"
+        ],
+        "operationId": "getProjectImages",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "project_guid",
+            "in": "query",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "images": {
+                      "$ref": "#/definitions/Image"
                     }
                   }
                 }
@@ -3179,6 +3221,23 @@
         "paid": {
           "type": "boolean",
           "example": false
+        },
+        "created_at": {
+          "type": "string",
+          "example": "2019-10-06T17:14:54.844933"
+        }
+      }
+    },
+    "Image": {
+      "type": "object",
+      "properties": {
+        "guid": {
+          "type": "string",
+          "example": "46e647fc-9ebc-4d40-bcff-f81af991ee88"
+        },
+        "url": {
+          "type": "string",
+          "example": "/public/img/image.jpg"
         },
         "created_at": {
           "type": "string",

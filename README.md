@@ -15,6 +15,8 @@
 
 This is the main frontend application hosted at [gitcom.org](https://gitcom.org)
 
+![](public/img/screenshots/screenshot.jpg?raw=true)
+
 ### Brief description
 This platform can help:
 1. users: it will provide an easy way for users to support independent developers via subscription or donations and get rewards in return

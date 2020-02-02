@@ -89,7 +89,7 @@ class ProjectPage extends React.Component<IProps, IState> {
         let project: ProjectModel = this.state.project;
 
         return <FullPageWithSideBar sidebarType={"project_view"}>
-            <h2 className={"ant-typography"}>{project.name}</h2>
+            <h1 className={"ant-typography"}>{project.name}</h1>
             <p>{project.description}</p>
             <Row className="padding-sm" style={{display: "flex", justifyContent: "center"}}>
                 <Button className={"margin-sm-sides"} icon={"star"}> {project.stars_count}</Button>

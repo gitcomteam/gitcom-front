@@ -13,6 +13,7 @@ interface IState {
 class ProjectViewSidebar extends React.Component<IProps, IState> {
     static getActiveMenuKeys(): string[] {
         if (window.location.pathname.includes('/pricing')) return ["pricing"];
+        if (window.location.pathname.includes('/cards')) return ["cards"];
         return ["home"];
     }
 
@@ -35,6 +36,9 @@ class ProjectViewSidebar extends React.Component<IProps, IState> {
                     </Menu.Item>
                     <Menu.Item key="pricing" className={"text-left"}>
                         <Link to={`${this.getPath()}/pricing`}><Icon type={"dollar"}/>Pricing</Link>
+                    </Menu.Item>
+                    <Menu.Item key="cards" className={"text-left"}>
+                        <Link to={`${this.getPath()}/cards`}><Icon type={"credit-card"}/>Cards</Link>
                     </Menu.Item>
                 </Menu>
             </Sider>

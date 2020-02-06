@@ -38,20 +38,17 @@ class EditProjectPricingLayout extends React.Component<IProps, IState> {
 
     getProjectInfo(): void {
         window.App.apiClient.getProjectByAlias(this.props.match.params.owner, this.props.match.params.alias)
-            .then((result) =>
-                this.processGetProjectInfo(result._response))
+            .then((res) => {
+                let json = JSON.parse(res._response.bodyAsText);
+
+                this.setState({
+                    isLoaded: true,
+                    project: json.data.project
+                });
+
+                this.getProducts();
+            })
             .catch((error) => handleApiError(error.response));
-    }
-
-    processGetProjectInfo(response: any) {
-        let json = JSON.parse(response.bodyAsText);
-
-        this.setState({
-            isLoaded: true,
-            project: json.data.project
-        });
-
-        this.getProducts();
     }
 
     getProducts() {

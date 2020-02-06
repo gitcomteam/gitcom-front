@@ -312,6 +312,18 @@ export const owner: msRest.OperationQueryParameter = {
     }
   }
 };
+export const page: msRest.OperationQueryParameter = {
+  parameterPath: [
+    "options",
+    "page"
+  ],
+  mapper: {
+    serializedName: "page",
+    type: {
+      name: "Number"
+    }
+  }
+};
 export const password0: msRest.OperationQueryParameter = {
   parameterPath: [
     "options",

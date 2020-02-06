@@ -23,6 +23,7 @@ import HelpLayout from "./layouts/help/HelpLayout";
 import EditProjectPricingLayout from "./layouts/entity/project/pricing/edit/EditProjectPricingLayout";
 import WithdrawalsLayout from "./layouts/account/withdrawals/WithdrawalsLayout";
 import DeveloperQuickstartLayout from "./layouts/quickstart/developer/DeveloperQuickstartLayout";
+import ProjectCardsLayout from "./layouts/entity/project/sub_pages/cards/ProjectCardsLayout";
 
 class Routes extends React.Component {
     render() {
@@ -70,6 +71,8 @@ class Routes extends React.Component {
                     <Route path="/:owner/:alias/pricing/edit" exact component={EditProjectPricingLayout}/>
 
                     <Route path="/:owner/:alias/board/:boardGuid" exact component={BoardPage}/>
+
+                    <Route path="/:owner/:alias/cards" exact component={ProjectCardsLayout}/>
 
                     <Route component={NotFoundLayout}/>
                 </Switch>

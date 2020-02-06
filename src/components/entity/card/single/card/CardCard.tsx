@@ -10,6 +10,8 @@ import {BoardModel, CardModel} from "../../../../../client/bindings";
 import PermissionCheck from "../../../../check/permission_check/single/PermissionCheck";
 import EditCard from "../../action/edit/EditCard";
 import AuthCheck from "../../../../check/auth_check/AuthCheck";
+import ReactMarkdown from "react-markdown";
+import moment from "moment";
 
 interface IProps {
     parentBoard: BoardModel|null,
@@ -59,11 +61,7 @@ class CardCard extends React.Component<IProps, IState> {
                 className={styles.root + " material-shadow-hover-1"}
                 onClick={this.cardOnClick.bind(this)}
             >
-                <h4 className={"ant-typography"}>{card.name}</h4>
-
-                <div className="margin-sm-top">
-                    cards here
-                </div>
+                <b className={"ant-typography"}>{card.name}</b>
             </Card>
             <Modal
                 title={<b className="text-center">{card.name}</b>}
@@ -88,7 +86,9 @@ class CardCard extends React.Component<IProps, IState> {
                 </PermissionCheck>
                 <Row className="margin-md-top"/>
 
-                <p>{card.description ? card.description : "no content"}</p>
+                <ReactMarkdown
+                    source={card.description ? card.description : "no content"}
+                />
 
                 <Row className="margin-lg-top">
                     <Col md={12} xs={24} className={"padding-md"}>

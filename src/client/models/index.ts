@@ -606,6 +606,29 @@ export interface GetColumnCardsOKResponse {
 }
 
 /**
+ * An interface representing GetProjectCardsOKResponseData.
+ */
+export interface GetProjectCardsOKResponseData {
+  cards?: Card[];
+}
+
+/**
+ * An interface representing GetProjectCardsOKResponseMeta.
+ */
+export interface GetProjectCardsOKResponseMeta {
+  currentPage?: number;
+  pagesCount?: number;
+}
+
+/**
+ * An interface representing GetProjectCardsOKResponse.
+ */
+export interface GetProjectCardsOKResponse {
+  data?: GetProjectCardsOKResponseData;
+  meta?: GetProjectCardsOKResponseMeta;
+}
+
+/**
  * An interface representing GetProjectByAliasOKResponseData.
  */
 export interface GetProjectByAliasOKResponseData {
@@ -1148,6 +1171,13 @@ export interface SupportHubApiEditProjectOptionalParams extends msRest.RequestOp
 /**
  * Optional Parameters.
  */
+export interface SupportHubApiGetProjectCardsOptionalParams extends msRest.RequestOptionsBase {
+  page?: number;
+}
+
+/**
+ * Optional Parameters.
+ */
 export interface SupportHubApiCreateCardOptionalParams extends msRest.RequestOptionsBase {
   description?: string;
   columnOrder?: number;
@@ -1161,6 +1191,13 @@ export interface SupportHubApiEditCardOptionalParams extends msRest.RequestOptio
   description?: string;
   columnOrder?: number;
   columnGuid?: string;
+}
+
+/**
+ * Optional Parameters.
+ */
+export interface SupportHubApiGetNewestProjectsOptionalParams extends msRest.RequestOptionsBase {
+  page?: number;
 }
 
 /**
@@ -1711,6 +1748,26 @@ export type GetColumnCardsResponse = GetColumnCardsOKResponse & {
        * The response body as parsed JSON or XML
        */
       parsedBody: GetColumnCardsOKResponse;
+    };
+};
+
+/**
+ * Contains response data for the getProjectCards operation.
+ */
+export type GetProjectCardsResponse = GetProjectCardsOKResponse & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: GetProjectCardsOKResponse;
     };
 };
 

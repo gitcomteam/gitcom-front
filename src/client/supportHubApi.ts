@@ -589,6 +589,33 @@ class SupportHubApi extends SupportHubApiContext {
   }
 
   /**
+   * @param projectGuid
+   * @param [options] The optional parameters
+   * @returns Promise<Models.GetProjectCardsResponse>
+   */
+  getProjectCards(projectGuid: string, options?: Models.SupportHubApiGetProjectCardsOptionalParams): Promise<Models.GetProjectCardsResponse>;
+  /**
+   * @param projectGuid
+   * @param callback The callback
+   */
+  getProjectCards(projectGuid: string, callback: msRest.ServiceCallback<Models.GetProjectCardsOKResponse>): void;
+  /**
+   * @param projectGuid
+   * @param options The optional parameters
+   * @param callback The callback
+   */
+  getProjectCards(projectGuid: string, options: Models.SupportHubApiGetProjectCardsOptionalParams, callback: msRest.ServiceCallback<Models.GetProjectCardsOKResponse>): void;
+  getProjectCards(projectGuid: string, options?: Models.SupportHubApiGetProjectCardsOptionalParams | msRest.ServiceCallback<Models.GetProjectCardsOKResponse>, callback?: msRest.ServiceCallback<Models.GetProjectCardsOKResponse>): Promise<Models.GetProjectCardsResponse> {
+    return this.sendOperationRequest(
+      {
+        projectGuid,
+        options
+      },
+      getProjectCardsOperationSpec,
+      callback) as Promise<Models.GetProjectCardsResponse>;
+  }
+
+  /**
    * @param owner
    * @param alias
    * @param [options] The optional parameters
@@ -1346,7 +1373,7 @@ class SupportHubApi extends SupportHubApiContext {
    * @param [options] The optional parameters
    * @returns Promise<Models.GetNewestProjectsResponse>
    */
-  getNewestProjects(options?: msRest.RequestOptionsBase): Promise<Models.GetNewestProjectsResponse>;
+  getNewestProjects(options?: Models.SupportHubApiGetNewestProjectsOptionalParams): Promise<Models.GetNewestProjectsResponse>;
   /**
    * @param callback The callback
    */
@@ -1355,8 +1382,8 @@ class SupportHubApi extends SupportHubApiContext {
    * @param options The optional parameters
    * @param callback The callback
    */
-  getNewestProjects(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.GetNewestProjectsOKResponse>): void;
-  getNewestProjects(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.GetNewestProjectsOKResponse>, callback?: msRest.ServiceCallback<Models.GetNewestProjectsOKResponse>): Promise<Models.GetNewestProjectsResponse> {
+  getNewestProjects(options: Models.SupportHubApiGetNewestProjectsOptionalParams, callback: msRest.ServiceCallback<Models.GetNewestProjectsOKResponse>): void;
+  getNewestProjects(options?: Models.SupportHubApiGetNewestProjectsOptionalParams | msRest.ServiceCallback<Models.GetNewestProjectsOKResponse>, callback?: msRest.ServiceCallback<Models.GetNewestProjectsOKResponse>): Promise<Models.GetNewestProjectsResponse> {
     return this.sendOperationRequest(
       {
         options
@@ -1937,6 +1964,22 @@ const getColumnCardsOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
+const getProjectCardsOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "api/v1/project/cards/get",
+  queryParameters: [
+    Parameters.projectGuid,
+    Parameters.page
+  ],
+  responses: {
+    200: {
+      bodyMapper: Mappers.GetProjectCardsOKResponse
+    },
+    default: {}
+  },
+  serializer
+};
+
 const getProjectByAliasOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "api/v1/alias/project/get",
@@ -2341,6 +2384,9 @@ const getMyEntityPermissionsOperationSpec: msRest.OperationSpec = {
 const getNewestProjectsOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "api/v1/projects/newest/get",
+  queryParameters: [
+    Parameters.page
+  ],
   responses: {
     200: {
       bodyMapper: Mappers.GetNewestProjectsOKResponse

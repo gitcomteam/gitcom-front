@@ -312,6 +312,18 @@ export const owner: msRest.OperationQueryParameter = {
     }
   }
 };
+export const page: msRest.OperationQueryParameter = {
+  parameterPath: [
+    "options",
+    "page"
+  ],
+  mapper: {
+    serializedName: "page",
+    type: {
+      name: "Number"
+    }
+  }
+};
 export const password0: msRest.OperationQueryParameter = {
   parameterPath: [
     "options",
@@ -423,6 +435,16 @@ export const usdPrice: msRest.OperationQueryParameter = {
     serializedName: "usd_price",
     type: {
       name: "Number"
+    }
+  }
+};
+export const userGuid: msRest.OperationQueryParameter = {
+  parameterPath: "userGuid",
+  mapper: {
+    required: true,
+    serializedName: "user_guid",
+    type: {
+      name: "String"
     }
   }
 };

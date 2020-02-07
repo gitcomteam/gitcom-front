@@ -4,8 +4,11 @@ import {handleApiError} from "../../../../../classes/notification/errorHandler/e
 import {Button, Icon, Row} from "antd";
 import moment from "moment";
 import {retryRequest} from "../../../../../classes/utils/http/retryRequest";
+import {Link} from "react-router-dom";
+import AddToLibraryButton from "../../../../action/library/AddToLibraryButton/AddToLibraryButton";
 
 interface IProps {
+    displayName: boolean,
     guid: string|null,
     project: ProjectModel|null
 }
@@ -18,6 +21,7 @@ interface IState {
 
 class ProjectInfo extends React.Component<IProps, IState> {
     public static defaultProps = {
+        displayName: false,
         guid: null,
         project: null
     };
@@ -58,8 +62,6 @@ class ProjectInfo extends React.Component<IProps, IState> {
             isLoaded: true,
             project: json.data.project
         });
-
-        console.log('state UPDATD!');
     }
 
     render() {
@@ -70,8 +72,12 @@ class ProjectInfo extends React.Component<IProps, IState> {
         let project : ProjectModel = this.state.project!;
 
         return <div>
-            <b>{project.name!}</b>
-            <br/><br/>
+            { this.props.displayName ? <div>
+                <Link to={`/${project.base_uri}`}>
+                    <b>{project.name!}</b>
+                </Link>
+                <br/><br/>
+            </div> : null }
             <div className="text-left">
                 {project.description!}<br/>
                 <Row className="margin-xs"/>
@@ -79,7 +85,7 @@ class ProjectInfo extends React.Component<IProps, IState> {
             <Row className="text-left">
                 <i>Created:</i> {moment(project.created_at).format('MMMM Do YYYY')}
                 <br/><br/>
-                <Button icon={"star"}> {project.stars_count}</Button>
+                <AddToLibraryButton project={project}/>
             </Row>
         </div>;
     }

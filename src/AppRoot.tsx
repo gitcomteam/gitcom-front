@@ -19,6 +19,21 @@ window.AppConfig = config;
 // @ts-ignore
 window.App = new App();
 
+async function loadScriptAsync(url: string) {
+    const script = document.createElement("script");
+
+    script.src = url;
+    script.async = true;
+
+    document.body.appendChild(script);
+}
+
+loadScriptAsync("https://momentjs.com/downloads/moment.min.js").then(() => {});
+
+setTimeout(() => {
+    loadScriptAsync("/js/lazy_init.js").then(() => {});
+}, 1000);
+
 function AppRoot() {
     return (
         <div className="app">

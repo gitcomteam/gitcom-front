@@ -20,6 +20,7 @@ interface IState {
 
 class ConfirmEmailLayout extends React.Component<IProps, IState> {
     constructor(props: IProps) {
+        document.title = "Confirm email | GitCom - Community-Driven open source marketplace";
         super(props);
         this.state = {
             redirectHome: false,

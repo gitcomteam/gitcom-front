@@ -73,7 +73,7 @@ class ExternalRepoLayout extends React.Component<IProps, IState> {
 
             {!this.state.isLoaded ? <Icon type="loading" style={{fontSize: "2em"}}/> : null}
 
-            <Row>
+            <Row type={"flex"}>
                 {this.state.repositories.map((item: any, i: number) => {
                     return <Col key={i} md={12} xs={24} className="padding-sm">
                         <ExternalRepoCard repo={{

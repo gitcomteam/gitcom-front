@@ -5,6 +5,7 @@ import InvoiceCardsList from "../../../components/entity/invoice/many/Cards/Invo
 import {Row} from "antd";
 import UserBalanceCard from "../../../components/entity/user_balance/single/card/UserBalanceCard";
 import NewInvoice from "../../../components/entity/invoice/single/create/NewInvoice";
+import AuthRedirect from "../../../components/auth/redirect/AuthRedirect";
 
 interface IProps {
 }
@@ -15,6 +16,7 @@ interface IState {
 
 class BillingLayout extends React.Component<IProps, IState> {
     constructor(props: IProps) {
+        document.title = "Billing | GitCom - Community-Driven open source marketplace";
         super(props);
         this.state = {
             isUserLoaded: false
@@ -31,6 +33,7 @@ class BillingLayout extends React.Component<IProps, IState> {
 
     render() {
         return <FullPageWithSideBar sidebarType={"home"}>
+            <AuthRedirect/>
             <h3 className={"ant-typography"}>Billing</h3>
 
             <h4 className={"ant-typography"}>Account balance</h4>

@@ -174,3 +174,9 @@ export class ProjectPost {
     created_at?: string;
     updated_at?: string;
 }
+
+export class Image {
+    guid?: string;
+    url?: string;
+    created_at?: string;
+}

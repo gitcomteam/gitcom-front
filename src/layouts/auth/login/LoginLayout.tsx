@@ -26,6 +26,7 @@ interface IState {
 
 class LoginLayout extends React.Component<IProps, IState> {
     constructor(props: any) {
+        document.title = "Sign in | GitCom - Community-Driven open source marketplace";
         super(props);
         this.state = {
             email: "",

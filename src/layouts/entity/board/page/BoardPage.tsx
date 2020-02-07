@@ -92,7 +92,7 @@ class BoardPage extends React.Component<IProps, IState> {
 
         let board = this.state.board;
 
-        return <FullPageWithSideBar sidebarType={"board"}>
+        return <FullPageWithSideBar sidebarType={"project_view"}>
             {breadCrumb}
             <h2 className={"ant-typography"}>{board.name}</h2>
             <p>{board.description}</p>

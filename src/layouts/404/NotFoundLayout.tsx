@@ -4,13 +4,12 @@ import {Button, Card, Col, Icon, Row} from "antd";
 import styles from "../auth/login/styles.module.css";
 import {Link} from "react-router-dom";
 
-interface IProps {
-}
+class NotFoundLayout extends React.Component {
+    constructor(props: any) {
+        document.title = "Page not found | GitCom - Community-Driven open source marketplace";
+        super(props);
+    }
 
-interface IState {
-}
-
-class NotFoundLayout extends React.Component<IProps, IState> {
     render() {
         return (
             <FullContainerPage>

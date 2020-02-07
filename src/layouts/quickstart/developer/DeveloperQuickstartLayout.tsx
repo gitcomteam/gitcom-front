@@ -3,6 +3,11 @@ import {Button, Card, Col, Icon, Row} from "antd";
 import FullContainerPage from "../../../components/layout/simple/fullpage/FullContainerPage";
 
 class DeveloperQuickstartLayout extends React.Component {
+    constructor(props: any) {
+        document.title = "Developer quickstart | GitCom - Community-Driven open source marketplace";
+        super(props);
+    }
+
     render() {
         return <FullContainerPage>
             <Row>

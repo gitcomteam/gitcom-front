@@ -1,13 +1,15 @@
 import React from "react";
 import {ProjectModel} from "../../../../../client/bindings";
 import {handleApiError} from "../../../../../classes/notification/errorHandler/errorHandler";
-import {Col, Icon, Row} from "antd";
+import {Card, Col, Row, Skeleton} from "antd";
 import ProjectCard from "../../single/card/ProjectCard";
-import {retryRequest} from "../../../../../classes/utils/http/retryRequest";
+
+const { Meta } = Card;
 
 interface IProps {
     label: string,
-    type: string
+    type: string,
+    userGuid: string|null
 }
 
 interface IState {
@@ -16,6 +18,10 @@ interface IState {
 }
 
 class ProjectCardList extends React.Component<IProps, IState> {
+    public static defaultProps = {
+        userGuid: null
+    };
+
     constructor(props: IProps) {
         super(props);
         this.state = {
@@ -25,9 +31,7 @@ class ProjectCardList extends React.Component<IProps, IState> {
     }
 
     componentDidMount(): void {
-        retryRequest(() => {
-            this.getProjects();
-        }, () => this.state.isLoaded, true);
+        this.getProjects();
     }
 
     getProjects() {
@@ -44,6 +48,12 @@ class ProjectCardList extends React.Component<IProps, IState> {
                         this.processGetProjects(result._response))
                     .catch((error) => handleApiError(error.response));
                 break;
+            case "user":
+                window.App.apiClient.getUserProjects(this.props.userGuid!)
+                    .then((result) =>
+                        this.processGetProjects(result._response))
+                    .catch((error) => handleApiError(error.response));
+                break;
         }
     }
 
@@ -52,23 +62,36 @@ class ProjectCardList extends React.Component<IProps, IState> {
         this.setState({
             isLoaded: true,
             projects: json.data.projects
-        })
+        });
     }
 
     render() {
-        let projectsList = this.state.projects ? this.state.projects.slice(0, 9) : null;
+        let projectsList = this.state.projects ? this.state.projects : null;
+
+        let loadingCards = [];
+        if (!this.state.isLoaded) {
+            for (let i = 0; i < 10; i++) {
+                loadingCards.push(
+                    <Col className="padding-sm" sm={12} xs={24} key={`${this.props.type}_${i}_preload`}>
+                        <Skeleton loading={true} active>
+                            <Meta title="" description=""/>
+                        </Skeleton>
+                    </Col>
+                );
+            }
+        }
 
         return <div>
             <h4 className={"ant-typography"}>{this.props.label}</h4>
-            { this.state.isLoaded ?
+            {this.state.isLoaded ?
                 <Row type={"flex"}>
-                    {projectsList && projectsList.map((project: ProjectModel, i: number) => {
-                        return <Col className="padding-sm" sm={12} xs={24} key={i}>
+                    {projectsList && projectsList.map((project: ProjectModel) => {
+                        return <Col className="padding-sm" sm={12} xs={24} key={`${this.props.type}_${project.guid}`}>
                             <ProjectCard project={project}/>
                         </Col>;
                     })}
                 </Row> :
-                <Icon type="loading" style={{fontSize: "2em"}}/>
+                <Row type={"flex"}>{loadingCards.map(cardBlock => cardBlock)}</Row>
             }
         </div>;
     }

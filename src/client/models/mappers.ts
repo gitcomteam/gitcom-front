@@ -2721,6 +2721,28 @@ export const GetNewestProjectsOKResponseData: msRest.CompositeMapper = {
   }
 };
 
+export const GetNewestProjectsOKResponseMeta: msRest.CompositeMapper = {
+  serializedName: "GetNewestProjectsOKResponse_meta",
+  type: {
+    name: "Composite",
+    className: "GetNewestProjectsOKResponseMeta",
+    modelProperties: {
+      currentPage: {
+        serializedName: "current_page",
+        type: {
+          name: "Number"
+        }
+      },
+      pagesCount: {
+        serializedName: "pages_count",
+        type: {
+          name: "Number"
+        }
+      }
+    }
+  }
+};
+
 export const GetNewestProjectsOKResponse: msRest.CompositeMapper = {
   serializedName: "GetNewestProjectsOKResponse",
   type: {
@@ -2732,6 +2754,13 @@ export const GetNewestProjectsOKResponse: msRest.CompositeMapper = {
         type: {
           name: "Composite",
           className: "GetNewestProjectsOKResponseData"
+        }
+      },
+      meta: {
+        serializedName: "meta",
+        type: {
+          name: "Composite",
+          className: "GetNewestProjectsOKResponseMeta"
         }
       }
     }

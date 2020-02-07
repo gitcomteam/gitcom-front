@@ -1,6 +1,9 @@
 .root {
     min-width: 250px;
+    max-width: 30vw !important;
     text-align: center;
+    white-space: pre-line;
+    overflow-wrap: break-word;
 }
 
 .root > div {

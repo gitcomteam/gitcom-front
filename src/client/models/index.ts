@@ -993,10 +993,19 @@ export interface GetNewestProjectsOKResponseData {
 }
 
 /**
+ * An interface representing GetNewestProjectsOKResponseMeta.
+ */
+export interface GetNewestProjectsOKResponseMeta {
+  currentPage?: number;
+  pagesCount?: number;
+}
+
+/**
  * An interface representing GetNewestProjectsOKResponse.
  */
 export interface GetNewestProjectsOKResponse {
   data?: GetNewestProjectsOKResponseData;
+  meta?: GetNewestProjectsOKResponseMeta;
 }
 
 /**
@@ -1166,6 +1175,13 @@ export interface SupportHubApiEditProjectOptionalParams extends msRest.RequestOp
    * Project description
    */
   description?: string;
+}
+
+/**
+ * Optional Parameters.
+ */
+export interface SupportHubApiGetColumnCardsOptionalParams extends msRest.RequestOptionsBase {
+  page?: number;
 }
 
 /**

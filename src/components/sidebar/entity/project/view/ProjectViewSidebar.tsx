@@ -32,7 +32,7 @@ class ProjectViewSidebar extends React.Component<IProps, IState> {
                     style={{height: '100%', borderRight: 0}}
                 >
                     <Menu.Item key="home" className={"text-left"}>
-                        <Link to={this.getPath()}><Icon type={"home"}/>Project home</Link>
+                        <Link to={this.getPath()}><Icon type={"home"}/>Project</Link>
                     </Menu.Item>
                     <Menu.Item key="pricing" className={"text-left"}>
                         <Link to={`${this.getPath()}/pricing`}><Icon type={"dollar"}/>Pricing</Link>

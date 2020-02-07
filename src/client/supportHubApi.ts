@@ -566,7 +566,7 @@ class SupportHubApi extends SupportHubApiContext {
    * @param [options] The optional parameters
    * @returns Promise<Models.GetColumnCardsResponse>
    */
-  getColumnCards(columnGuid: string, options?: msRest.RequestOptionsBase): Promise<Models.GetColumnCardsResponse>;
+  getColumnCards(columnGuid: string, options?: Models.SupportHubApiGetColumnCardsOptionalParams): Promise<Models.GetColumnCardsResponse>;
   /**
    * @param columnGuid
    * @param callback The callback
@@ -577,8 +577,8 @@ class SupportHubApi extends SupportHubApiContext {
    * @param options The optional parameters
    * @param callback The callback
    */
-  getColumnCards(columnGuid: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.GetColumnCardsOKResponse>): void;
-  getColumnCards(columnGuid: string, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.GetColumnCardsOKResponse>, callback?: msRest.ServiceCallback<Models.GetColumnCardsOKResponse>): Promise<Models.GetColumnCardsResponse> {
+  getColumnCards(columnGuid: string, options: Models.SupportHubApiGetColumnCardsOptionalParams, callback: msRest.ServiceCallback<Models.GetColumnCardsOKResponse>): void;
+  getColumnCards(columnGuid: string, options?: Models.SupportHubApiGetColumnCardsOptionalParams | msRest.ServiceCallback<Models.GetColumnCardsOKResponse>, callback?: msRest.ServiceCallback<Models.GetColumnCardsOKResponse>): Promise<Models.GetColumnCardsResponse> {
     return this.sendOperationRequest(
       {
         columnGuid,
@@ -1953,7 +1953,8 @@ const getColumnCardsOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "api/v1/board_column/cards/get",
   queryParameters: [
-    Parameters.columnGuid0
+    Parameters.columnGuid0,
+    Parameters.page
   ],
   responses: {
     200: {

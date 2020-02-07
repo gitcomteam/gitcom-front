@@ -24,6 +24,7 @@ import EditProjectPricingLayout from "./layouts/entity/project/pricing/edit/Edit
 import WithdrawalsLayout from "./layouts/account/withdrawals/WithdrawalsLayout";
 import DeveloperQuickstartLayout from "./layouts/quickstart/developer/DeveloperQuickstartLayout";
 import ProjectCardsLayout from "./layouts/entity/project/sub_pages/cards/ProjectCardsLayout";
+import ExploreProjectsLayout from "./layouts/explore/projects/ExploreProjectsLayout";
 
 class Routes extends React.Component {
     render() {
@@ -61,6 +62,10 @@ class Routes extends React.Component {
 
                     <Route path="/auth/external/github/login" exact component={LoginWithGitHubLayout}/>
                     <Route path="/auth/external/gitlab/login" exact component={LoginWithGitLabLayout}/>
+
+                    {/* Explore */}
+
+                    <Route path="/explore/projects" exact component={ExploreProjectsLayout}/>
 
                     {/* Project */}
 

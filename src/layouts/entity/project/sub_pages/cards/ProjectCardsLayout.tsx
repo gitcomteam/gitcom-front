@@ -1,10 +1,11 @@
 import React from "react";
 import FullPageWithSideBar from "../../../../../components/layout/simple/fullpagewithsidebar/FullPageWithSidebar";
-import {Card, Col, Icon, Pagination, Row, Skeleton} from "antd";
+import {Card, Col, Icon, Row, Skeleton} from "antd";
 import {CardModel, ProjectModel} from "../../../../../client/bindings";
 import {handleApiError} from "../../../../../classes/notification/errorHandler/errorHandler";
 import CardCard from "../../../../../components/entity/card/single/card/CardCard";
 import {Link} from "react-router-dom";
+import Pagination from "../../../../../components/custom/antd/pagination/Pagination";
 
 const { Meta } = Card;
 
@@ -44,16 +45,6 @@ class ProjectCardsLayout extends React.Component<IProps, IState> {
             this.setState({currentPage: queryPage});
         }
         this.getProjectInfo();
-    }
-
-    componentDidUpdate(): void {
-        let pageButtons = document.getElementsByClassName("ant-pagination-item");
-        for (let i = 0; i <= pageButtons.length; i++) {
-            if (pageButtons[i]) {
-                let pageNum = pageButtons[i].getAttribute('title');
-                pageButtons[i].innerHTML = `<a href="?page=${pageNum}">${pageNum}</a>`;
-            }
-        }
     }
 
     getProjectInfo(): void {
@@ -126,10 +117,9 @@ class ProjectCardsLayout extends React.Component<IProps, IState> {
             </Row>
             {pagesCount ? <Row>
                 <Pagination
-                    current={this.state.currentPage}
-                    onChange={this.getCards.bind(this)}
-                    pageSize={1}
-                    total={this.state.pagesCount}
+                    currentPage={this.state.currentPage}
+                    pagesCount={this.state.pagesCount}
+                    onChange={this.getCards}
                 />
             </Row> : null}
         </FullPageWithSideBar>

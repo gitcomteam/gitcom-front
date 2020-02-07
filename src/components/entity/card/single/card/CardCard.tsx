@@ -62,6 +62,9 @@ class CardCard extends React.Component<IProps, IState> {
                 onClick={this.cardOnClick.bind(this)}
             >
                 <b className={"ant-typography"}>{card.name}</b>
+                <Row className={"text-left margin-sm-top"}>
+                    <i>Created: {moment(card.created_at).format('MMMM Do YYYY')}</i>
+                </Row>
             </Card>
             <Modal
                 title={<b className="text-center">{card.name}</b>}

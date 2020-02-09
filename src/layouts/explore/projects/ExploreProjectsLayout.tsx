@@ -4,7 +4,7 @@ import ProjectCardList from "../../../components/entity/project/many/cards_list/
 
 class ExploreProjectsLayout extends React.Component {
     render() {
-        return <FullPageWithSideBar sidebarType={"project_view"}>
+        return <FullPageWithSideBar sidebarType={"explore"}>
             <ProjectCardList
                 label={"Newest projects"}
                 type={"newest"}

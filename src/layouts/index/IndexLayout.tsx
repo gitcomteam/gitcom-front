@@ -1,14 +1,33 @@
-import React from 'react';
-import FullContainerPage from "../../components/layout/simple/fullpage/FullContainerPage";
-import ProjectCardList from "../../components/entity/project/many/cards_list/ProjectCardList";
-import {Button, Card, Col, Divider, Row, Typography} from "antd";
-import FastAuth from "../../components/auth/block/FastAuth/FastAuth";
+import React, { lazy } from 'react';
 import {Link} from "react-router-dom";
-import ProjectPosts from "../../components/entity/project_post/many/ProjectPosts";
+import {Button, Card, Col, Divider, Row, Typography} from "antd";
+import FullContainerPage from "../../components/layout/simple/fullpage/FullContainerPage";
+import FastAuth from "../../components/auth/block/FastAuth/FastAuth";
+const ProjectCardList = lazy(() => import("../../components/entity/project/many/cards_list/ProjectCardList"));
+const ProjectPosts = lazy(() => import("../../components/entity/project_post/many/ProjectPosts"));
 
 const { Title } = Typography;
 
-class IndexLayout extends React.Component {
+interface IProps {}
+
+interface IState {
+    showRestOfPage: boolean
+}
+
+class IndexLayout extends React.Component<IProps, IState> {
+    constructor(props: IProps) {
+        super(props);
+        this.state = {
+            showRestOfPage: false
+        }
+    }
+
+    componentDidMount() {
+        setTimeout(() => {
+            this.setState({showRestOfPage: true})
+        }, window.App.isAuthorized() ? 0 : 1000);
+    }
+
     render() {
         return (
             <FullContainerPage>
@@ -126,17 +145,23 @@ class IndexLayout extends React.Component {
                 }
 
                 <Row className={"margin-lg-top"}/>
-                <Row>
-                    <Col sm={16} xs={24}>
-                        <ProjectCardList label={"Newest projects"} type={"newest"}/>
-                        <Row className="margin-lg-top"/>
-                        <ProjectCardList label={"Random projects"} type={"random"}/>
-                    </Col>
-                    <Col sm={8} xs={24}>
-                        <h4 className={"ant-typography"}>Latest updates</h4>
-                        <ProjectPosts/>
-                    </Col>
-                </Row>
+
+                {
+                    this.state.showRestOfPage ?
+                        <Row>
+                            <Col sm={16} xs={24}>
+                                <ProjectCardList label={"Random projects"} type={"random"}/>
+                                <Link to={"/explore/projects"}>
+                                    <Button icon={"search"}>Explore more</Button>
+                                </Link>
+                            </Col>
+                            <Col sm={8} xs={24}>
+                                <h4 className={"ant-typography"}>Latest updates</h4>
+                                <ProjectPosts/>
+                            </Col>
+                        </Row> : null
+                }
+
             </FullContainerPage>
         );
     }

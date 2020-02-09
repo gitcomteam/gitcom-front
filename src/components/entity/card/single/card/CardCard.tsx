@@ -10,8 +10,8 @@ import {BoardModel, CardModel} from "../../../../../client/bindings";
 import PermissionCheck from "../../../../check/permission_check/single/PermissionCheck";
 import EditCard from "../../action/edit/EditCard";
 import AuthCheck from "../../../../check/auth_check/AuthCheck";
-import ReactMarkdown from "react-markdown";
 import moment from "moment";
+import ReactMarkdown from "react-markdown";
 
 interface IProps {
     parentBoard: BoardModel|null,

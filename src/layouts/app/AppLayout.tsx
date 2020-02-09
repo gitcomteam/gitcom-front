@@ -38,7 +38,7 @@ class AppLayout extends React.Component {
                             mode="horizontal"
                             style={{lineHeight: '64px'}}
                         >
-                            <Menu.Item key="1"><Link to={"/"}><Icon type={"share-alt"}/>Explore</Link></Menu.Item>
+                            <Menu.Item key="1"><Link to={"/explore/projects"}><Icon type={"share-alt"}/>Explore</Link></Menu.Item>
                             {loginOrHomeLink}
                             <Menu.Item key="help"><Link to={"/help"}><Icon type={"question-circle"}/>Help</Link></Menu.Item>
                             {

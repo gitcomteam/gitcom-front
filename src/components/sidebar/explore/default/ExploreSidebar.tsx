@@ -25,9 +25,9 @@ class ExploreSidebar extends React.Component {
                     <Menu.Item key="projects" className={"text-left"}>
                         <Link to={"/explore/projects"}><Icon type={"home"}/>Projects</Link>
                     </Menu.Item>
-                    {/*<Menu.Item key="cards" className={"text-left"}>*/}
-                    {/*    <Link to={"/explore/cards"}><Icon type={"credit-card"}/>Cards</Link>*/}
-                    {/*</Menu.Item>*/}
+                    <Menu.Item key="cards" className={"text-left"}>
+                        <Link to={"/explore/cards"}><Icon type={"credit-card"}/>Cards</Link>
+                    </Menu.Item>
                 </Menu>
             </Sider>
         );

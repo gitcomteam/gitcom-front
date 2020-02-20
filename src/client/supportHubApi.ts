@@ -616,6 +616,29 @@ class SupportHubApi extends SupportHubApiContext {
   }
 
   /**
+   * @param [options] The optional parameters
+   * @returns Promise<Models.GetCardsResponse>
+   */
+  getCards(options?: Models.SupportHubApiGetCardsOptionalParams): Promise<Models.GetCardsResponse>;
+  /**
+   * @param callback The callback
+   */
+  getCards(callback: msRest.ServiceCallback<Models.GetCardsOKResponse>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
+  getCards(options: Models.SupportHubApiGetCardsOptionalParams, callback: msRest.ServiceCallback<Models.GetCardsOKResponse>): void;
+  getCards(options?: Models.SupportHubApiGetCardsOptionalParams | msRest.ServiceCallback<Models.GetCardsOKResponse>, callback?: msRest.ServiceCallback<Models.GetCardsOKResponse>): Promise<Models.GetCardsResponse> {
+    return this.sendOperationRequest(
+      {
+        options
+      },
+      getCardsOperationSpec,
+      callback) as Promise<Models.GetCardsResponse>;
+  }
+
+  /**
    * @param owner
    * @param alias
    * @param [options] The optional parameters
@@ -1975,6 +1998,21 @@ const getProjectCardsOperationSpec: msRest.OperationSpec = {
   responses: {
     200: {
       bodyMapper: Mappers.GetProjectCardsOKResponse
+    },
+    default: {}
+  },
+  serializer
+};
+
+const getCardsOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "api/v1/cards/get",
+  queryParameters: [
+    Parameters.page
+  ],
+  responses: {
+    200: {
+      bodyMapper: Mappers.GetCardsOKResponse
     },
     default: {}
   },

@@ -1,6 +1,7 @@
 import React, { Suspense, lazy } from "react";
 import { Route, Switch } from 'react-router-dom';
 import { Icon } from 'antd';
+import ExploreCardsLayout from "./layouts/explore/cards/ExploreCardsLayout";
 const IndexLayout = lazy(() => import("./layouts/index/IndexLayout"));
 const LoginWithGitLabLayout = lazy(() => import("./layouts/auth/external/gitlab/logInWith/LoginWithGitLabLayout"));
 const LoginWithGitHubLayout = lazy(() => import("./layouts/auth/external/github/loginWith/LoginWithGitHubLayout"));
@@ -67,6 +68,7 @@ class Routes extends React.Component {
                         {/* Explore */}
 
                         <Route path="/explore/projects" exact component={ExploreProjectsLayout}/>
+                        <Route path="/explore/cards" exact component={ExploreCardsLayout}/>
 
                         {/* Project */}
 

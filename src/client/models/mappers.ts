@@ -145,6 +145,12 @@ export const Project: msRest.CompositeMapper = {
           name: "Number"
         }
       },
+      confirmed: {
+        serializedName: "confirmed",
+        type: {
+          name: "Boolean"
+        }
+      },
       createdAt: {
         serializedName: "created_at",
         type: {

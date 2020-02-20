@@ -112,8 +112,7 @@ class ProjectCardsLayout extends React.Component<IProps, IState> {
                         </Link>
                     </Col>
                 }) : skeletons}
-            </Row>
-            {pagesCount ? <Row>
+            </Row>{pagesCount ? <Row>
                 <Pagination
                     currentPage={this.state.currentPage}
                     pagesCount={this.state.pagesCount}

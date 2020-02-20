@@ -2878,6 +2878,9 @@
           "type": "number",
           "example": 3
         },
+        "confirmed": {
+          "type": "boolean"
+        },
         "created_at": {
           "type": "string",
           "example": "2019-10-04"

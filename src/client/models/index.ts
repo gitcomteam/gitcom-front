@@ -48,6 +48,7 @@ export interface Project {
   creatorGuid?: string;
   baseUri?: string;
   starsCount?: number;
+  confirmed?: boolean;
   createdAt?: string;
   updatedAt?: string;
 }

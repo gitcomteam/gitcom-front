@@ -61,8 +61,6 @@ class ProjectCardsLayout extends React.Component<IProps, IState> {
     }
 
     getCards(page: number = 1): void {
-        let newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?page=' + page;
-        window.history.pushState({path:newUrl},'', newUrl);
         this.setState({cards: null});
         window.App.apiClient.getProjectCards(this.state.project!.guid!, {
             page

@@ -11,7 +11,15 @@ interface IState {
 }
 
 class Pagination extends React.Component<IProps, IState> {
+    componentDidMount(): void {
+        this.updateLinks();
+    }
+
     componentDidUpdate(): void {
+        this.updateLinks();
+    }
+
+    updateLinks() {
         let pageButtons = document.getElementsByClassName("ant-pagination-item");
         for (let i = 0; i <= pageButtons.length; i++) {
             if (pageButtons[i]) {

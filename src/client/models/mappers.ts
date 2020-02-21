@@ -1933,6 +1933,40 @@ export const CreateCardCreatedResponse: msRest.CompositeMapper = {
   }
 };
 
+export const GetCardOKResponseData: msRest.CompositeMapper = {
+  serializedName: "GetCardOKResponse_data",
+  type: {
+    name: "Composite",
+    className: "GetCardOKResponseData",
+    modelProperties: {
+      card: {
+        serializedName: "card",
+        type: {
+          name: "Composite",
+          className: "Card"
+        }
+      }
+    }
+  }
+};
+
+export const GetCardOKResponse: msRest.CompositeMapper = {
+  serializedName: "GetCardOKResponse",
+  type: {
+    name: "Composite",
+    className: "GetCardOKResponse",
+    modelProperties: {
+      data: {
+        serializedName: "data",
+        type: {
+          name: "Composite",
+          className: "GetCardOKResponseData"
+        }
+      }
+    }
+  }
+};
+
 export const EditCardOKResponseData: msRest.CompositeMapper = {
   serializedName: "EditCardOKResponse_data",
   type: {

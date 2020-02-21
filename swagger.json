@@ -1287,6 +1287,45 @@
         }
       }
     },
+    "/card/get": {
+      "get": {
+        "tags": [
+          "card"
+        ],
+        "operationId": "getCard",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "card_guid",
+            "in": "query",
+            "type": "string",
+            "description": "",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "card": {
+                      "$ref": "#/definitions/Card"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/card/edit": {
       "patch": {
         "tags": [

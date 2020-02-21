@@ -705,6 +705,33 @@ class SupportHubApi extends SupportHubApiContext {
   }
 
   /**
+   * @param cardGuid
+   * @param [options] The optional parameters
+   * @returns Promise<Models.GetCardResponse>
+   */
+  getCard(cardGuid: string, options?: msRest.RequestOptionsBase): Promise<Models.GetCardResponse>;
+  /**
+   * @param cardGuid
+   * @param callback The callback
+   */
+  getCard(cardGuid: string, callback: msRest.ServiceCallback<Models.GetCardOKResponse>): void;
+  /**
+   * @param cardGuid
+   * @param options The optional parameters
+   * @param callback The callback
+   */
+  getCard(cardGuid: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.GetCardOKResponse>): void;
+  getCard(cardGuid: string, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.GetCardOKResponse>, callback?: msRest.ServiceCallback<Models.GetCardOKResponse>): Promise<Models.GetCardResponse> {
+    return this.sendOperationRequest(
+      {
+        cardGuid,
+        options
+      },
+      getCardOperationSpec,
+      callback) as Promise<Models.GetCardResponse>;
+  }
+
+  /**
    * @param apiToken
    * @param cardGuid
    * @param [options] The optional parameters
@@ -2048,6 +2075,21 @@ const createCardOperationSpec: msRest.OperationSpec = {
   responses: {
     201: {
       bodyMapper: Mappers.CreateCardCreatedResponse
+    },
+    default: {}
+  },
+  serializer
+};
+
+const getCardOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "api/v1/card/get",
+  queryParameters: [
+    Parameters.cardGuid
+  ],
+  responses: {
+    200: {
+      bodyMapper: Mappers.GetCardOKResponse
     },
     default: {}
   },

@@ -681,6 +681,20 @@ export interface CreateCardCreatedResponse {
 }
 
 /**
+ * An interface representing GetCardOKResponseData.
+ */
+export interface GetCardOKResponseData {
+  card?: Card;
+}
+
+/**
+ * An interface representing GetCardOKResponse.
+ */
+export interface GetCardOKResponse {
+  data?: GetCardOKResponseData;
+}
+
+/**
  * An interface representing EditCardOKResponseData.
  */
 export interface EditCardOKResponseData {
@@ -1875,6 +1889,26 @@ export type CreateCardResponse = CreateCardCreatedResponse & {
        * The response body as parsed JSON or XML
        */
       parsedBody: CreateCardCreatedResponse;
+    };
+};
+
+/**
+ * Contains response data for the getCard operation.
+ */
+export type GetCardResponse = GetCardOKResponse & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: GetCardOKResponse;
     };
 };
 

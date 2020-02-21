@@ -5,6 +5,7 @@ import {CardModel} from "../../../../../client/bindings";
 import {Link} from "react-router-dom";
 import CardCard from "../../single/card/CardCard";
 import Pagination from "../../../../custom/antd/pagination/Pagination";
+import CardModalLoader from "../../single/modalLoader/CardModalLoader";
 
 interface IProps {
     dataSource: string
@@ -14,13 +15,14 @@ interface IState {
     currentPage: number,
     pagesCount: number,
     isLoaded: boolean,
-    cards: CardModel[]|null
+    cards: CardModel[]|null,
+    openedCardGuid: string|null
 }
 
 class CardsList extends React.Component<IProps, IState> {
     public static defaultProps = {
         dataSource: ""
-    }
+    };
 
     constructor(props: IProps) {
         super(props);
@@ -28,7 +30,8 @@ class CardsList extends React.Component<IProps, IState> {
             currentPage: 1,
             pagesCount: 1,
             isLoaded: false,
-            cards: null
+            cards: null,
+            openedCardGuid: null
         }
     }
 
@@ -38,8 +41,9 @@ class CardsList extends React.Component<IProps, IState> {
             if (queryPage) {
                 queryPage = parseInt(queryPage) ? parseInt(queryPage) : null;
                 this.setState({currentPage: queryPage});
-                console.log(queryPage);
             }
+            let openedCardGuid : string|null = new URL(window.location.href).searchParams.get('card');
+            if (openedCardGuid) this.setState({ openedCardGuid });
             this.getCards();
         }, 50);
     }
@@ -68,11 +72,12 @@ class CardsList extends React.Component<IProps, IState> {
     render() {
         if (!this.state.isLoaded || !this.state.cards) return <Icon type="loading" style={{fontSize: "2em"}}/>;
         return <div>
+            {this.state.openedCardGuid ? <CardModalLoader cardGuid={this.state.openedCardGuid}/> : null}
             <Row type={"flex"}>
                 {this.state.cards != null && this.state.cards.map((card: CardModel, i: number) => {
                     return <Col sm={12} xs={24} key={i} className={"margin-md-top padding-sm"}>
                         <Link to={`${window.location.pathname}?card=${card.guid}`}>
-                            <CardCard card={card}/>
+                            <CardCard card={card} autoOpenModal={false}/>
                         </Link>
                     </Col>;
                 })}

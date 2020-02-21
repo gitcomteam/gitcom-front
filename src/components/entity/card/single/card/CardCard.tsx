@@ -16,16 +16,20 @@ import ReactMarkdown from "react-markdown";
 interface IProps {
     parentBoard: BoardModel|null,
     card: CardModel,
+    autoOpenModal: boolean,
+    forceOpenModal: boolean
 }
 
 interface IState {
     showModal: boolean,
-    modalCanceled: boolean
+    modalCanceled: boolean,
 }
 
 class CardCard extends React.Component<IProps, IState> {
     public static defaultProps = {
-        parentBoard: null
+        parentBoard: null,
+        autoOpenModal: true,
+        forceOpenModal: false
     };
 
     constructor(props: IProps) {
@@ -38,7 +42,7 @@ class CardCard extends React.Component<IProps, IState> {
 
     componentDidMount(): void {
         let selectedCardGuid = new URL(window.location.href).searchParams.get('card');
-        if (selectedCardGuid === this.props.card.guid) {
+        if (this.props.forceOpenModal || (selectedCardGuid === this.props.card.guid && this.props.autoOpenModal)) {
             this.setState(({
                 showModal: true
             }));

@@ -6,6 +6,7 @@ import {handleApiError} from "../../../../../classes/notification/errorHandler/e
 import CardCard from "../../../../../components/entity/card/single/card/CardCard";
 import {Link} from "react-router-dom";
 import Pagination from "../../../../../components/custom/antd/pagination/Pagination";
+import CardModalLoader from "../../../../../components/entity/card/single/modalLoader/CardModalLoader";
 
 const { Meta } = Card;
 
@@ -24,6 +25,7 @@ interface IState {
     cards: CardModel[]|null,
     pagesCount: number,
     currentPage: number,
+    openedCardGuid: string|null
 }
 
 class ProjectCardsLayout extends React.Component<IProps, IState> {
@@ -34,7 +36,8 @@ class ProjectCardsLayout extends React.Component<IProps, IState> {
             project: null,
             cards: null,
             pagesCount: 1,
-            currentPage: 1
+            currentPage: 1,
+            openedCardGuid: null
         };
     }
 
@@ -44,6 +47,8 @@ class ProjectCardsLayout extends React.Component<IProps, IState> {
             queryPage = parseInt(queryPage) ? parseInt(queryPage) : null;
             this.setState({currentPage: queryPage});
         }
+        let openedCardGuid : string|null = new URL(window.location.href).searchParams.get('card');
+        if (openedCardGuid) this.setState({ openedCardGuid });
         this.getProjectInfo();
     }
 
@@ -104,11 +109,12 @@ class ProjectCardsLayout extends React.Component<IProps, IState> {
 
         return <FullPageWithSideBar sidebarType={"project_view"}>
             <h2 className={"ant-typography"}>{project!.name}</h2>
+            {this.state.openedCardGuid ? <CardModalLoader cardGuid={this.state.openedCardGuid}/> : null}
             <Row type={"flex"}>
                 {cards ? this.state.cards!.map((card: CardModel, i: number) => {
                     return <Col className={"padding-sm"} sm={12} xs={24} key={`card_${i}`}>
                         <Link to={`${window.location.pathname}?card=${card.guid}`}>
-                            <CardCard card={card}/>
+                            <CardCard card={card} autoOpenModal={false}/>
                         </Link>
                     </Col>
                 }) : skeletons}

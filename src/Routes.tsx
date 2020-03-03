@@ -31,61 +31,62 @@ const HomeIntegrationsLayout = lazy(() => import("./layouts/home/integrations/Ho
 class Routes extends React.Component {
     render() {
         return (
-            <div>
-                <Suspense fallback={<Icon type="loading" style={{fontSize: "2em"}}/>}>
-                    <Switch>
-                        <Route path="/" exact component={IndexLayout}/>
-                        {/* Auth */}
-                        <Route path="/login" exact component={LoginLayout}/>
-                        <Route path="/register" exact component={RegisterLayout}/>
-                        <Route path="/register/confirm-email" exact component={ConfirmEmailLayout}/>
+            <Suspense
+                fallback={
+                    <Icon type="loading" style={{fontSize: "2em"}}/>
+                }>
+                <Switch>
+                    <Route path="/" exact component={IndexLayout}/>
+                    {/* Auth */}
+                    <Route path="/login" exact component={LoginLayout}/>
+                    <Route path="/register" exact component={RegisterLayout}/>
+                    <Route path="/register/confirm-email" exact component={ConfirmEmailLayout}/>
 
-                        <Route path="/help" exact component={HelpLayout}/>
+                    <Route path="/help" exact component={HelpLayout}/>
 
-                        {/* Home */}
+                    {/* Home */}
 
-                        <Route path="/home" exact component={HomeMainLayout}/>
-                        <Route path="/home/integrations" exact component={HomeIntegrationsLayout}/>
+                    <Route path="/home" exact component={HomeMainLayout}/>
+                    <Route path="/home/integrations" exact component={HomeIntegrationsLayout}/>
 
-                        <Route path="/account" exact component={AccountLayout}/>
-                        <Route path="/account/billing" exact component={BillingLayout}/>
-                        <Route path="/account/settings" exact component={SettingsLayout}/>
-                        <Route path="/account/subscription" exact component={SubscriptionLayout}/>
-                        <Route path="/account/withdrawals" exact component={WithdrawalsLayout}/>
-                        <Route path="/account/library" exact component={LibraryLayout}/>
+                    <Route path="/account" exact component={AccountLayout}/>
+                    <Route path="/account/billing" exact component={BillingLayout}/>
+                    <Route path="/account/settings" exact component={SettingsLayout}/>
+                    <Route path="/account/subscription" exact component={SubscriptionLayout}/>
+                    <Route path="/account/withdrawals" exact component={WithdrawalsLayout}/>
+                    <Route path="/account/library" exact component={LibraryLayout}/>
 
-                        <Route path="/external/:serviceType/repositories" exact component={ExternalRepoLayout}/>
+                    <Route path="/external/:serviceType/repositories" exact component={ExternalRepoLayout}/>
 
-                        {/* Quickstart pages */}
+                    {/* Quickstart pages */}
 
-                        <Route path="/quickstart/developer" exact component={DeveloperQuickstartLayout}/>
+                    <Route path="/quickstart/developer" exact component={DeveloperQuickstartLayout}/>
 
-                        {/* External auth routes */}
+                    {/* External auth routes */}
 
-                        <Route path="/auth/external/github/login" exact component={LoginWithGitHubLayout}/>
-                        <Route path="/auth/external/gitlab/login" exact component={LoginWithGitLabLayout}/>
+                    <Route path="/auth/external/github/login" exact component={LoginWithGitHubLayout}/>
+                    <Route path="/auth/external/gitlab/login" exact component={LoginWithGitLabLayout}/>
 
-                        {/* Explore */}
+                    {/* Explore */}
 
-                        <Route path="/explore/projects" exact component={ExploreProjectsLayout}/>
-                        <Route path="/explore/cards" exact component={ExploreCardsLayout}/>
+                    <Route path="/explore/projects" exact component={ExploreProjectsLayout}/>
+                    <Route path="/explore/cards" exact component={ExploreCardsLayout}/>
 
-                        {/* Project */}
+                    {/* Project */}
 
-                        <Route path="/:owner/:alias" exact component={ProjectPage}/>
-                        <Route path="/:owner/:alias/edit" exact component={EditProjectLayout}/>
+                    <Route path="/:owner/:alias" exact component={ProjectPage}/>
+                    <Route path="/:owner/:alias/edit" exact component={EditProjectLayout}/>
 
-                        <Route path="/:owner/:alias/pricing" exact component={ProjectPricingLayout}/>
-                        <Route path="/:owner/:alias/pricing/edit" exact component={EditProjectPricingLayout}/>
+                    <Route path="/:owner/:alias/pricing" exact component={ProjectPricingLayout}/>
+                    <Route path="/:owner/:alias/pricing/edit" exact component={EditProjectPricingLayout}/>
 
-                        <Route path="/:owner/:alias/board/:boardGuid" exact component={BoardPage}/>
+                    <Route path="/:owner/:alias/board/:boardGuid" exact component={BoardPage}/>
 
-                        <Route path="/:owner/:alias/cards" exact component={ProjectCardsLayout}/>
+                    <Route path="/:owner/:alias/cards" exact component={ProjectCardsLayout}/>
 
-                        <Route component={NotFoundLayout}/>
-                    </Switch>
-                </Suspense>
-            </div>
+                    <Route component={NotFoundLayout}/>
+                </Switch>
+            </Suspense>
         );
     }
 }

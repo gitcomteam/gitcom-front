@@ -21,10 +21,8 @@ window.App = new App();
 
 async function loadScriptAsync(url: string) {
     const script = document.createElement("script");
-
     script.src = url;
     script.async = true;
-
     document.body.appendChild(script);
 }
 

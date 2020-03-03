@@ -11,6 +11,7 @@ import RepoCard from "../../../../components/external/repo/card/RepoCard";
 import {Link} from "react-router-dom";
 import NewInvoice from "../../../../components/entity/invoice/single/create/NewInvoice";
 import ProjectPosts from "../../../../components/entity/project_post/many/ProjectPosts";
+import SupportButton from "../../../../components/action/support/SupportButton";
 
 interface IProps {
     match: {
@@ -123,20 +124,11 @@ class ProjectPage extends React.Component<IProps, IState> {
                     />
                 </div>
                 <div className={"margin-sm-sides"}>
-                    {
-                        window.App.isAuthorized() ?
-                            <NewInvoice
-                                modalLabel={`Support ${project.name}`}
-                                buttonLabel={"Support"}
-                                defaultAmount={0.1}
-                                entityGuid={project.guid!}
-                                entityType={'Project'}
-                            /> : <p>
-                                <Link to={"/login"}>
-                                    <Button type={"primary"}>Sign in</Button>
-                                </Link> to support this project
-                            </p>
-                    }
+                    <SupportButton
+                        entityName={project.name!}
+                        entityGuid={project.guid!}
+                        entityType={"Project"}
+                    />
                 </div>
             </Row>
 

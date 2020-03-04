@@ -1,6 +1,6 @@
 import React, { lazy } from 'react';
 import {Link} from "react-router-dom";
-import {Button, Card, Col, Divider, Row, Typography} from "antd";
+import {Button, Card, Col, Divider, Icon, Row, Typography} from "antd";
 import FullContainerPage from "../../components/layout/simple/fullpage/FullContainerPage";
 import FastAuth from "../../components/auth/block/FastAuth/FastAuth";
 const ProjectCardList = lazy(() => import("../../components/entity/project/many/cards_list/ProjectCardList"));
@@ -28,21 +28,36 @@ function IndexLayout () {
                                 }}
                                 className="text-white"
                             >
-                                <div>
-                                    <h1 className={"ant-typography margin-sm text-white"}>GitCom</h1>
-                                    <h4 className={"ant-typography margin-sm text-white"}>Community-Driven open
-                                        source
-                                        marketplace</h4>
-                                    <p className={"text-left"}>
-                                        GitCom helps users <i>easily support open source and get rewards in
-                                        return</i> and
-                                        helping developers to <i> get financial support for their open source
-                                        work</i>
-                                    </p>
-                                    <a href={"https://start.gitcom.org"} target="_blank" rel="noopener noreferrer">
-                                        <Button icon={"question"} type={"default"}>How it works?</Button>
-                                    </a>
-                                </div>
+                                <h1 className={"ant-typography margin-sm text-white"}>GitCom</h1>
+                                <h4 className={"ant-typography margin-sm text-white"}>Support open source and get rewards in return</h4>
+                                <p className={"text-left"}>
+                                    GitCom helps users <i>easily support open source and get rewards in
+                                    return</i> and
+                                    helping developers to <i> get financial support for their open source
+                                    work</i>
+                                </p>
+                                <a href={"https://start.gitcom.org"} target="_blank" rel="noopener noreferrer">
+                                    <Button icon={"question"} type={"default"} className={"margin-sm"}>How it works?</Button>
+                                </a>
+                                <Link to={"/quickstart/developer"}>
+                                    <Button type={"primary"} icon={"rocket"} className={"margin-sm"}>Developer quickstart</Button>
+                                </Link>
+                                <Row className={"margin-md-top"}/>
+                                <Card>
+                                    <h4 className={"ant-typography"}>Some numbers so far</h4>
+                                    <Row>
+                                        <Col xs={12}>
+                                            <p>
+                                                500+ <Link to={"/explore/projects"}>projects <Icon type={"build"}/></Link>
+                                            </p>
+                                        </Col>
+                                        <Col xs={12}>
+                                            <p>
+                                                20.000+ <Link to={"/explore/cards"}>tickets <Icon type={"credit-card"}/></Link>
+                                            </p>
+                                        </Col>
+                                    </Row>
+                                </Card>
                             </Col>
                             <Col
                                 sm={12} xs={24}

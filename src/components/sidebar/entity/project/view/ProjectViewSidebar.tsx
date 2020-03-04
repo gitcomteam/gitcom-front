@@ -4,13 +4,7 @@ import {Link} from "react-router-dom";
 
 const { Sider } = Layout;
 
-interface IProps {
-}
-
-interface IState {
-}
-
-class ProjectViewSidebar extends React.Component<IProps, IState> {
+class ProjectViewSidebar extends React.Component {
     static getActiveMenuKeys(): string[] {
         if (window.location.pathname.includes('/pricing')) return ["pricing"];
         if (window.location.pathname.includes('/cards')) return ["cards"];

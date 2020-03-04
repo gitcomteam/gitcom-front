@@ -1,10 +1,12 @@
 import React from "react";
 import FullPageWithSideBar from "../../../../../components/layout/simple/fullpagewithsidebar/FullPageWithSidebar";
-import {Card, Col, Icon, Pagination, Row, Skeleton} from "antd";
+import {Card, Col, Icon, Row, Skeleton} from "antd";
 import {CardModel, ProjectModel} from "../../../../../client/bindings";
 import {handleApiError} from "../../../../../classes/notification/errorHandler/errorHandler";
 import CardCard from "../../../../../components/entity/card/single/card/CardCard";
 import {Link} from "react-router-dom";
+import Pagination from "../../../../../components/custom/antd/pagination/Pagination";
+import CardModalLoader from "../../../../../components/entity/card/single/modalLoader/CardModalLoader";
 
 const { Meta } = Card;
 
@@ -23,6 +25,7 @@ interface IState {
     cards: CardModel[]|null,
     pagesCount: number,
     currentPage: number,
+    openedCardGuid: string|null
 }
 
 class ProjectCardsLayout extends React.Component<IProps, IState> {
@@ -33,7 +36,8 @@ class ProjectCardsLayout extends React.Component<IProps, IState> {
             project: null,
             cards: null,
             pagesCount: 1,
-            currentPage: 1
+            currentPage: 1,
+            openedCardGuid: null
         };
     }
 
@@ -43,17 +47,9 @@ class ProjectCardsLayout extends React.Component<IProps, IState> {
             queryPage = parseInt(queryPage) ? parseInt(queryPage) : null;
             this.setState({currentPage: queryPage});
         }
+        let openedCardGuid : string|null = new URL(window.location.href).searchParams.get('card');
+        if (openedCardGuid) this.setState({ openedCardGuid });
         this.getProjectInfo();
-    }
-
-    componentDidUpdate(): void {
-        let pageButtons = document.getElementsByClassName("ant-pagination-item");
-        for (let i = 0; i <= pageButtons.length; i++) {
-            if (pageButtons[i]) {
-                let pageNum = pageButtons[i].getAttribute('title');
-                pageButtons[i].innerHTML = `<a href="?page=${pageNum}">${pageNum}</a>`;
-            }
-        }
     }
 
     getProjectInfo(): void {
@@ -70,8 +66,6 @@ class ProjectCardsLayout extends React.Component<IProps, IState> {
     }
 
     getCards(page: number = 1): void {
-        let newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?page=' + page;
-        window.history.pushState({path:newUrl},'', newUrl);
         this.setState({cards: null});
         window.App.apiClient.getProjectCards(this.state.project!.guid!, {
             page
@@ -115,21 +109,20 @@ class ProjectCardsLayout extends React.Component<IProps, IState> {
 
         return <FullPageWithSideBar sidebarType={"project_view"}>
             <h2 className={"ant-typography"}>{project!.name}</h2>
+            {this.state.openedCardGuid ? <CardModalLoader cardGuid={this.state.openedCardGuid}/> : null}
             <Row type={"flex"}>
                 {cards ? this.state.cards!.map((card: CardModel, i: number) => {
                     return <Col className={"padding-sm"} sm={12} xs={24} key={`card_${i}`}>
                         <Link to={`${window.location.pathname}?card=${card.guid}`}>
-                            <CardCard card={card}/>
+                            <CardCard card={card} autoOpenModal={false}/>
                         </Link>
                     </Col>
                 }) : skeletons}
-            </Row>
-            {pagesCount ? <Row>
+            </Row>{pagesCount ? <Row>
                 <Pagination
-                    current={this.state.currentPage}
-                    onChange={this.getCards.bind(this)}
-                    pageSize={1}
-                    total={this.state.pagesCount}
+                    currentPage={this.state.currentPage}
+                    pagesCount={this.state.pagesCount}
+                    onChange={this.getCards}
                 />
             </Row> : null}
         </FullPageWithSideBar>

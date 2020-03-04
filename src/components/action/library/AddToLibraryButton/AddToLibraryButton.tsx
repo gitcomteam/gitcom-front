@@ -34,6 +34,7 @@ class AddToLibraryButton extends React.Component<IProps, IState> {
     render() {
         return <div>
             <Button
+                type={"primary"}
                 onClick={() => this.addToLibrary()}
                 icon={"star"}
             > {this.props.project.stars_count}

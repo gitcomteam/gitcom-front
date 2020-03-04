@@ -21,13 +21,15 @@ class ProjectCard extends React.Component<IProps, IState> {
     }
 
     componentDidMount() {
-        window.App.apiClient.getProjectImages(this.props.project.guid!)
-            .then(( res :any) => {
-                let images = JSON.parse(res._response.bodyAsText).data.images;
-                if (images.length > 0) this.setState({
-                    image: images[0]
+        setTimeout(() => {
+            window.App.apiClient.getProjectImages(this.props.project.guid!)
+                .then((res: any) => {
+                    let images = JSON.parse(res._response.bodyAsText).data.images;
+                    if (images.length > 0) this.setState({
+                        image: images[0]
+                    });
                 });
-            });
+        }, 750);
     }
 
     render() {

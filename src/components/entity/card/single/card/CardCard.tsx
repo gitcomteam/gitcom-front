@@ -10,22 +10,26 @@ import {BoardModel, CardModel} from "../../../../../client/bindings";
 import PermissionCheck from "../../../../check/permission_check/single/PermissionCheck";
 import EditCard from "../../action/edit/EditCard";
 import AuthCheck from "../../../../check/auth_check/AuthCheck";
-import ReactMarkdown from "react-markdown";
 import moment from "moment";
+import ReactMarkdown from "react-markdown";
 
 interface IProps {
     parentBoard: BoardModel|null,
     card: CardModel,
+    autoOpenModal: boolean,
+    forceOpenModal: boolean
 }
 
 interface IState {
     showModal: boolean,
-    modalCanceled: boolean
+    modalCanceled: boolean,
 }
 
 class CardCard extends React.Component<IProps, IState> {
     public static defaultProps = {
-        parentBoard: null
+        parentBoard: null,
+        autoOpenModal: true,
+        forceOpenModal: false
     };
 
     constructor(props: IProps) {
@@ -38,7 +42,7 @@ class CardCard extends React.Component<IProps, IState> {
 
     componentDidMount(): void {
         let selectedCardGuid = new URL(window.location.href).searchParams.get('card');
-        if (selectedCardGuid === this.props.card.guid) {
+        if (this.props.forceOpenModal || (selectedCardGuid === this.props.card.guid && this.props.autoOpenModal)) {
             this.setState(({
                 showModal: true
             }));
@@ -62,6 +66,9 @@ class CardCard extends React.Component<IProps, IState> {
                 onClick={this.cardOnClick.bind(this)}
             >
                 <b className={"ant-typography"}>{card.name}</b>
+                <Row className={"text-left margin-sm-top"}>
+                    <i>Created: {moment(card.created_at).format('MMMM Do YYYY')}</i>
+                </Row>
             </Card>
             <Modal
                 title={<b className="text-center">{card.name}</b>}

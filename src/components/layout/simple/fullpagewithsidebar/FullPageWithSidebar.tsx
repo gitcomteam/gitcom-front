@@ -4,6 +4,7 @@ import AppLayout from "../../../../layouts/app/AppLayout";
 import {Col, Layout, Row, Card} from "antd";
 import HomeSidebar from "../../../sidebar/home/HomeSidebar";
 import ProjectViewSidebar from "../../../sidebar/entity/project/view/ProjectViewSidebar";
+import ExploreSidebar from "../../../sidebar/explore/default/ExploreSidebar";
 
 const { Sider, Content} = Layout;
 
@@ -28,6 +29,7 @@ class FullPageWithSideBar extends React.Component<IProps, IState> {
         switch (this.props.sidebarType) {
             case "home": return <HomeSidebar/>;
             case "project_view": return <ProjectViewSidebar/>;
+            case "explore": return <ExploreSidebar/>;
         }
         return <Sider/>
     }

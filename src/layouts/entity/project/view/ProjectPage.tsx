@@ -1,7 +1,7 @@
 import React from "react";
 import FullPageWithSideBar from "../../../../components/layout/simple/fullpagewithsidebar/FullPageWithSidebar";
 import {handleApiError} from "../../../../classes/notification/errorHandler/errorHandler";
-import {Button, Card, Col, Divider, Icon, Row} from "antd";
+import {Badge, Button, Card, Col, Divider, Icon, Popover, Row} from "antd";
 import {BoardModel, ProjectModel} from "../../../../client/bindings";
 import BoardCard from "../../../../components/entity/board/single/card/BoardCart";
 import PermissionCheckLink from "../../../../components/link/withChecks/PermissionCheckLink";
@@ -11,6 +11,7 @@ import RepoCard from "../../../../components/external/repo/card/RepoCard";
 import {Link} from "react-router-dom";
 import NewInvoice from "../../../../components/entity/invoice/single/create/NewInvoice";
 import ProjectPosts from "../../../../components/entity/project_post/many/ProjectPosts";
+import SupportButton from "../../../../components/action/support/SupportButton";
 
 interface IProps {
     match: {
@@ -91,6 +92,20 @@ class ProjectPage extends React.Component<IProps, IState> {
         return <FullPageWithSideBar sidebarType={"project_view"}>
             <h1 className={"ant-typography"}>{project.name}</h1>
             <p>{project.description}</p>
+            { project.confirmed ? null : <Row>
+                <Popover
+                    title="Project is not confirmed"
+                    content={<p>
+                        You can react out to project owners and ask them to sign up and confirm this project. <br/>
+                        If you're owner of this project you can <Link to={"/login"}>sign in</Link> to
+                        confirm ownership or remove the project
+                    </p>}>
+                    <Badge
+                        status="processing"
+                        text={"This project is not confirmed"}
+                    />
+                </Popover>
+            </Row> }
             <Row className="padding-sm" style={{display: "flex", justifyContent: "center"}}>
                 <Button className={"margin-sm-sides"} icon={"star"}> {project.stars_count}</Button>
                 <div className={"margin-sm-sides"}>
@@ -109,20 +124,11 @@ class ProjectPage extends React.Component<IProps, IState> {
                     />
                 </div>
                 <div className={"margin-sm-sides"}>
-                    {
-                        window.App.isAuthorized() ?
-                            <NewInvoice
-                                modalLabel={`Support ${project.name}`}
-                                buttonLabel={"Support"}
-                                defaultAmount={0.1}
-                                entityGuid={project.guid!}
-                                entityType={'Project'}
-                            /> : <p>
-                                <Link to={"/login"}>
-                                    <Button type={"primary"}>Sign in</Button>
-                                </Link> to support this project
-                            </p>
-                    }
+                    <SupportButton
+                        entityName={project.name!}
+                        entityGuid={project.guid!}
+                        entityType={"Project"}
+                    />
                 </div>
             </Row>
 

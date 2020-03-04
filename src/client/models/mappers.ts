@@ -145,6 +145,12 @@ export const Project: msRest.CompositeMapper = {
           name: "Number"
         }
       },
+      confirmed: {
+        serializedName: "confirmed",
+        type: {
+          name: "Boolean"
+        }
+      },
       createdAt: {
         serializedName: "created_at",
         type: {
@@ -1791,6 +1797,74 @@ export const GetProjectCardsOKResponse: msRest.CompositeMapper = {
   }
 };
 
+export const GetCardsOKResponseData: msRest.CompositeMapper = {
+  serializedName: "GetCardsOKResponse_data",
+  type: {
+    name: "Composite",
+    className: "GetCardsOKResponseData",
+    modelProperties: {
+      cards: {
+        serializedName: "cards",
+        type: {
+          name: "Sequence",
+          element: {
+            type: {
+              name: "Composite",
+              className: "Card"
+            }
+          }
+        }
+      }
+    }
+  }
+};
+
+export const GetCardsOKResponseMeta: msRest.CompositeMapper = {
+  serializedName: "GetCardsOKResponse_meta",
+  type: {
+    name: "Composite",
+    className: "GetCardsOKResponseMeta",
+    modelProperties: {
+      currentPage: {
+        serializedName: "current_page",
+        type: {
+          name: "Number"
+        }
+      },
+      pagesCount: {
+        serializedName: "pages_count",
+        type: {
+          name: "Number"
+        }
+      }
+    }
+  }
+};
+
+export const GetCardsOKResponse: msRest.CompositeMapper = {
+  serializedName: "GetCardsOKResponse",
+  type: {
+    name: "Composite",
+    className: "GetCardsOKResponse",
+    modelProperties: {
+      data: {
+        serializedName: "data",
+        type: {
+          name: "Composite",
+          className: "GetCardsOKResponseData"
+        }
+      },
+      meta: {
+        serializedName: "meta",
+        type: {
+          name: "Composite",
+          className: "GetCardsOKResponseMeta"
+        }
+      }
+    }
+  }
+};
+
 export const GetProjectByAliasOKResponseData: msRest.CompositeMapper = {
   serializedName: "GetProjectByAliasOKResponse_data",
   type: {
@@ -1853,6 +1927,40 @@ export const CreateCardCreatedResponse: msRest.CompositeMapper = {
         type: {
           name: "Composite",
           className: "CreateCardCreatedResponseData"
+        }
+      }
+    }
+  }
+};
+
+export const GetCardOKResponseData: msRest.CompositeMapper = {
+  serializedName: "GetCardOKResponse_data",
+  type: {
+    name: "Composite",
+    className: "GetCardOKResponseData",
+    modelProperties: {
+      card: {
+        serializedName: "card",
+        type: {
+          name: "Composite",
+          className: "Card"
+        }
+      }
+    }
+  }
+};
+
+export const GetCardOKResponse: msRest.CompositeMapper = {
+  serializedName: "GetCardOKResponse",
+  type: {
+    name: "Composite",
+    className: "GetCardOKResponse",
+    modelProperties: {
+      data: {
+        serializedName: "data",
+        type: {
+          name: "Composite",
+          className: "GetCardOKResponseData"
         }
       }
     }

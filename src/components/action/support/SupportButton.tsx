@@ -17,7 +17,7 @@ export default class SupportButton extends React.Component<IProps, IState> {
     constructor(props: IProps) {
         super(props);
         this.state = {
-            showModal: true,
+            showModal: false,
         }
     }
 

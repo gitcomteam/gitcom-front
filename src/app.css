@@ -143,6 +143,10 @@ p, b {
   color: white !important;
 }
 
+.ant-modal-body img {
+  max-width: 100%;
+}
+
 @media only screen and (min-width: 767px) {
   .desktop-zero-height {
     height: 0;

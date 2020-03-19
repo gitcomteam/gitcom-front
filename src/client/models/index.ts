@@ -48,6 +48,7 @@ export interface Project {
   creatorGuid?: string;
   baseUri?: string;
   starsCount?: number;
+  confirmed?: boolean;
   createdAt?: string;
   updatedAt?: string;
 }
@@ -258,6 +259,15 @@ export interface WithdrawalRequest {
    */
   address?: string;
   paid?: boolean;
+  createdAt?: string;
+}
+
+/**
+ * An interface representing Image.
+ */
+export interface Image {
+  guid?: string;
+  url?: string;
   createdAt?: string;
 }
 
@@ -541,6 +551,20 @@ export interface GetProjectPostsOKResponse {
 }
 
 /**
+ * An interface representing GetProjectImagesOKResponseData.
+ */
+export interface GetProjectImagesOKResponseData {
+  images?: Image;
+}
+
+/**
+ * An interface representing GetProjectImagesOKResponse.
+ */
+export interface GetProjectImagesOKResponse {
+  data?: GetProjectImagesOKResponseData;
+}
+
+/**
  * An interface representing GetBoardOKResponseData.
  */
 export interface GetBoardOKResponseData {
@@ -583,6 +607,52 @@ export interface GetColumnCardsOKResponse {
 }
 
 /**
+ * An interface representing GetProjectCardsOKResponseData.
+ */
+export interface GetProjectCardsOKResponseData {
+  cards?: Card[];
+}
+
+/**
+ * An interface representing GetProjectCardsOKResponseMeta.
+ */
+export interface GetProjectCardsOKResponseMeta {
+  currentPage?: number;
+  pagesCount?: number;
+}
+
+/**
+ * An interface representing GetProjectCardsOKResponse.
+ */
+export interface GetProjectCardsOKResponse {
+  data?: GetProjectCardsOKResponseData;
+  meta?: GetProjectCardsOKResponseMeta;
+}
+
+/**
+ * An interface representing GetCardsOKResponseData.
+ */
+export interface GetCardsOKResponseData {
+  cards?: Card[];
+}
+
+/**
+ * An interface representing GetCardsOKResponseMeta.
+ */
+export interface GetCardsOKResponseMeta {
+  currentPage?: number;
+  pagesCount?: number;
+}
+
+/**
+ * An interface representing GetCardsOKResponse.
+ */
+export interface GetCardsOKResponse {
+  data?: GetCardsOKResponseData;
+  meta?: GetCardsOKResponseMeta;
+}
+
+/**
  * An interface representing GetProjectByAliasOKResponseData.
  */
 export interface GetProjectByAliasOKResponseData {
@@ -608,6 +678,20 @@ export interface CreateCardCreatedResponseData {
  */
 export interface CreateCardCreatedResponse {
   data?: CreateCardCreatedResponseData;
+}
+
+/**
+ * An interface representing GetCardOKResponseData.
+ */
+export interface GetCardOKResponseData {
+  card?: Card;
+}
+
+/**
+ * An interface representing GetCardOKResponse.
+ */
+export interface GetCardOKResponse {
+  data?: GetCardOKResponseData;
 }
 
 /**
@@ -947,10 +1031,19 @@ export interface GetNewestProjectsOKResponseData {
 }
 
 /**
+ * An interface representing GetNewestProjectsOKResponseMeta.
+ */
+export interface GetNewestProjectsOKResponseMeta {
+  currentPage?: number;
+  pagesCount?: number;
+}
+
+/**
  * An interface representing GetNewestProjectsOKResponse.
  */
 export interface GetNewestProjectsOKResponse {
   data?: GetNewestProjectsOKResponseData;
+  meta?: GetNewestProjectsOKResponseMeta;
 }
 
 /**
@@ -965,6 +1058,20 @@ export interface GetRandomProjectsOKResponseData {
  */
 export interface GetRandomProjectsOKResponse {
   data?: GetRandomProjectsOKResponseData;
+}
+
+/**
+ * An interface representing GetUserProjectsOKResponseData.
+ */
+export interface GetUserProjectsOKResponseData {
+  projects?: Project[];
+}
+
+/**
+ * An interface representing GetUserProjectsOKResponse.
+ */
+export interface GetUserProjectsOKResponse {
+  data?: GetUserProjectsOKResponseData;
 }
 
 /**
@@ -1111,6 +1218,27 @@ export interface SupportHubApiEditProjectOptionalParams extends msRest.RequestOp
 /**
  * Optional Parameters.
  */
+export interface SupportHubApiGetColumnCardsOptionalParams extends msRest.RequestOptionsBase {
+  page?: number;
+}
+
+/**
+ * Optional Parameters.
+ */
+export interface SupportHubApiGetProjectCardsOptionalParams extends msRest.RequestOptionsBase {
+  page?: number;
+}
+
+/**
+ * Optional Parameters.
+ */
+export interface SupportHubApiGetCardsOptionalParams extends msRest.RequestOptionsBase {
+  page?: number;
+}
+
+/**
+ * Optional Parameters.
+ */
 export interface SupportHubApiCreateCardOptionalParams extends msRest.RequestOptionsBase {
   description?: string;
   columnOrder?: number;
@@ -1124,6 +1252,13 @@ export interface SupportHubApiEditCardOptionalParams extends msRest.RequestOptio
   description?: string;
   columnOrder?: number;
   columnGuid?: string;
+}
+
+/**
+ * Optional Parameters.
+ */
+export interface SupportHubApiGetNewestProjectsOptionalParams extends msRest.RequestOptionsBase {
+  page?: number;
 }
 
 /**
@@ -1598,6 +1733,26 @@ export type GetProjectPostsResponse = GetProjectPostsOKResponse & {
 };
 
 /**
+ * Contains response data for the getProjectImages operation.
+ */
+export type GetProjectImagesResponse = GetProjectImagesOKResponse & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: GetProjectImagesOKResponse;
+    };
+};
+
+/**
  * Contains response data for the getBoard operation.
  */
 export type GetBoardResponse = GetBoardOKResponse & {
@@ -1658,6 +1813,46 @@ export type GetColumnCardsResponse = GetColumnCardsOKResponse & {
 };
 
 /**
+ * Contains response data for the getProjectCards operation.
+ */
+export type GetProjectCardsResponse = GetProjectCardsOKResponse & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: GetProjectCardsOKResponse;
+    };
+};
+
+/**
+ * Contains response data for the getCards operation.
+ */
+export type GetCardsResponse = GetCardsOKResponse & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: GetCardsOKResponse;
+    };
+};
+
+/**
  * Contains response data for the getProjectByAlias operation.
  */
 export type GetProjectByAliasResponse = GetProjectByAliasOKResponse & {
@@ -1694,6 +1889,26 @@ export type CreateCardResponse = CreateCardCreatedResponse & {
        * The response body as parsed JSON or XML
        */
       parsedBody: CreateCardCreatedResponse;
+    };
+};
+
+/**
+ * Contains response data for the getCard operation.
+ */
+export type GetCardResponse = GetCardOKResponse & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: GetCardOKResponse;
     };
 };
 
@@ -2194,6 +2409,26 @@ export type GetRandomProjectsResponse = GetRandomProjectsOKResponse & {
        * The response body as parsed JSON or XML
        */
       parsedBody: GetRandomProjectsOKResponse;
+    };
+};
+
+/**
+ * Contains response data for the getUserProjects operation.
+ */
+export type GetUserProjectsResponse = GetUserProjectsOKResponse & {
+  /**
+   * The underlying HTTP response.
+   */
+  _response: msRest.HttpResponse & {
+      /**
+       * The response body as text (string format)
+       */
+      bodyAsText: string;
+
+      /**
+       * The response body as parsed JSON or XML
+       */
+      parsedBody: GetUserProjectsOKResponse;
     };
 };
 

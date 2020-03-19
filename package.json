@@ -1,6 +1,6 @@
 {
   "name": "gitcom-front",
-  "version": "0.12.0",
+  "version": "0.13.0",
   "private": true,
   "dependencies": {
     "@azure/ms-rest-js": "^2.0.5",
@@ -46,5 +46,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "devDependencies": {}
 }

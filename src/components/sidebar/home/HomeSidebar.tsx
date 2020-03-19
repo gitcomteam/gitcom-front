@@ -18,14 +18,13 @@ class HomeSidebar extends React.Component {
                 return ["account_sub", "subscription"];
             case "/account/withdrawals":
                 return ["account_sub", "withdrawals"];
-
-            case "/home/integrations":
-                return ["integrations"];
+            case "/account/library":
+                return ["library"];
 
             case "/home":
                 return ["home"];
-            case "/account/library":
-                return ["library"];
+            case "/home/integrations":
+                return ["developer", "integrations"];
         }
         return [];
     }
@@ -63,9 +62,15 @@ class HomeSidebar extends React.Component {
                             <Link to={"/account/withdrawals"}><Icon type={"dollar"}/>Withdrawals</Link>
                         </Menu.Item>
                     </SubMenu>
-                    <Menu.Item key="integrations" className={"text-left"}>
-                        <Link to={"/home/integrations"}><Icon type={"github"}/>Integrations</Link>
-                    </Menu.Item>
+                    <SubMenu
+                        key="developer"
+                        title={<span><Icon type="laptop"/>Developer</span>}
+                        className={"text-left"}
+                    >
+                        <Menu.Item key="integrations" className={"text-left"}>
+                            <Link to={"/home/integrations"}><Icon type={"github"}/>Integrations</Link>
+                        </Menu.Item>
+                    </SubMenu>
                 </Menu>
             </Sider>
         );

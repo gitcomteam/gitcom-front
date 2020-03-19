@@ -481,6 +481,33 @@ class SupportHubApi extends SupportHubApiContext {
   }
 
   /**
+   * @param projectGuid
+   * @param [options] The optional parameters
+   * @returns Promise<Models.GetProjectImagesResponse>
+   */
+  getProjectImages(projectGuid: string, options?: msRest.RequestOptionsBase): Promise<Models.GetProjectImagesResponse>;
+  /**
+   * @param projectGuid
+   * @param callback The callback
+   */
+  getProjectImages(projectGuid: string, callback: msRest.ServiceCallback<Models.GetProjectImagesOKResponse>): void;
+  /**
+   * @param projectGuid
+   * @param options The optional parameters
+   * @param callback The callback
+   */
+  getProjectImages(projectGuid: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.GetProjectImagesOKResponse>): void;
+  getProjectImages(projectGuid: string, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.GetProjectImagesOKResponse>, callback?: msRest.ServiceCallback<Models.GetProjectImagesOKResponse>): Promise<Models.GetProjectImagesResponse> {
+    return this.sendOperationRequest(
+      {
+        projectGuid,
+        options
+      },
+      getProjectImagesOperationSpec,
+      callback) as Promise<Models.GetProjectImagesResponse>;
+  }
+
+  /**
    * @param boardGuid Board Guid
    * @param [options] The optional parameters
    * @returns Promise<Models.GetBoardResponse>
@@ -539,7 +566,7 @@ class SupportHubApi extends SupportHubApiContext {
    * @param [options] The optional parameters
    * @returns Promise<Models.GetColumnCardsResponse>
    */
-  getColumnCards(columnGuid: string, options?: msRest.RequestOptionsBase): Promise<Models.GetColumnCardsResponse>;
+  getColumnCards(columnGuid: string, options?: Models.SupportHubApiGetColumnCardsOptionalParams): Promise<Models.GetColumnCardsResponse>;
   /**
    * @param columnGuid
    * @param callback The callback
@@ -550,8 +577,8 @@ class SupportHubApi extends SupportHubApiContext {
    * @param options The optional parameters
    * @param callback The callback
    */
-  getColumnCards(columnGuid: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.GetColumnCardsOKResponse>): void;
-  getColumnCards(columnGuid: string, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.GetColumnCardsOKResponse>, callback?: msRest.ServiceCallback<Models.GetColumnCardsOKResponse>): Promise<Models.GetColumnCardsResponse> {
+  getColumnCards(columnGuid: string, options: Models.SupportHubApiGetColumnCardsOptionalParams, callback: msRest.ServiceCallback<Models.GetColumnCardsOKResponse>): void;
+  getColumnCards(columnGuid: string, options?: Models.SupportHubApiGetColumnCardsOptionalParams | msRest.ServiceCallback<Models.GetColumnCardsOKResponse>, callback?: msRest.ServiceCallback<Models.GetColumnCardsOKResponse>): Promise<Models.GetColumnCardsResponse> {
     return this.sendOperationRequest(
       {
         columnGuid,
@@ -559,6 +586,56 @@ class SupportHubApi extends SupportHubApiContext {
       },
       getColumnCardsOperationSpec,
       callback) as Promise<Models.GetColumnCardsResponse>;
+  }
+
+  /**
+   * @param projectGuid
+   * @param [options] The optional parameters
+   * @returns Promise<Models.GetProjectCardsResponse>
+   */
+  getProjectCards(projectGuid: string, options?: Models.SupportHubApiGetProjectCardsOptionalParams): Promise<Models.GetProjectCardsResponse>;
+  /**
+   * @param projectGuid
+   * @param callback The callback
+   */
+  getProjectCards(projectGuid: string, callback: msRest.ServiceCallback<Models.GetProjectCardsOKResponse>): void;
+  /**
+   * @param projectGuid
+   * @param options The optional parameters
+   * @param callback The callback
+   */
+  getProjectCards(projectGuid: string, options: Models.SupportHubApiGetProjectCardsOptionalParams, callback: msRest.ServiceCallback<Models.GetProjectCardsOKResponse>): void;
+  getProjectCards(projectGuid: string, options?: Models.SupportHubApiGetProjectCardsOptionalParams | msRest.ServiceCallback<Models.GetProjectCardsOKResponse>, callback?: msRest.ServiceCallback<Models.GetProjectCardsOKResponse>): Promise<Models.GetProjectCardsResponse> {
+    return this.sendOperationRequest(
+      {
+        projectGuid,
+        options
+      },
+      getProjectCardsOperationSpec,
+      callback) as Promise<Models.GetProjectCardsResponse>;
+  }
+
+  /**
+   * @param [options] The optional parameters
+   * @returns Promise<Models.GetCardsResponse>
+   */
+  getCards(options?: Models.SupportHubApiGetCardsOptionalParams): Promise<Models.GetCardsResponse>;
+  /**
+   * @param callback The callback
+   */
+  getCards(callback: msRest.ServiceCallback<Models.GetCardsOKResponse>): void;
+  /**
+   * @param options The optional parameters
+   * @param callback The callback
+   */
+  getCards(options: Models.SupportHubApiGetCardsOptionalParams, callback: msRest.ServiceCallback<Models.GetCardsOKResponse>): void;
+  getCards(options?: Models.SupportHubApiGetCardsOptionalParams | msRest.ServiceCallback<Models.GetCardsOKResponse>, callback?: msRest.ServiceCallback<Models.GetCardsOKResponse>): Promise<Models.GetCardsResponse> {
+    return this.sendOperationRequest(
+      {
+        options
+      },
+      getCardsOperationSpec,
+      callback) as Promise<Models.GetCardsResponse>;
   }
 
   /**
@@ -625,6 +702,33 @@ class SupportHubApi extends SupportHubApiContext {
       },
       createCardOperationSpec,
       callback) as Promise<Models.CreateCardResponse>;
+  }
+
+  /**
+   * @param cardGuid
+   * @param [options] The optional parameters
+   * @returns Promise<Models.GetCardResponse>
+   */
+  getCard(cardGuid: string, options?: msRest.RequestOptionsBase): Promise<Models.GetCardResponse>;
+  /**
+   * @param cardGuid
+   * @param callback The callback
+   */
+  getCard(cardGuid: string, callback: msRest.ServiceCallback<Models.GetCardOKResponse>): void;
+  /**
+   * @param cardGuid
+   * @param options The optional parameters
+   * @param callback The callback
+   */
+  getCard(cardGuid: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.GetCardOKResponse>): void;
+  getCard(cardGuid: string, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.GetCardOKResponse>, callback?: msRest.ServiceCallback<Models.GetCardOKResponse>): Promise<Models.GetCardResponse> {
+    return this.sendOperationRequest(
+      {
+        cardGuid,
+        options
+      },
+      getCardOperationSpec,
+      callback) as Promise<Models.GetCardResponse>;
   }
 
   /**
@@ -1319,7 +1423,7 @@ class SupportHubApi extends SupportHubApiContext {
    * @param [options] The optional parameters
    * @returns Promise<Models.GetNewestProjectsResponse>
    */
-  getNewestProjects(options?: msRest.RequestOptionsBase): Promise<Models.GetNewestProjectsResponse>;
+  getNewestProjects(options?: Models.SupportHubApiGetNewestProjectsOptionalParams): Promise<Models.GetNewestProjectsResponse>;
   /**
    * @param callback The callback
    */
@@ -1328,8 +1432,8 @@ class SupportHubApi extends SupportHubApiContext {
    * @param options The optional parameters
    * @param callback The callback
    */
-  getNewestProjects(options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.GetNewestProjectsOKResponse>): void;
-  getNewestProjects(options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.GetNewestProjectsOKResponse>, callback?: msRest.ServiceCallback<Models.GetNewestProjectsOKResponse>): Promise<Models.GetNewestProjectsResponse> {
+  getNewestProjects(options: Models.SupportHubApiGetNewestProjectsOptionalParams, callback: msRest.ServiceCallback<Models.GetNewestProjectsOKResponse>): void;
+  getNewestProjects(options?: Models.SupportHubApiGetNewestProjectsOptionalParams | msRest.ServiceCallback<Models.GetNewestProjectsOKResponse>, callback?: msRest.ServiceCallback<Models.GetNewestProjectsOKResponse>): Promise<Models.GetNewestProjectsResponse> {
     return this.sendOperationRequest(
       {
         options
@@ -1359,6 +1463,33 @@ class SupportHubApi extends SupportHubApiContext {
       },
       getRandomProjectsOperationSpec,
       callback) as Promise<Models.GetRandomProjectsResponse>;
+  }
+
+  /**
+   * @param userGuid
+   * @param [options] The optional parameters
+   * @returns Promise<Models.GetUserProjectsResponse>
+   */
+  getUserProjects(userGuid: string, options?: msRest.RequestOptionsBase): Promise<Models.GetUserProjectsResponse>;
+  /**
+   * @param userGuid
+   * @param callback The callback
+   */
+  getUserProjects(userGuid: string, callback: msRest.ServiceCallback<Models.GetUserProjectsOKResponse>): void;
+  /**
+   * @param userGuid
+   * @param options The optional parameters
+   * @param callback The callback
+   */
+  getUserProjects(userGuid: string, options: msRest.RequestOptionsBase, callback: msRest.ServiceCallback<Models.GetUserProjectsOKResponse>): void;
+  getUserProjects(userGuid: string, options?: msRest.RequestOptionsBase | msRest.ServiceCallback<Models.GetUserProjectsOKResponse>, callback?: msRest.ServiceCallback<Models.GetUserProjectsOKResponse>): Promise<Models.GetUserProjectsResponse> {
+    return this.sendOperationRequest(
+      {
+        userGuid,
+        options
+      },
+      getUserProjectsOperationSpec,
+      callback) as Promise<Models.GetUserProjectsResponse>;
   }
 
   /**
@@ -1823,6 +1954,21 @@ const getProjectPostsOperationSpec: msRest.OperationSpec = {
   serializer
 };
 
+const getProjectImagesOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "api/v1/project/images/get",
+  queryParameters: [
+    Parameters.projectGuid
+  ],
+  responses: {
+    200: {
+      bodyMapper: Mappers.GetProjectImagesOKResponse
+    },
+    default: {}
+  },
+  serializer
+};
+
 const getBoardOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "api/v1/board/get",
@@ -1857,11 +2003,43 @@ const getColumnCardsOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "api/v1/board_column/cards/get",
   queryParameters: [
-    Parameters.columnGuid0
+    Parameters.columnGuid0,
+    Parameters.page
   ],
   responses: {
     200: {
       bodyMapper: Mappers.GetColumnCardsOKResponse
+    },
+    default: {}
+  },
+  serializer
+};
+
+const getProjectCardsOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "api/v1/project/cards/get",
+  queryParameters: [
+    Parameters.projectGuid,
+    Parameters.page
+  ],
+  responses: {
+    200: {
+      bodyMapper: Mappers.GetProjectCardsOKResponse
+    },
+    default: {}
+  },
+  serializer
+};
+
+const getCardsOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "api/v1/cards/get",
+  queryParameters: [
+    Parameters.page
+  ],
+  responses: {
+    200: {
+      bodyMapper: Mappers.GetCardsOKResponse
     },
     default: {}
   },
@@ -1897,6 +2075,21 @@ const createCardOperationSpec: msRest.OperationSpec = {
   responses: {
     201: {
       bodyMapper: Mappers.CreateCardCreatedResponse
+    },
+    default: {}
+  },
+  serializer
+};
+
+const getCardOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "api/v1/card/get",
+  queryParameters: [
+    Parameters.cardGuid
+  ],
+  responses: {
+    200: {
+      bodyMapper: Mappers.GetCardOKResponse
     },
     default: {}
   },
@@ -2272,6 +2465,9 @@ const getMyEntityPermissionsOperationSpec: msRest.OperationSpec = {
 const getNewestProjectsOperationSpec: msRest.OperationSpec = {
   httpMethod: "GET",
   path: "api/v1/projects/newest/get",
+  queryParameters: [
+    Parameters.page
+  ],
   responses: {
     200: {
       bodyMapper: Mappers.GetNewestProjectsOKResponse
@@ -2287,6 +2483,21 @@ const getRandomProjectsOperationSpec: msRest.OperationSpec = {
   responses: {
     200: {
       bodyMapper: Mappers.GetRandomProjectsOKResponse
+    },
+    default: {}
+  },
+  serializer
+};
+
+const getUserProjectsOperationSpec: msRest.OperationSpec = {
+  httpMethod: "GET",
+  path: "api/v1/user/projects/get",
+  queryParameters: [
+    Parameters.userGuid
+  ],
+  responses: {
+    200: {
+      bodyMapper: Mappers.GetUserProjectsOKResponse
     },
     default: {}
   },

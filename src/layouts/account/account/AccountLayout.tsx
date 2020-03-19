@@ -1,18 +1,37 @@
 import React from 'react';
 import FullPageWithSideBar from "../../../components/layout/simple/fullpagewithsidebar/FullPageWithSidebar";
 import UserCard from "../../../components/entity/user/single/card/UserCard";
+import ProjectCardList from "../../../components/entity/project/many/cards_list/ProjectCardList";
+import {Button, Row} from "antd";
+import {Link} from "react-router-dom";
+import AuthRedirect from "../../../components/auth/redirect/AuthRedirect";
 
-interface IProps {
-}
+class AccountLayout extends React.Component {
+    constructor(props: any) {
+        document.title = "My account | GitCom - Community-Driven open source marketplace";
+        super(props);
+    }
 
-interface IState {
-}
+    componentDidMount(): void {
+        setTimeout(() => {this.setState({})}, 1500);
+    }
 
-class AccountLayout extends React.Component<IProps, IState> {
     render() {
         return <FullPageWithSideBar sidebarType={"home"}>
+            <AuthRedirect/>
             <h3 className={"ant-typography"}>My account</h3>
             <UserCard me={true} user={window.App.authorizedUser}/>
+            <Row className={"margin-md-top"}/>
+            {
+                window.App.authorizedUser ?
+                    <div>
+                        <ProjectCardList label={"My projects"} type={"user"} userGuid={window.App.authorizedUser!.guid!}/>
+                        <Link to={"/home/integrations"}>
+                            <Button icon={"plus"} type={"primary"}>Import projects</Button>
+                        </Link>
+                    </div>
+                    : null
+            }
         </FullPageWithSideBar>;
     }
 }

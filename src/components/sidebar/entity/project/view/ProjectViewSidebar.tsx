@@ -4,15 +4,10 @@ import {Link} from "react-router-dom";
 
 const { Sider } = Layout;
 
-interface IProps {
-}
-
-interface IState {
-}
-
-class ProjectViewSidebar extends React.Component<IProps, IState> {
+class ProjectViewSidebar extends React.Component {
     static getActiveMenuKeys(): string[] {
         if (window.location.pathname.includes('/pricing')) return ["pricing"];
+        if (window.location.pathname.includes('/cards')) return ["cards"];
         return ["home"];
     }
 
@@ -31,10 +26,13 @@ class ProjectViewSidebar extends React.Component<IProps, IState> {
                     style={{height: '100%', borderRight: 0}}
                 >
                     <Menu.Item key="home" className={"text-left"}>
-                        <Link to={this.getPath()}><Icon type={"home"}/>Project home</Link>
+                        <Link to={this.getPath()}><Icon type={"home"}/>Project</Link>
                     </Menu.Item>
                     <Menu.Item key="pricing" className={"text-left"}>
                         <Link to={`${this.getPath()}/pricing`}><Icon type={"dollar"}/>Pricing</Link>
+                    </Menu.Item>
+                    <Menu.Item key="cards" className={"text-left"}>
+                        <Link to={`${this.getPath()}/cards`}><Icon type={"credit-card"}/>Cards</Link>
                     </Menu.Item>
                 </Menu>
             </Sider>

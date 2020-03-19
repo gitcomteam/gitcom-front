@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "version": "0.17.0",
+    "version": "0.19.0",
     "title": "GitCom",
     "description": "GitCom API",
     "termsOfService": "http://swagger.io/terms/",
@@ -132,6 +132,10 @@
     {
       "name": "post",
       "description": "Posts related endpoints"
+    },
+    {
+      "name": "image",
+      "description": "Operations related to images"
     }
   ],
   "paths": {
@@ -890,6 +894,44 @@
         }
       }
     },
+    "/project/images/get": {
+      "get": {
+        "tags": [
+          "image"
+        ],
+        "operationId": "getProjectImages",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "project_guid",
+            "in": "query",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "images": {
+                      "$ref": "#/definitions/Image"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/board/get": {
       "get": {
         "tags": [
@@ -988,6 +1030,11 @@
             "in": "query",
             "type": "string",
             "required": true
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "type": "number"
           }
         ],
         "responses": {
@@ -1004,6 +1051,119 @@
                       "items": {
                         "$ref": "#/definitions/Card"
                       }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/project/cards/get": {
+      "get": {
+        "tags": [
+          "project",
+          "card"
+        ],
+        "operationId": "getProjectCards",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "project_guid",
+            "in": "query",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "type": "number"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "cards": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/definitions/Card"
+                      }
+                    }
+                  }
+                },
+                "meta": {
+                  "type": "object",
+                  "properties": {
+                    "current_page": {
+                      "type": "number",
+                      "example": 2
+                    },
+                    "pages_count": {
+                      "type": "number",
+                      "example": 10
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cards/get": {
+      "get": {
+        "tags": [
+          "card"
+        ],
+        "operationId": "getCards",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "type": "number"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "cards": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/definitions/Card"
+                      }
+                    }
+                  }
+                },
+                "meta": {
+                  "type": "object",
+                  "properties": {
+                    "current_page": {
+                      "type": "number",
+                      "example": 2
+                    },
+                    "pages_count": {
+                      "type": "number",
+                      "example": 10
                     }
                   }
                 }
@@ -1109,6 +1269,45 @@
         ],
         "responses": {
           "201": {
+            "description": "",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "card": {
+                      "$ref": "#/definitions/Card"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/card/get": {
+      "get": {
+        "tags": [
+          "card"
+        ],
+        "operationId": "getCard",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "card_guid",
+            "in": "query",
+            "type": "string",
+            "description": "",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
             "description": "",
             "schema": {
               "type": "object",
@@ -2232,6 +2431,57 @@
         "produces": [
           "application/json"
         ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page",
+            "type": "number"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "projects": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/definitions/Project"
+                      }
+                    }
+                  }
+                },
+                "meta": {
+                  "type": "object",
+                  "properties": {
+                    "current_page": {
+                      "type": "number",
+                      "example": 2
+                    },
+                    "pages_count": {
+                      "type": "number",
+                      "example": 10
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/projects/random/get": {
+      "get": {
+        "tags": ["project"],
+        "operationId": "getRandomProjects",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
         "parameters": [],
         "responses": {
           "200": {
@@ -2256,15 +2506,22 @@
         }
       }
     },
-    "/projects/random/get": {
+    "/user/projects/get": {
       "get": {
         "tags": ["project"],
-        "operationId": "getRandomProjects",
+        "operationId": "getUserProjects",
         "description": "",
         "produces": [
           "application/json"
         ],
-        "parameters": [],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "user_guid",
+            "type": "string",
+            "required": true
+          }
+        ],
         "responses": {
           "200": {
             "description": "",
@@ -2713,6 +2970,9 @@
           "type": "number",
           "example": 3
         },
+        "confirmed": {
+          "type": "boolean"
+        },
         "created_at": {
           "type": "string",
           "example": "2019-10-04"
@@ -3140,6 +3400,23 @@
         "paid": {
           "type": "boolean",
           "example": false
+        },
+        "created_at": {
+          "type": "string",
+          "example": "2019-10-06T17:14:54.844933"
+        }
+      }
+    },
+    "Image": {
+      "type": "object",
+      "properties": {
+        "guid": {
+          "type": "string",
+          "example": "46e647fc-9ebc-4d40-bcff-f81af991ee88"
+        },
+        "url": {
+          "type": "string",
+          "example": "/public/img/image.jpg"
         },
         "created_at": {
           "type": "string",

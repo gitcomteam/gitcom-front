@@ -1,5 +1,5 @@
 import React from 'react';
-import {Card, Divider, Icon, Row} from "antd";
+import {Button, Card, Divider, Icon, notification, Row} from "antd";
 import {BoardModel, CardModel, ColumnModel} from "../../../../../client/bindings";
 import {handleApiError} from "../../../../../classes/notification/errorHandler/errorHandler";
 import styles from './styles.module.css';
@@ -15,7 +15,9 @@ interface IProps {
 
 interface IState {
     isLoaded: boolean,
-    cards: CardModel[]|null
+    cards: CardModel[]|null,
+    lastPageLoaded: number,
+    moreAvailable: boolean
 }
 
 class ColumnCard extends React.Component<IProps, IState> {
@@ -23,7 +25,9 @@ class ColumnCard extends React.Component<IProps, IState> {
         super(props);
         this.state = {
             isLoaded: false,
-            cards: null
+            cards: null,
+            lastPageLoaded: 0,
+            moreAvailable: true
         }
     }
 
@@ -38,20 +42,23 @@ class ColumnCard extends React.Component<IProps, IState> {
         }, Math.floor(Math.random() * 3000));
     }
 
-    getCards(): void {
-        window.App.apiClient.getColumnCards(this.props.column.guid!)
-            .then((result) =>
-                this.processGetBoardInfo(result._response))
+    getCards(page: number = 1): void {
+        window.App.apiClient.getColumnCards(this.props.column.guid!, {
+            page
+        })
+            .then((res) => {
+                let rawData: any = res.data!;
+                if (this.state.cards === null) this.setState({cards: []});
+                this.setState({
+                    isLoaded: true,
+                    cards: this.state.cards!.concat(res.data!.cards!),
+                    lastPageLoaded: rawData.meta.current_page
+                });
+                if (this.state.lastPageLoaded >= rawData.meta.pages_count) {
+                    this.setState({moreAvailable: false});
+                }
+            })
             .catch((error) => handleApiError(error.response));
-    }
-
-    processGetBoardInfo(response: any) {
-        let json = JSON.parse(response.bodyAsText);
-
-        this.setState({
-            isLoaded: true,
-            cards: json.data.cards
-        });
     }
 
     render() {
@@ -68,6 +75,10 @@ class ColumnCard extends React.Component<IProps, IState> {
                             </Link>
                         </div>;
                     })}
+                    {this.state.moreAvailable ? <Button
+                        onClick={() => {this.getCards(this.state.lastPageLoaded + 1)}}
+                        icon={"plus"}
+                    >Load more</Button> : null}
                 </div>
                 <PermissionCheck
                     entityGuid={this.props.column.guid!}

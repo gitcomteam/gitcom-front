@@ -8,6 +8,7 @@ export class ProjectModel {
     creator_guid?: string;
     base_uri?: string;
     stars_count?: number;
+    confirmed?: boolean;
     created_at?: string;
     updated_at?: string;
 }
@@ -173,4 +174,10 @@ export class ProjectPost {
     project_guid?: string;
     created_at?: string;
     updated_at?: string;
+}
+
+export class Image {
+    guid?: string;
+    url?: string;
+    created_at?: string;
 }

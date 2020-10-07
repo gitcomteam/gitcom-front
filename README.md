@@ -36,9 +36,7 @@ Project is built using [Create react app](https://github.com/facebook/create-rea
 
 ### Contribution:
 Thank you for considering contributing to this repo, feel free to open a PR with any improvement, feature or bugfix.  
-All **bugfixes** should go into [release/patch](https://github.com/gitcomteam/gitcom-front/tree/release/patch) branch  
-All **new features** should go into [release/minor](https://github.com/gitcomteam/gitcom-front/tree/release/minor) branch  
-All **breaking changes** should be in [release/major](https://github.com/gitcomteam/gitcom-front/tree/release/major) branch  
+All **Pull Requests** should go into [release/patch](https://github.com/gitcomteam/gitcom-front/tree/release/patch) branch  
  
 ### Contribution rewards
 For each merged PR you will be rewarded with `contributor` badge and 2500 (or more) GitCom tokens which are tradeable on [Waves Decentralized exchange](https://waves.exchange/dex-demo?assetId2=BkuYDLDunSy7dvep7NgQcmiY4iyqTq3diHwdGPrFUCMC&assetId1=WAVES) (You will need to have a Waves wallet to be able to receive tokens)

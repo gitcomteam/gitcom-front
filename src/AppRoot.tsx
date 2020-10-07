@@ -5,7 +5,7 @@ import './app.css';
 import Routes from "./Routes";
 import App from "./classes/dataStore/app";
 import config from './config/config';
-import IAppConfig from "./intarface/AppConfig";
+import IAppConfig from "./interface/AppConfig";
 
 declare global {
     interface Window {

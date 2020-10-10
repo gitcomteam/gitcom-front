@@ -3,8 +3,8 @@ import {InvoiceModel} from "../../../../../../client/bindings";
 import {Button, Icon, notification, Row, Tag} from "antd";
 import {handleApiError} from "../../../../../../classes/notification/errorHandler/errorHandler";
 import copy from 'copy-to-clipboard';
-import moment from "moment";
 import {CurrencyType} from "../../../../../../client/models";
+import dayjs from "dayjs";
 
 interface IProps {
     invoice: InvoiceModel|null,
@@ -127,9 +127,9 @@ class InvoiceContent extends React.Component<IProps, IState> {
                 <br/><br/>
                 <b>ID: </b> {invoice.guid} <br/>
                 <b>Created at: </b> <br/>
-                {moment(invoice.created_at).format('MMMM Do YYYY, h:mm:ss a')} <br/>
+                {dayjs(invoice.created_at).format('MMMM Do YYYY, h:mm:ss a')} <br/>
                 <b>Last updated at: </b> <br/>
-                {moment(invoice.updated_at).format('MMMM Do YYYY, h:mm:ss a')} <br/>
+                {dayjs(invoice.updated_at).format('MMMM Do YYYY, h:mm:ss a')} <br/>
             </Row>
             <Row className="margin-md-top">
                 {actionButtons}

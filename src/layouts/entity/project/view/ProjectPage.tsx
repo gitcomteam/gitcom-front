@@ -1,7 +1,7 @@
 import React from "react";
 import FullPageWithSideBar from "../../../../components/layout/simple/fullpagewithsidebar/FullPageWithSidebar";
 import {handleApiError} from "../../../../classes/notification/errorHandler/errorHandler";
-import {Badge, Button, Card, Col, Divider, Icon, Popover, Row} from "antd";
+import {Badge, Button, Col, Divider, Icon, Popover, Row} from "antd";
 import {BoardModel, ProjectModel} from "../../../../client/bindings";
 import BoardCard from "../../../../components/entity/board/single/card/BoardCart";
 import PermissionCheckLink from "../../../../components/link/withChecks/PermissionCheckLink";
@@ -9,7 +9,6 @@ import AuthCheck from "../../../../components/check/auth_check/AuthCheck";
 import AddToLibrary from "../../../../components/entity/my_library/single/action/AddToLibrary";
 import RepoCard from "../../../../components/external/repo/card/RepoCard";
 import {Link} from "react-router-dom";
-import NewInvoice from "../../../../components/entity/invoice/single/create/NewInvoice";
 import ProjectPosts from "../../../../components/entity/project_post/many/ProjectPosts";
 import SupportButton from "../../../../components/action/support/SupportButton";
 

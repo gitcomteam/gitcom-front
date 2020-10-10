@@ -13,7 +13,7 @@
     "antd": "^3.26.6",
     "autorest": "^2.0.4283",
     "copy-to-clipboard": "^3.2.0",
-    "moment": "^2.24.0",
+    "dayjs": "^1.9.1",
     "query-string": "^6.8.3",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",

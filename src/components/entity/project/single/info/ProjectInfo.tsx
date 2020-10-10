@@ -1,11 +1,11 @@
 import React from 'react';
 import {ProjectModel} from "../../../../../client/bindings";
 import {handleApiError} from "../../../../../classes/notification/errorHandler/errorHandler";
-import {Button, Icon, Row} from "antd";
-import moment from "moment";
+import {Icon, Row} from "antd";
 import {retryRequest} from "../../../../../classes/utils/http/retryRequest";
 import {Link} from "react-router-dom";
 import AddToLibraryButton from "../../../../action/library/AddToLibraryButton/AddToLibraryButton";
+import dayjs from "dayjs";
 
 interface IProps {
     displayName: boolean,
@@ -83,7 +83,7 @@ class ProjectInfo extends React.Component<IProps, IState> {
                 <Row className="margin-xs"/>
             </div>
             <Row className="text-left">
-                <i>Created:</i> {moment(project.created_at).format('MMMM Do YYYY')}
+                <i>Created:</i> {dayjs(project.created_at).format('MMMM Do YYYY')}
                 <br/><br/>
                 <AddToLibraryButton project={project}/>
             </Row>

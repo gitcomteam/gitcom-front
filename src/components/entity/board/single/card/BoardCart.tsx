@@ -2,7 +2,7 @@ import React from 'react';
 import {Card} from "antd";
 import {BoardModel} from "../../../../../client/bindings";
 import {Link} from "react-router-dom";
-import moment from "moment";
+import dayjs from "dayjs";
 
 interface IProps {
     fullProjectName: string|null,
@@ -25,7 +25,7 @@ class BoardCard extends React.Component<IProps, IState> {
 
                     <div className="text-left margin-sm-top">
                         <b>Last updated at: </b> <br/>
-                        {moment(this.props.board.updated_at).format('MMMM Do YYYY')}
+                        {dayjs(this.props.board.updated_at).format('MMMM Do YYYY')}
                     </div>
                 </Card>
             </Link>

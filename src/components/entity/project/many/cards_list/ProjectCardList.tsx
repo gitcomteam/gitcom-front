@@ -37,8 +37,8 @@ class ProjectCardList extends React.Component<IProps, IState> {
         }
     }
 
+    // TODO: fix this hack
     componentDidMount(): void {
-        {/* TODO: fix this hack */}
         setTimeout(() => {
             let queryPage: any = new URL(window.location.href).searchParams.get('page');
             if (queryPage) {

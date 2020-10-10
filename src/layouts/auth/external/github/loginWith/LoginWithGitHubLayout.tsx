@@ -4,9 +4,6 @@ import {handleApiError} from "../../../../../classes/notification/errorHandler/e
 import {Icon} from "antd";
 import { Redirect } from 'react-router';
 
-interface IProps {
-}
-
 interface IState {
     isLoaded: boolean,
     isRedirected: boolean,
@@ -14,8 +11,8 @@ interface IState {
     redirectBlock: any
 }
 
-class LoginWithGitHubLayout extends React.Component<IProps, IState> {
-    constructor(props: IProps) {
+class LoginWithGitHubLayout extends React.Component<any, IState> {
+    constructor(props: any) {
         super(props);
         this.state = {
             isLoaded: false,

@@ -1,18 +1,15 @@
 import React from "react";
 import ReactMarkdown from "react-markdown";
 import {Card, Divider} from "antd";
-import moment from "moment";
 import {ProjectPost} from "../../../../client/bindings";
 import ProjectLink from "../../../link/projectLink/ProjectLink";
+import dayjs from "dayjs";
 
 interface IProps {
     post: ProjectPost
 }
 
-interface IState {
-}
-
-class Post extends React.Component<IProps, IState> {
+class Post extends React.Component<IProps> {
     constructor(props: IProps) {
         super(props);
     }
@@ -29,7 +26,7 @@ class Post extends React.Component<IProps, IState> {
             <br/>
             <Divider/>
             <ProjectLink projectGuid={post.project_guid!}/>
-            <i className={"margin-sm-sides"}>Posted: {moment(post.created_at).format('MMMM Do YYYY')}</i>
+            <i className={"margin-sm-sides"}>Posted: {dayjs(post.created_at).format('MMMM Do YYYY')}</i>
         </Card>
     }
 }

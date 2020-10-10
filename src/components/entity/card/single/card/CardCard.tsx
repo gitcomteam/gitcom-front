@@ -10,8 +10,8 @@ import {BoardModel, CardModel} from "../../../../../client/bindings";
 import PermissionCheck from "../../../../check/permission_check/single/PermissionCheck";
 import EditCard from "../../action/edit/EditCard";
 import AuthCheck from "../../../../check/auth_check/AuthCheck";
-import moment from "moment";
 import ReactMarkdown from "react-markdown";
+import dayjs from "dayjs";
 
 interface IProps {
     parentBoard: BoardModel|null,
@@ -67,7 +67,7 @@ class CardCard extends React.Component<IProps, IState> {
             >
                 <b className={"ant-typography"}>{card.name}</b>
                 <Row className={"text-left margin-sm-top"}>
-                    <i>Created: {moment(card.created_at).format('MMMM Do YYYY')}</i>
+                    <i>Created: {dayjs(card.created_at).format('MMMM Do YYYY')}</i>
                 </Row>
             </Card>
             <Modal

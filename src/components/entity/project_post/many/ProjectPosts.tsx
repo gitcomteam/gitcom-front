@@ -54,7 +54,7 @@ class ProjectPosts extends React.Component<IProps, IState> {
 
         return <div>
             {
-                this.state.posts!.map((currentPost: ProjectPost) => {
+                this.state.posts!.slice(0,3).map((currentPost: ProjectPost) => {
                     return <Row key={currentPost.guid} className={"margin-sm-top"}>
                         <Post post={currentPost}/>
                     </Row>

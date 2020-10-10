@@ -26,8 +26,6 @@ async function loadScriptAsync(url: string) {
     document.body.appendChild(script);
 }
 
-loadScriptAsync("https://momentjs.com/downloads/moment.min.js").then(() => {});
-
 setTimeout(() => {
     loadScriptAsync("/js/lazy_init.js").then(() => {});
 }, 1000);

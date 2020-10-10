@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button, Card, Divider, Icon, notification, Row} from "antd";
+import {Button, Card, Divider, Icon, Row} from "antd";
 import {BoardModel, CardModel, ColumnModel} from "../../../../../client/bindings";
 import {handleApiError} from "../../../../../classes/notification/errorHandler/errorHandler";
 import styles from './styles.module.css';

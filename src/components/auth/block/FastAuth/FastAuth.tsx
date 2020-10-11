@@ -71,7 +71,7 @@ class FastAuth extends React.Component<IProps, IState> {
                     <Link to={"/login?fast_signin=github"}>
                         <Button icon={"github"}>GitHub</Button>
                     </Link>
-                    <Link to={"/login?fast_signin=github"}>
+                    <Link to={"/login?fast_signin=google"}>
                         <Button className={"margin-sm-sides"} icon={"google"}>Google</Button>
                     </Link>
                     <Link to={"/login?fast_signin=gitlab"}>

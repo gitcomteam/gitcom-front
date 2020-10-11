@@ -36,9 +36,6 @@ function IndexLayout () {
                                     helping developers to <i> get financial support for their open source
                                     work</i>
                                 </p>
-                                <a href={"https://start.gitcom.org"} target="_blank" rel="noopener noreferrer">
-                                    <Button icon={"question"} type={"default"} className={"margin-sm"}>How it works?</Button>
-                                </a>
                                 <Link to={"/quickstart/developer"}>
                                     <Button type={"primary"} icon={"rocket"} className={"margin-sm"}>Developer quickstart</Button>
                                 </Link>
@@ -48,12 +45,12 @@ function IndexLayout () {
                                     <Row>
                                         <Col xs={12}>
                                             <p>
-                                                500+ <Link to={"/explore/projects"}>projects <Icon type={"build"}/></Link>
+                                                9.000+ <Link to={"/explore/projects"}>projects <Icon type={"build"}/></Link>
                                             </p>
                                         </Col>
                                         <Col xs={12}>
                                             <p>
-                                                20.000+ <Link to={"/explore/cards"}>tickets <Icon type={"credit-card"}/></Link>
+                                                300.000+ <Link to={"/explore/cards"}>tickets <Icon type={"credit-card"}/></Link>
                                             </p>
                                         </Col>
                                     </Row>
